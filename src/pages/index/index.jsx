@@ -1,20 +1,26 @@
 import Taro, { useState, useCallback } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
-import { AtInput, AtForm, AtButton }  from 'taro-ui'
+import { View } from '@tarojs/components'
+import { AtInput, AtForm, AtButton, AtCountdown }  from 'taro-ui'
 import './index.scss'
 
 
 const Index = props => {
-
 	let [telNum, setTelNum] = useState('')
 	let [getVCode, setGetVCode] = useState('')
-	let [vCode, setVCode] = useState('')
-	let [timer, setTimer] = useState(60)
+	let [vCode, setVCode] = useState(false)
+	let clickGetVCode = useCallback(e => {
+		if(!vCode) {
+			setVCode(true)
+		}
+	}, [vCode])
+	let timer = useCallback(e => {
+		setVCode(false)
+	}, [])
 	let submit = useCallback(
 		(e) => {
 			console.log(e)
 		},
-		[],
+		[telNum, getVCode],
 	)
 	return (
 		<View className="container">
@@ -30,6 +36,7 @@ const Index = props => {
 							onChange={setTelNum}
 							placeholderClass="inputPlaceholder"
 						/>
+						<View className="divier"></View>
 					</View>
 					<View className="VCodeWrapper">
 						<AtInput
@@ -44,13 +51,24 @@ const Index = props => {
 						<View className="sendWrapper">
 							<View className="division"></View>
 							{
-								vCode === '' ?
-								<View className="getVCode">获取验证码</View>
-								:
-								<Image className="VCode" src="vCode" />
+								!vCode ?
+									<View className="getVCode" onClick={clickGetVCode}>获取验证码</View>
+									:
+									<View className="countDownWrapper">
+										<AtCountdown
+											className="cownDown"
+											isShowHour={false}
+											format={{ hours: ':', minutes: ':', seconds: '秒' }}
+											seconds={59}
+											isShowMin={false}
+											onTimeUp={timer}
+										/>
+									</View>
 							}
 						</View>
+						
 					</View>
+					<View className="divier"></View>
 					<AtButton className="btn" formType='submit'>登录</AtButton>
 				</AtForm>
 				<View className="wxLoginWrapper">
