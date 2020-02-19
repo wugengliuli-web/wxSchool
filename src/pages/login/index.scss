@@ -1,0 +1,149 @@
+@import "~taro-ui/dist/style/components/form.scss";
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/button.scss";
+@import "~taro-ui/dist/style/components/loading.scss";
+@import "~taro-ui/dist/style/components/countdown.scss";
+page {
+  height: 100%;
+}
+.container {
+  overflow: auto;
+  height: 100%;
+  background: rgba(245, 246, 250, 1);
+  .formWrapper {
+    width: 560px;
+    margin: 0 auto;
+    margin-top: 320px;
+    background: #F5F6FA;
+    &::after {
+      border: none;
+    }
+    .telNumWrapper {
+      width: 100%;
+      .telNumInput {
+        font-family:Noto Sans S Chinese;
+        font-size:24px;
+        line-height:40px;
+        color:rgba(0,0,0,1);
+        opacity:0.38;
+        margin: 0;
+        padding: 32px 16px;
+        background: #F5F6FA;
+        &::after {
+          border: none;
+        }
+      }
+    }
+    .inputPlaceholder {
+      font-family:Noto Sans S Chinese;
+      font-size:24px;
+      line-height:40px;
+      color:rgba(0,0,0,1);
+      opacity:0.38;
+    }
+    .divier {
+      width: 100%;
+      height:0px;
+      border:2px solid rgba(0,0,0,1);
+      opacity:0.12;
+    }
+    .VCodeWrapper {
+      width: 100%;
+      display: flex;
+      .VCodeInput {
+        font-family:Noto Sans S Chinese;
+        font-size:24px;
+        line-height:40px;
+        color:rgba(0,0,0,1);
+        opacity:0.38;
+        background: #F5F6FA;
+        margin: 0;
+        width: 380px;
+        padding: 32px 16px;
+        &::after {
+          border: none;
+        }
+      }
+      .sendWrapper {
+        display: flex;
+        align-items: center;
+        .division {
+          width:6px;
+          height:38px;
+          background:rgba(112,112,112,1);
+        }
+        .getVCode {
+          margin-left: 16px;
+          font-size:24px;
+          font-family:Noto Sans S Chinese;
+          font-weight:400;
+          line-height:40px;
+          color:rgba(0,0,0,1);
+          opacity:0.38;
+        }
+        .cownDown {
+          opacity:0.38;
+          width: 120px;
+          margin-left: 16px;
+          display: block;
+          .at-countdown__item {
+            display: flex;
+            .at-countdown__time-box {
+              
+              .at-countdown__time {
+                font-size:24px;
+                font-family:Noto Sans S Chinese;
+                font-weight:400;
+                color:rgba(0,0,0,1);
+                line-height:40px;
+              }
+            }
+            
+            .at-countdown__separator {
+              font-size:24px;
+              font-family:Noto Sans S Chinese;
+              font-weight:400;
+              line-height:40px;
+              color:rgba(0,0,0,1);
+            }
+          }
+          
+        }
+      }
+    }
+    .btn {
+      margin-top: 80px;
+      border-radius:8px;
+      background:rgba(223,229,238,1);
+      height: 80px;
+      line-height: 80px;
+      font-size:32px;
+      font-family:Noto Sans S Chinese;
+      font-weight: 700;
+      color:rgba(0,0,0,1);
+      opacity:0.87;
+      border: none;
+    }
+    .wxLoginWrapper {
+      width: 100%;
+      margin-top: 232px;
+      .wxLoginImgWrapper {
+        margin: 0 auto;
+        width: 96px;
+        height: 96px;
+        background:rgba(223,229,238,1);
+        border-radius:50%;
+      }
+      .wxLoginText {
+        text-align: center;
+        font-size:24px;
+        font-family:Noto Sans S Chinese;
+        font-weight:400;
+        line-height:40px;
+        color:rgba(0,0,0,1);
+        opacity:0.6;
+        margin-top: 16px;
+      }
+    }
+  }
+}

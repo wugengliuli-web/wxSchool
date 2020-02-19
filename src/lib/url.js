@@ -1,0 +1,1 @@
+export const DEVELOP = 'http://localhost:3721/api/'
