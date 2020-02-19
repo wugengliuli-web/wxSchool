@@ -29,9 +29,8 @@ const Home = props => {
                     >
                         {
                             bannerUrl.map((item, index) => {
-                                console.log(item)
                                 return (
-                                    <SwiperItem key={index}>
+                                    <SwiperItem key={item.link}>
                                         <Image className="img" src={item.url} mode="center"></Image>
                                     </SwiperItem>
                                 )
