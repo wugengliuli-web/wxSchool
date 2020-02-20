@@ -25,13 +25,13 @@ const data = {
     'GET /api/getContent': (req, res) => {
         let { query: { pageIndex } } = req
         res.status('200').json(Mock.mock({
-            'data|5': [{
+            'data|3': [{
                 id: '@id',
-                url: Mock.Random.image('380x120', '#2db7f5', '#FFF', 'react'),
+                url: Mock.Random.image('300x400', '#2db7f5', '#FFF', 'react'),
                 text: '@ctitle(10, 20)'
             }, {
                 id: '@id',
-                url: Mock.Random.image('380x120', '#50B347', '#FFF', 'test2'),
+                url: Mock.Random.image('200x300', '#50B347', '#FFF', 'test2'),
                 text: '@ctitle(10, 20)'
             }]
         }))

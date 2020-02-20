@@ -6,6 +6,7 @@ import { getBanner, getSearchPlaceHolder, getContent } from '../../actions/home'
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 const Home = props => {
+    
     let pageIndex = 0  //第几页
     let dispatch = useDispatch()
     let [loading, setLoading] = useState(true)
@@ -13,7 +14,7 @@ const Home = props => {
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
-    useDidShow(async () => {
+    useDidShow(() => {
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -26,7 +27,7 @@ const Home = props => {
         }
         if(content.length === 0) {
             const aciton = getContent(pageIndex)
-            await dispatch(aciton)
+            dispatch(aciton)
             setLoading(false)
         }
     })
@@ -81,15 +82,15 @@ const Home = props => {
             </View>
             <View className="contentWrapper">
                 <View className="title">推荐</View>
-                <View>
+                <View className="waterfallWrapper">
                     {
                         content.map((item, index) => {
                             return (
-                                <Navigator className="waterfallWrapper" url={`test/?id=${item.id}`} key={item.id} >
+                                <Navigator className="link" url={`test/?id=${item.id}`} key={item.id} >
                                     <View>
-                                        <View>
-                                            <Image className="img" src={item.url} ></Image>
-                                            <View>{item.text}</View>
+                                        <View className="contentContainer">
+                                            <Image mode="widthFix" className="img" src={item.url} ></Image>
+                                            <View className="contentText">{item.text}</View>
                                         </View>
                                     </View>
                                 </Navigator>

@@ -1,7 +1,7 @@
 import { 
     set_banner,
     set_searchPlaceholder,
-    get_content
+    set_content
  } from '../constants/home'
 //存储用户信息的状态
 const INITIAL_STATE = {
@@ -23,7 +23,7 @@ export default function login(state = INITIAL_STATE, action) {
                 ...state,
                 searchPlaceHolder: data
             }
-        case get_content:
+        case set_content:
             return {
                 ...state,
                 content: data

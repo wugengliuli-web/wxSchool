@@ -3,8 +3,9 @@ import { DEVELOP } from '../lib/url'
 import { 
     set_banner, 
     set_searchPlaceholder,
-    get_content 
+    set_content 
 } from '../constants/home'
+import { AtAvatar } from 'taro-ui'
 //请求banner
 export const getBanner = () => {
     return async dispatch => {
@@ -44,7 +45,7 @@ export const getContent = pageIndex => {
         })
         let { data: { data } } = res
         dispatch({
-            type: get_content,
+            type: set_content,
             data
         })
     }
