@@ -1,4 +1,21 @@
-.index {
-  flex-direction: column;
-  width: 100%;
+page {
+    background: rgba(245, 246, 250, 1);
+}
+.container {
+    background: rgba(245, 246, 250, 1);
+    padding: 16px;
+    .bannerWrapper {
+        width: 100%;
+        border-radius:8px;
+        overflow: hidden;
+        .bannerPlaceHolder {
+            width: 100%;
+            height: 240px;
+            background:rgba(223,229,238,1);
+        }
+        .img {
+            width: 100%;
+            height: 100%;
+        }
+    }
 }
