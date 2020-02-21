@@ -3,20 +3,36 @@ const Mock = require('mockjs');
 
 const data = {
     'GET /api/bannerUrl': (req, res) => {
-        const { query } = req
         res.status('200').json(Mock.mock({
             'data|1-2':[{
-                url: Mock.Random.image('688x240', '#2db7f5', '#FFF', 'react'),
+                url: Mock.Random.image('380x120', '#2db7f5', '#FFF', 'react'),
                 link: Mock.Random.url()
             }, {
-                url: Mock.Random.image('688x240', '#50B347', '#FFF', 'test2'),
+                url: Mock.Random.image('380x120', '#50B347', '#FFF', 'test2'),
                 link: Mock.Random.url()
             }, {
-                url: Mock.Random.image('688x240', '#894FC4', '#FFF', 'test3'),
+                url: Mock.Random.image('380x120', '#894FC4', '#FFF', 'test3'),
                 link: Mock.Random.url()
             }, {
-                url: Mock.Random.image('688x240', '#2db7f5', '#FFF', 'test6'),
+                url: Mock.Random.image('380x120', '#2db7f5', '#FFF', 'test6'),
                 link: Mock.Random.url()
+            }]
+        }))
+    },
+    'GET /api/homeSearchPlaceHolder': (req, res) => {
+        res.status('200').json(Mock.mock('@ctitle(3, 5)'))
+    },
+    'GET /api/getContent': (req, res) => {
+        let { query: { pageIndex } } = req
+        res.status('200').json(Mock.mock({
+            'data|5': [{
+                id: '@id',
+                url: Mock.Random.image('380x120', '#2db7f5', '#FFF', 'react'),
+                text: '@ctitle(10, 20)'
+            }, {
+                id: '@id',
+                url: Mock.Random.image('380x120', '#50B347', '#FFF', 'test2'),
+                text: '@ctitle(10, 20)'
             }]
         }))
     }

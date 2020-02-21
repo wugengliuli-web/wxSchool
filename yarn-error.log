@@ -1,5 +1,9 @@
 Arguments: 
+<<<<<<< HEAD
   C:\Program Files\nodejs\node.exe C:\Users\AUSU\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js dev:weapp
+=======
+  E:\Program Files (x86)\node.js\node.exe C:\Users\DELL\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add taro-skeleton
+>>>>>>> 999052c4af4fc660b86fc93938b5d336b12b9e80
 
 PATH: 
   F:\app\AUSU\product\11.2.0\dbhome_1\bin;C:\Program Files\nodejs\;C:\Windows\system32;C:\Users\AUSU\AppData\Local\Yarn\bin;C:\Users\AUSU\Anaconda3;C:\Users\AUSU\Anaconda3\Scripts;C:\Users\AUSU\Anaconda3\Library\bin;C:\Users\AUSU\AppData\Local\Microsoft\WindowsApps;E:\Microsoft VS Code\bin;F:\Program Files (x86)\Nmap;C:\Users\AUSU\AppData\Roaming\vs_installershell;C:\Windows\system32;C:\Users\AUSU\AppData\Roaming\npm;
@@ -14,12 +18,16 @@ Platform:
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
   SyntaxError: C:\Users\AUSU\Desktop\寒假安排\wxapp\wxSchool\package.json: Unexpected token < in JSON at position 1431
       at JSON.parse (<anonymous>)
       at C:\Users\AUSU\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1625:59
       at Generator.next (<anonymous>)
       at step (C:\Users\AUSU\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
       at C:\Users\AUSU\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+=======
+  Error: EPERM: operation not permitted, unlink 'F:\webCode\wxSchool\node_modules\fstream\node_modules\.bin'
+>>>>>>> 999052c4af4fc660b86fc93938b5d336b12b9e80
 
 npm manifest: 
   {
@@ -71,7 +79,10 @@ npm manifest:
   =======
       "@tarojs/taro-weapp": "2.0.3",
       "add": "^2.0.6",
+<<<<<<< HEAD
   >>>>>>> 95a106eb872475397e95afabcb8df8732c2785d2
+=======
+>>>>>>> 999052c4af4fc660b86fc93938b5d336b12b9e80
       "axios": "^0.19.2",
       "babel-runtime": "^6.26.0",
       "mocker-api": "^1.12.2",
