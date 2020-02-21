@@ -78,6 +78,7 @@ const Search = props => {
         }
         let newSearchOldTag = [...searchOldTag]
         newSearchOldTag.unshift(val)
+        if(newSearchOldTag.length > 10) newSearchOldTag.pop()
         newSearchOldTag = [...new Set(newSearchOldTag)]
         setSearchOldTag(newSearchOldTag)
         Taro.setStorage({

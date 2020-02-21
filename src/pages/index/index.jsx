@@ -10,7 +10,7 @@ const Home = props => {
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
-    let [loading, setLoading] = useState(true)
+    let [loading, setLoading] = useState(false)
     let bannerUrl = useSelector(state => state.home.bannerUrl)
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
@@ -28,6 +28,7 @@ const Home = props => {
             dispatch(aciton)
         }
         if(content.length === 0) {
+            setLoading(true)
             const aciton = getContent(pageIndex, place)
             await dispatch(aciton)
             setLoading(false)
@@ -131,7 +132,7 @@ const Home = props => {
                     </View>
                 }
             </View>
-            <TabBar />
+            <TabBar initIndex={0} />
         </View>
     )
 }
