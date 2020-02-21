@@ -23,18 +23,28 @@ const data = {
         res.status('200').json(Mock.mock('@ctitle(3, 5)'))
     },
     'GET /api/getContent': (req, res) => {
-        let { query: { pageIndex } } = req
-        res.status('200').json(Mock.mock({
-            'data|3': [{
-                id: '@id',
-                url: Mock.Random.image('300x400', '#2db7f5', '#FFF', 'react'),
-                text: '@ctitle(10, 20)'
-            }, {
-                id: '@id',
-                url: Mock.Random.image('200x300', '#50B347', '#FFF', 'test2'),
-                text: '@ctitle(10, 20)'
-            }]
-        }))
+        let { query: { pageIndex, place } } = req
+        if(pageIndex >= 3) {
+            res.status('200').json(Mock.mock({
+                'data': []
+            }))
+        } else {
+            res.status('200').json(Mock.mock({
+                'data|2': [{
+                    id: '@id',
+                    url: Mock.Random.image('300x400', '#2db7f5', '#FFF', 'react'),
+                    text: '@ctitle(10, 20)'
+                }, {
+                    id: '@id',
+                    url: Mock.Random.image('200x300', '#50B347', '#FFF', 'test2'),
+                    text: '@ctitle(10, 20)'
+                }, {
+                    id: '@id',
+                    url: Mock.Random.image('250x360', '#894FC4', '#FFF', 'vue'),
+                    text: '@ctitle(10, 20)'
+                }]
+            }))
+        }
     }
 }
 module.exports = delay(data, 1000)

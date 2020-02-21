@@ -1,13 +1,16 @@
 import { 
     set_banner,
     set_searchPlaceholder,
-    set_content
+    set_content,
+    clear_content
  } from '../constants/home'
 //存储用户信息的状态
 const INITIAL_STATE = {
     bannerUrl: [], //轮播图的信息
     searchPlaceHolder: '',
-    content: []  //内容
+    content: [],  //内容
+    hasMore: true,
+    pageIndex: 0
 }
 
 export default function login(state = INITIAL_STATE, action) {
@@ -24,9 +27,19 @@ export default function login(state = INITIAL_STATE, action) {
                 searchPlaceHolder: data
             }
         case set_content:
+            let { pageIndex } = action
             return {
                 ...state,
-                content: data
+                content: state.content.concat(data),
+                hasMore: data.length === 0 ? false : true,
+                pageIndex: pageIndex
+            }
+        case clear_content:
+            return {
+                ...state,
+                content: [],
+                hasMore: true,
+                pageIndex: 0
             }
         default:
             return state

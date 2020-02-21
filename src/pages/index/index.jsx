@@ -2,19 +2,19 @@ import Taro, { useDidShow, useCallback, useState } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, Image, Picker, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import './index.scss'
-import { getBanner, getSearchPlaceHolder, getContent } from '../../actions/home'
+import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../../actions/home'
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 const Home = props => {
-    
-    let pageIndex = 0  //第几页
+    let hasMore = useSelector(state => state.home.hasMore)
+    let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
     let [loading, setLoading] = useState(true)
     let bannerUrl = useSelector(state => state.home.bannerUrl)
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
-    useDidShow(() => {
+    useDidShow(async () => {
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -26,15 +26,30 @@ const Home = props => {
             dispatch(aciton)
         }
         if(content.length === 0) {
-            const aciton = getContent(pageIndex)
-            dispatch(aciton)
+            const aciton = getContent(pageIndex, place)
+            await dispatch(aciton)
             setLoading(false)
         }
     })
-    let bindchange = useCallback(info => {
+    let bindchange = useCallback(async info => {
+        const actionClear = clearContent()
+        await dispatch(actionClear)
         let { detail: { value } } = info
+        setLoading(true)
         setPlace(value)
+        pageIndex = 0
+        const aciton = getContent(pageIndex, value)
+        await dispatch(aciton)
+        setLoading(false)
     }, []) 
+    let getMore = useCallback(async () => {
+        if(!hasMore) return
+        setLoading(true)
+        pageIndex++
+        const aciton = getContent(pageIndex, place)
+        await dispatch(aciton)
+        setLoading(false)
+    }, [pageIndex])
     return (
         <View className="container">
             <View className="bannerWrapper">
@@ -96,6 +111,17 @@ const Home = props => {
                                 </Navigator>
                             )
                         })
+                    }
+                </View>
+                <View className="more" onClick={getMore}>
+                    {
+                        loading ?
+                        null
+                        :
+                        hasMore ?
+                        '加载更多'
+                        :
+                        '已无更多'
                     }
                 </View>
                 {
