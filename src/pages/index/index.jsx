@@ -5,6 +5,7 @@ import './index.scss'
 import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../../actions/home'
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
+import TabBar from '../../component/tabBar'
 const Home = props => {
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
@@ -113,30 +114,27 @@ const Home = props => {
                         })
                     }
                 </View>
-                <View className="more" onClick={getMore}>
-                    {
-                        loading ?
-                        null
-                        :
-                        hasMore ?
-                        '加载更多'
-                        :
-                        '已无更多'
-                    }
-                </View>
                 {
                     loading ?
-                    <Skeleton row-width={[20,50,80]} animate={true} row={3}></Skeleton>
+                    <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                     :
-                    null
+                    <View className="more" onClick={getMore}>
+                        {
+                            hasMore ?
+                            '加载更多'
+                            :
+                            '已无更多'
+                        }
+                    </View>
                 }
             </View>
+            <TabBar />
         </View>
     )
 }
 
 Home.config = {
-	navigationBarTitleText: '易赞校园'
+    navigationBarTitleText: '易赞校园'
 }
 
 export default Home
