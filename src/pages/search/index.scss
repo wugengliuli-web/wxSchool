@@ -1,0 +1,183 @@
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+page {
+    background: rgba(245, 246, 250, 1);
+}
+.container {
+    width: 100%;
+    .head {
+        height:192px;
+        background:rgba(255,255,255,1);
+        padding: 0 16px;
+        padding-top: 30px;
+        .tagWrapper {
+            display: flex;
+            .tag {
+                color:rgba(0,0,0,1);
+                opacity:0.54;
+                font-size: 20px;
+                width: 112px;
+                text-align: center;
+                line-height:48px;
+                height: 48px;
+            }
+            .now {
+                color:rgba(0,0,0,1);
+                opacity:0.87;
+                font-weight:bold;
+                background:rgba(245,246,250,1);
+                border-radius:8px 8px 0px 0px;
+            }
+        }
+        .searchWrapper {
+            height: 64px;
+            background:rgba(245,246,250,1);
+            line-height: 64rpx;
+            .at-input {
+                padding: 0;
+                background:rgba(245,246,250,1);
+                &::after {
+                    border: none;
+                }
+            }
+        }
+        .positionWrapper {
+            margin-top: 18px;
+            height: 28px;
+            line-height: 28px;
+            display: flex;
+            .positionTag {
+                padding: 0 8px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                background:rgba(245,246,250,1);
+                border-radius: 8px;
+                font-size:20px;
+                color:rgba(0,0,0,1);
+                opacity:0.87;
+                margin: 4px;
+            }
+            .add {
+                width: 60px;
+            }
+        }
+    }
+    .loading {
+
+    }
+    .mainWrapper {
+        background: rgba(245, 246, 250, 1);
+        .main {
+            .searchOldWrapper {
+                padding: 0 16px;
+                padding-top: 32px;
+                .title {
+                    font-weight:bold;
+                    font-size: 28px;
+                    line-height:48px;
+                    color:rgba(0,0,0,1);
+                }
+                .tagContainer {
+                    background: rgba(245, 246, 250, 1);
+                    display: flex;
+                    color:rgba(0,0,0,1);
+                    .tag {
+                        opacity:0.54;
+                        font-size: 24px;
+                        padding: 12px 16px;
+                        margin: 7px 8px;
+                        border-radius:24px;
+                        display: inline-block;
+                        background: #fff;
+                    }
+                }
+            }
+            .contentWrapper {
+                background: #fff;
+                .sortWrapper {
+                    display: flex;
+                    .sortTag {
+                        margin: 0 16px;
+                        width: 120px;
+                        text-align: center;
+                        height: 60px;
+                        line-height: 60px;
+                        font-size: 28px;
+                        color:rgba(0,0,0,1);
+                        opacity:0.54;
+                    }
+                    .current {
+                        color:rgba(0,0,0,1);
+                        opacity:0.87;
+                        font-weight: bold;
+                        background:rgba(245,246,250,1);
+                        opacity:1;
+                        border-radius:8px 8px 0px 0px;
+                    }
+                }
+            }
+            .mainContentWrapper {
+                padding-top: 4px;
+                background: rgba(245, 246, 250, 1);
+                .mainContentContainer {
+                    padding: 0 16px;
+                    .content {
+                        position: relative;
+                        overflow: hidden;
+                        margin: 16px auto;
+                        background: #fff;
+                        padding: 24px;
+                        .contentHead {
+                            display: flex;
+                            .title {
+                                white-space:nowrap;
+                                overflow:hidden;
+                                text-overflow:ellipsis;
+                                max-width: 512px;
+                                font-size:32px;
+                                color:rgba(0,0,0,1);
+                            }
+                            .contentTag {
+                                line-height: 32rpx;
+                                margin-left: 16px;
+                                height:32px;
+                                background:rgba(223,229,238,1);
+                                border-radius:8px;
+                                padding: 6px 8px;
+                                font-size:20px;
+                                color:rgba(255,255,255,1);
+                            }
+                        }
+                        .address {
+                            white-space:nowrap;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                            margin-top: 32px;
+                            font-size:24px;
+                            color: #000;
+                        }
+                        .contentBottom {
+                            margin-top: 16px;
+                            .timer {
+                                font-size:24px;
+                                color: #000;
+                            }
+                            .money {
+                                right: 16px;
+                                bottom: -8px;
+                                position: absolute;
+                                float: right;
+                                font-weight:bold;
+                                line-height:54px;
+                                color:rgba(0,0,0,1);
+                                font-size: 32px;
+                                margin: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

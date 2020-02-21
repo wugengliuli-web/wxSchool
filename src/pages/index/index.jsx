@@ -1,5 +1,5 @@
 import Taro, { useDidShow, useCallback, useState } from '@tarojs/taro'
-import { View, Swiper, SwiperItem, Image, Picker, Text } from '@tarojs/components'
+import { View, Swiper, SwiperItem, Image, Picker, Text, Navigator } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import './index.scss'
 import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../../actions/home'
@@ -16,6 +16,7 @@ const Home = props => {
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
+        
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -59,11 +60,11 @@ const Home = props => {
                     <View className="bannerPlaceHolder"></View>
                     :
                     <Swiper
-                        indicatorDots={true}
                         autoplay={true}
                         interval={3000}
                         duration={500}
                         circular={true}
+                        indicatorDots={true}
                     >
                         {
                             bannerUrl.map((item, index) => {
@@ -89,12 +90,14 @@ const Home = props => {
                         <AtIcon className="icon" value='chevron-down' size='16' color='#272755'></AtIcon>
                     </Picker>
                 </View>
-                <View className="searchContainer">
-                    {searchPlaceHolder}
-                    <View className="searchIconWrapper">
-                        <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                <Navigator url={`/pages/search/index?searchPlaceHolder=${searchPlaceHolder}`}>
+                    <View className="searchContainer">
+                        {searchPlaceHolder}
+                        <View className="searchIconWrapper">
+                            <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                        </View>
                     </View>
-                </View>
+                </Navigator>
             </View>
             <View className="contentWrapper">
                 <View className="title">推荐</View>
