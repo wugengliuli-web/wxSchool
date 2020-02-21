@@ -3,7 +3,8 @@ import { DEVELOP } from '../lib/url'
 import { 
     set_banner, 
     set_searchPlaceholder,
-    get_content 
+    set_content,
+    clear_content
 } from '../constants/home'
 //请求banner
 export const getBanner = () => {
@@ -34,18 +35,27 @@ export const getSearchPlaceHolder = () => {
 } 
 
 //请求内容
-export const getContent = pageIndex => {
+export const getContent = (pageIndex, place) => {
     return async dispatch => {
         let res = await Taro.request({
             url: DEVELOP + 'getContent',
             data: {
-                pageIndex
+                pageIndex,
+                place
             }
         })
         let { data: { data } } = res
         dispatch({
-            type: get_content,
-            data
+            type: set_content,
+            data,
+            pageIndex
         })
+    }
+}
+
+//清除内容
+export const clearContent = () => {
+    return {
+        type: clear_content
     }
 }

@@ -1,4 +1,7 @@
 @import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/tab-bar.scss";
+@import "~taro-ui/dist/style/components/badge.scss";
+
 page {
     background: rgba(245, 246, 250, 1);
 }
@@ -72,6 +75,7 @@ page {
 
     .contentWrapper {
         margin-top: 32px;
+        border-radius: 8px;
         .title {
             font-weight:bold;
             line-height:68px;
@@ -80,12 +84,36 @@ page {
         }
         .waterfallWrapper {
             column-count: 2;
-            column-width: 336px;
-            column-gap: 0;
-            break-inside: avoid;
-            .img {
-                width: 336px;
+            .link {
+                margin-bottom: 16px;
+                .contentContainer {
+                    break-inside: avoid;
+                    text-align: center;
+                    .img {
+                        width: 336px;
+                    }
+                    .contentText {
+                        text-align: left;
+                        background-color: #fff;
+                        height: 80px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        line-clamp: 2;
+                        box-orient: vertical;
+                        font-size: 32px;
+                    }
+                }
             }
+        }
+        .skeleton {
+            margin-bottom: 120px;
+        }
+        .more {
+            padding: 20px 0;
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 100px;
         }
     }
 }

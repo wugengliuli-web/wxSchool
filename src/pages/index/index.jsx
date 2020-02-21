@@ -3,11 +3,13 @@ import { View, Swiper, SwiperItem, Image, Picker, Text } from '@tarojs/component
 import { useSelector, useDispatch } from '@tarojs/redux'
 
 import './index.scss'
-import { getBanner, getSearchPlaceHolder, getContent } from '../../actions/home'
+import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../../actions/home'
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
+import TabBar from '../../component/tabBar'
 const Home = props => {
-    let pageIndex = 0  //第几页
+    let hasMore = useSelector(state => state.home.hasMore)
+    let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
     let [loading, setLoading] = useState(true)
     let bannerUrl = useSelector(state => state.home.bannerUrl)
@@ -26,15 +28,30 @@ const Home = props => {
             dispatch(aciton)
         }
         if(content.length === 0) {
-            const aciton = getContent(pageIndex)
+            const aciton = getContent(pageIndex, place)
             await dispatch(aciton)
             setLoading(false)
         }
     })
-    let bindchange = useCallback(info => {
+    let bindchange = useCallback(async info => {
+        const actionClear = clearContent()
+        await dispatch(actionClear)
         let { detail: { value } } = info
+        setLoading(true)
         setPlace(value)
+        pageIndex = 0
+        const aciton = getContent(pageIndex, value)
+        await dispatch(aciton)
+        setLoading(false)
     }, []) 
+    let getMore = useCallback(async () => {
+        if(!hasMore) return
+        setLoading(true)
+        pageIndex++
+        const aciton = getContent(pageIndex, place)
+        await dispatch(aciton)
+        setLoading(false)
+    }, [pageIndex])
     return (
         <View className="container">
             <View className="bannerWrapper">
@@ -82,15 +99,15 @@ const Home = props => {
             </View>
             <View className="contentWrapper">
                 <View className="title">推荐</View>
-                <View>
+                <View className="waterfallWrapper">
                     {
                         content.map((item, index) => {
                             return (
-                                <Navigator className="waterfallWrapper" url={`test/?id=${item.id}`} key={item.id} >
+                                <Navigator className="link" url={`test/?id=${item.id}`} key={item.id} >
                                     <View>
-                                        <View>
-                                            <Image className="img" src={item.url} ></Image>
-                                            <View>{item.text}</View>
+                                        <View className="contentContainer">
+                                            <Image mode="widthFix" className="img" src={item.url} ></Image>
+                                            <View className="contentText">{item.text}</View>
                                         </View>
                                     </View>
                                 </Navigator>
@@ -100,16 +117,24 @@ const Home = props => {
                 </View>
                 {
                     loading ?
-                    <Skeleton row-width={[20,50,80]} animate={true} row={3}></Skeleton>
+                    <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                     :
-                    null
+                    <View className="more" onClick={getMore}>
+                        {
+                            hasMore ?
+                            '加载更多'
+                            :
+                            '已无更多'
+                        }
+                    </View>
                 }
             </View>
+            <TabBar />
         </View>
     )
 }
 
 Home.config = {
-	navigationBarTitleText: '易赞校园'
+    navigationBarTitleText: '易赞校园'
 }
 export default Home
