@@ -8,6 +8,7 @@ import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 import TabBar from '../../component/tabBar'
 const Home = props => {
+  
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()

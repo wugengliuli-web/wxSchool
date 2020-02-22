@@ -1,0 +1,54 @@
+page {
+    background: rgba(245,246,250,1);
+}
+.container{
+    padding: 16px;
+    background:rgba(245,246,250,1);
+    width: 720px;
+    .header{
+        width:100%;
+        height:266px;
+        background:rgba(223,229,238,1);
+        opacity:1;
+        font-size: 0px;
+        .headPic{
+            vertical-align: top;
+            display:inline-block;
+            width:128px;
+            height:214px;
+            .pic{
+                display: inline-block;
+                margin-top: 32px;
+                margin-left: 32px;
+                width:96px;
+                height:96px;
+                background:rgba(245,246,250,1);
+                border-radius:50%;
+                opacity:1;
+                overflow: hidden;
+                .photo{
+                    width: 96px;
+                    height: 96px;
+                }
+            }
+        }
+        .nickName{
+            vertical-align: top;
+            display:inline-block;
+            width: 432px;
+            height: 214px;
+            .name{
+                margin-left: 16px;
+                margin-top: 30px;
+                width: 100%;
+                height: 40px;
+                font-size: 40px;
+                font-weight: bold;
+            }
+        }
+        .motto{
+            width: 100%;
+            height: 52px;
+        }
+    }
+}

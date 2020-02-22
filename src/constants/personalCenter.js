@@ -1,1 +1,4 @@
 export const SET_SRC = "SET_SRC"
+export const SET_GOODCOUNT = "SET_GOODCOUNT"
+export const SET_EMONEYCOUNT = "SET_EMONEYCOUNT"
+export const SET_ESATRCOUNT = "SET_ESATRCOUNT"

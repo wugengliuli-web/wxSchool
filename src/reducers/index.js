@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux'
 import login from './login'
 import home from './home'
+import personalCenter from './personalCenter'
+import personalBasicifo from './personalBasicifo'
 export default combineReducers({
 	login,
-	home
+	home,
+	personalCenter,
+	personalBasicifo
 })
