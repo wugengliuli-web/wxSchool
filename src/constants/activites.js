@@ -1,0 +1,1 @@
+export const set_activitesContent = 'SET_ACTIVITESCONTENT'

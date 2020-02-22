@@ -13,7 +13,7 @@ const INITIAL_STATE = {
     pageIndex: 0
 }
 
-export default function login(state = INITIAL_STATE, action) {
+export default function home(state = INITIAL_STATE, action) {
     let { type, data } = action
     switch (type) {
         case set_banner:

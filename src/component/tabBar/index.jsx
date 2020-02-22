@@ -1,8 +1,21 @@
-import Taro, { useState } from '@tarojs/taro'
+import Taro, { useState, useCallback } from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
-
-const TabBar = props => {
-    let [current, setCurrent] = useState(0)
+const TabBar = ({initIndex}) => {
+    let [current, setCurrent] = useState(initIndex)
+    let link = useCallback(index => {
+        if(index === 0) {
+            Taro.reLaunch({
+                url: '/pages/index/index'
+            })
+        } else if(index === 1) {
+            Taro.reLaunch({
+                url: '/pages/Sponsor/index'
+            })
+        } else {
+            
+        }
+        setCurrent(index)
+    }, [])
     return <AtTabBar
                 fixed
                 backgroundColor={'#fff'}
@@ -11,12 +24,10 @@ const TabBar = props => {
                 iconSize={'48px'}
                 tabList={[
                     {
-                        pagePath: '/pages/index/index',
                         title: '首页',
                         iconType: 'home'
                         
                     }, {
-                        pagePath: '/pages/index/index',
                         title: '易赞助',
                         iconType: 'heart'
                         
@@ -27,7 +38,7 @@ const TabBar = props => {
                         
                     }
                 ]}
-                onClick={setCurrent}
+                onClick={link}
                 current={current}
             />
 }

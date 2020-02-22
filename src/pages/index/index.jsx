@@ -1,5 +1,5 @@
 import Taro, { useDidShow, useCallback, useState } from '@tarojs/taro'
-import { View, Swiper, SwiperItem, Image, Picker, Text } from '@tarojs/components'
+import { View, Swiper, SwiperItem, Image, Picker, Text, Navigator } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 
 import './index.scss'
@@ -12,12 +12,13 @@ const Home = props => {
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
-    let [loading, setLoading] = useState(true)
+    let [loading, setLoading] = useState(false)
     let bannerUrl = useSelector(state => state.home.bannerUrl)
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
+        
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -29,6 +30,7 @@ const Home = props => {
             dispatch(aciton)
         }
         if(content.length === 0) {
+            setLoading(true)
             const aciton = getContent(pageIndex, place)
             await dispatch(aciton)
             setLoading(false)
@@ -61,11 +63,11 @@ const Home = props => {
                     <View className="bannerPlaceHolder"></View>
                     :
                     <Swiper
-                        indicatorDots={true}
                         autoplay={true}
                         interval={3000}
                         duration={500}
                         circular={true}
+                        indicatorDots={true}
                     >
                         {
                             bannerUrl.map((item, index) => {
@@ -91,12 +93,14 @@ const Home = props => {
                         <AtIcon className="icon" value='chevron-down' size='16' color='#272755'></AtIcon>
                     </Picker>
                 </View>
-                <View className="searchContainer">
-                    {searchPlaceHolder}
-                    <View className="searchIconWrapper">
-                        <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                <Navigator url={`/pages/search/index`}>
+                    <View className="searchContainer">
+                        {searchPlaceHolder}
+                        <View className="searchIconWrapper">
+                            <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                        </View>
                     </View>
-                </View>
+                </Navigator>
             </View>
             <View className="contentWrapper">
                 <View className="title">推荐</View>
@@ -104,7 +108,7 @@ const Home = props => {
                     {
                         content.map((item, index) => {
                             return (
-                                <Navigator className="link" url={`test/?id=${item.id}`} key={item.id} >
+                                <Navigator className="link" url={`/pages/activites/index?id=${item.id}`} key={item.id} >
                                     <View>
                                         <View className="contentContainer">
                                             <Image mode="widthFix" className="img" src={item.url} ></Image>
@@ -130,7 +134,7 @@ const Home = props => {
                     </View>
                 }
             </View>
-            <TabBar />
+            <TabBar initIndex={0} />
         </View>
     )
 }
