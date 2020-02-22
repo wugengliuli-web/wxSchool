@@ -7,13 +7,14 @@ import './index.scss'
 import { getSearchContent, setCampusActivities, setMerchantSponsorship, setDreamCrowdFinancing } from '../../actions/search'
 import Skeleton from 'taro-skeleton'
 const Search = props => {
+    const { params: { currentPage = 0 } } = useRouter()
+    let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     const [sortCurrent, setSortCurrent] = useState(0)  //排序方式
     const [loading, setLoading] = useState(false)
     const [position, setPosition] = useState(['不限'])
     const [ranges, setRanges] = useState([['不限']])
     const [searchContent, setSearchContent] = useState('')
-    const { params: { searchPlaceHolder = '' } } = useRouter()
-    const [current, setCurrent] = useState(0)
+    const [current, setCurrent] = useState(~~currentPage)
     const dispatch = useDispatch()
     const campusActivities = useSelector(state => state.search.campusActivities)  //校园活动 -> 0
     const merchantSponsorship = useSelector(state => state.search.merchantSponsorship)  //商家赞助 -> 1
@@ -64,6 +65,7 @@ const Search = props => {
     }, [ranges])
     const submit = useCallback(async info => {
         setLoading(true)
+        setSortCurrent(0)
         let val
         if(typeof info === 'string') {
             val = info
@@ -320,17 +322,19 @@ const Search = props => {
                                             {
                                                 campusActivities.map(item => {
                                                     return (
-                                                        <View className="content" key={item.id}>
-                                                            <View className="contentHead">
-                                                                <View className="title">{item.title}</View>
-                                                                <View className="contentTag">{item.tag}</View>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                                            <View className="content" key={item.id}>
+                                                                <View className="contentHead">
+                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="contentTag">{item.tag}</View>
+                                                                </View>
+                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="contentBottom">
+                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                                    <View className="money">￥{item.money}</View>
+                                                                </View>
                                                             </View>
-                                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                                            <View className="contentBottom">
-                                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                <View className="money">￥{item.money}</View>
-                                                            </View>
-                                                        </View>
+                                                        </navigator>
                                                     )
                                                 })
                                             }
@@ -368,17 +372,19 @@ const Search = props => {
                                             {
                                                 merchantSponsorship.map(item => {
                                                     return (
-                                                        <View className="content" key={item.id}>
-                                                            <View className="contentHead">
-                                                                <View className="title">{item.title}</View>
-                                                                <View className="contentTag">{item.tag}</View>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                                            <View className="content" key={item.id}>
+                                                                <View className="contentHead">
+                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="contentTag">{item.tag}</View>
+                                                                </View>
+                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="contentBottom">
+                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                                    <View className="money">￥{item.money}</View>
+                                                                </View>
                                                             </View>
-                                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                                            <View className="contentBottom">
-                                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                <View className="money">￥{item.money}</View>
-                                                            </View>
-                                                        </View>
+                                                        </navigator>
                                                     )
                                                 })
                                             }
@@ -415,17 +421,19 @@ const Search = props => {
                                             {
                                                 dreamCrowdFinancing.map(item => {
                                                     return (
-                                                        <View className="content" key={item.id}>
-                                                            <View className="contentHead">
-                                                                <View className="title">{item.title}</View>
-                                                                <View className="contentTag">{item.tag}</View>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                                            <View className="content" key={item.id}>
+                                                                <View className="contentHead">
+                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="contentTag">{item.tag}</View>
+                                                                </View>
+                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="contentBottom">
+                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                                    <View className="money">￥{item.money}</View>
+                                                                </View>
                                                             </View>
-                                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                                            <View className="contentBottom">
-                                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                <View className="money">￥{item.money}</View>
-                                                            </View>
-                                                        </View>
+                                                        </navigator>
                                                     )
                                                 })
                                             }

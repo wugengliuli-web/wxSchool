@@ -10,7 +10,7 @@ const INITIAL_STATE = {
     dreamCrowdFinancing: []  //梦想众筹
 }
 
-export default function login(state = INITIAL_STATE, action) {
+export default function sponsor(state = INITIAL_STATE, action) {
     let { type, data } = action
     switch (type) {
         case set_campusActivitiesMain:

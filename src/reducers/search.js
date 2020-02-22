@@ -11,7 +11,7 @@ const INITIAL_STATE = {
     dreamCrowdFinancing: []  //梦想众筹
 }
 
-export default function login(state = INITIAL_STATE, action) {
+export default function search(state = INITIAL_STATE, action) {
     let { type } = action
     switch (type) {
         case set_SearchContent:

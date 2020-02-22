@@ -91,7 +91,7 @@ const Home = props => {
                         <AtIcon className="icon" value='chevron-down' size='16' color='#272755'></AtIcon>
                     </Picker>
                 </View>
-                <Navigator url={`/pages/search/index?searchPlaceHolder=${searchPlaceHolder}`}>
+                <Navigator url={`/pages/search/index`}>
                     <View className="searchContainer">
                         {searchPlaceHolder}
                         <View className="searchIconWrapper">
@@ -106,7 +106,7 @@ const Home = props => {
                     {
                         content.map((item, index) => {
                             return (
-                                <Navigator className="link" url={`test/?id=${item.id}`} key={item.id} >
+                                <Navigator className="link" url={`/pages/activites/index?id=${item.id}`} key={item.id} >
                                     <View>
                                         <View className="contentContainer">
                                             <Image mode="widthFix" className="img" src={item.url} ></Image>

@@ -76,6 +76,40 @@ const data = {
                 good: '@integer(0,1000)'
             }]
         }))
+    },
+    'GET /api/activitesContnet': (req, res) => {
+        let { query: { id } } = req
+        console.log(req.query)
+        res.status('200').json(Mock.mock({
+            'data': {
+                id: id,
+                title: '@ctitle(5,15)',
+                img: "@image(720x900, @color, @color, png, @word(5))",
+                tag: '@ctitle(4)',
+                money: '@integer(100,5000)',
+                city: '@county(true)',
+                startTime: '@datetime',
+                endTime: '@datetime',
+                browseTimes: '@integer(0,400)', //浏览次数
+                applicantsNum: '@integer(0,50)',  //申请人数
+                logo: "@image(64x64, @color, @color, png, logo)",
+                name: '@ctitle(5,10)',  //协会名称
+                introduce: '@ctitle(5,20)', //协会介绍
+                activityPlan: '@ctitle(5,10)', //活动方案
+                'associationTag|1-3': [
+                    '@ctitle(5,10)'
+                ],  //协会tag
+                'Recommend|1-5': [{
+                    id: '@id',
+                    title: '@ctitle(5,15)',
+                    tag: '@ctitle(4)',
+                    money: '@integer(100,5000)',
+                    city: '@county(true)',
+                    startTime: '@datetime(yyyy-MM-dd)',
+                    endTime: '@datetime(yyyy-MM-dd)'
+                }]
+            }
+        }))
     }
 }
 module.exports = delay(data, 2000)

@@ -22,9 +22,9 @@ const Sponsor = props => {
         setPlace(value)
     }, [])
     const options = [
-        { text1: '校园', text2: '活动', id: 'qwer', url: '' },
-        { text1: '商家', text2: '赞助', id: 'wert', url: '' },
-        { text1: '梦想', text2: '众筹', id: 'tyui', url: '' },
+        { text1: '校园', text2: '活动', id: 'qwer', url: '/pages/search/index?currentPage=0' },
+        { text1: '商家', text2: '赞助', id: 'wert', url: '/pages/search/index?currentPage=1' },
+        { text1: '梦想', text2: '众筹', id: 'tyui', url: '/pages/search/index?currentPage=2' },
     ] 
     useDidShow(async () => {
         if(campusActivities.length === 0) {
@@ -94,17 +94,19 @@ const Sponsor = props => {
                             :
                             campusActivities.map(item => {
                                 return (
-                                    <View className="content" key={item.id}>
-                                        <View className="contentHead">
-                                            <View className="title">{item.title}</View>
-                                            <View className="contentTag">{item.tag}</View>
+                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                        <View className="content" >
+                                            <View className="contentHead">
+                                                <View className="title">{item.title}</View>
+                                                <View className="contentTag">{item.tag}</View>
+                                            </View>
+                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="contentBottom">
+                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                <View className="money">￥{item.money}</View>
+                                            </View>
                                         </View>
-                                        <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                        <View className="contentBottom">
-                                            <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                            <View className="money">￥{item.money}</View>
-                                        </View>
-                                    </View>
+                                    </navigator>
                                 )
                             })
                         }
@@ -124,17 +126,19 @@ const Sponsor = props => {
                             :
                             merchantSponsorship.map(item => {
                                 return (
-                                    <View className="content" key={item.id}>
-                                        <View className="contentHead">
-                                            <View className="title">{item.title}</View>
-                                            <View className="contentTag">{item.tag}</View>
+                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                        <View className="content">
+                                            <View className="contentHead">
+                                                <View className="title">{item.title}</View>
+                                                <View className="contentTag">{item.tag}</View>
+                                            </View>
+                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="contentBottom">
+                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                <View className="money">￥{item.money}</View>
+                                            </View>
                                         </View>
-                                        <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                        <View className="contentBottom">
-                                            <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                            <View className="money">￥{item.money}</View>
-                                        </View>
-                                    </View>
+                                    </navigator>
                                 )
                             })
                         }
@@ -154,17 +158,19 @@ const Sponsor = props => {
                             :
                             dreamCrowdFinancing.map(item => {
                                 return (
-                                    <View className="content" key={item.id}>
-                                        <View className="contentHead">
-                                            <View className="title">{item.title}</View>
-                                            <View className="contentTag">{item.tag}</View>
+                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                        <View className="content" key={item.id}>
+                                            <View className="contentHead">
+                                                <View className="title">{item.title}</View>
+                                                <View className="contentTag">{item.tag}</View>
+                                            </View>
+                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="contentBottom">
+                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
+                                                <View className="money">￥{item.money}</View>
+                                            </View>
                                         </View>
-                                        <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
-                                        <View className="contentBottom">
-                                            <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                            <View className="money">￥{item.money}</View>
-                                        </View>
-                                    </View>
+                                    </navigator>
                                 )
                             })
                         }
