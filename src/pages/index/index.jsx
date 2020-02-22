@@ -8,7 +8,9 @@ import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 import TabBar from '../../component/tabBar'
 const Home = props => {
-  
+    Taro.navigateTo({
+        url:'/pages/personalCenter/index'
+    })
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
@@ -56,6 +58,7 @@ const Home = props => {
         setLoading(false)
     }, [pageIndex])
     return (
+
         <View className="container">
             <View className="bannerWrapper">
                 {

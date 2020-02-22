@@ -1,3 +1,10 @@
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/tab-bar.scss";
+@import "~taro-ui/dist/style/components/badge.scss";
+@import "~taro-ui/dist/style/components/nav-bar.scss";
+
+
+
 page {
     background: rgba(245,246,250,1);
 }
@@ -40,10 +47,88 @@ page {
             .name{
                 margin-left: 16px;
                 margin-top: 30px;
-                width: 100%;
+                width: 416px;
                 height: 40px;
                 font-size: 40px;
                 font-weight: bold;
+            }
+            .asure{
+                width: 100%;
+                height: 144px;
+                margin-top: 32px;
+                margin-left: 16px;
+                .checked{
+                    margin-right: 20px;
+                    width:144px;
+                    height:32px;
+                    background:rgba(245,246,250,1);
+                    opacity:1;
+                    border-radius:16px;
+                    display: inline-block;
+                    
+                    .spot{
+                        display: inline-block;
+                        width:24px;
+                        height:24px;
+                        background:rgba(223,229,238,1);
+                        border-radius:50%;
+                        opacity:1;
+                        margin-right: 8px;
+                        margin-left: 4px;
+                    }
+                    .hasChecked{
+                        width:72px;
+                        height:24px;
+                        font-size:24px;
+                        font-family:Noto Sans S Chinese;
+                        font-weight:400;
+                        line-height:40px;
+                        color:rgba(0,0,0,1);
+                        opacity:0.54;
+                        position: relative;
+                        top:-3px;    
+                        
+                    }
+                    .point{
+                        float: right;
+                        margin-top: 6px;
+                    }
+                }
+                .checkedRealname{
+                    
+                    width:144px;
+                    height:32px;
+                    background:rgba(245,246,250,1);
+                    opacity:1;
+                    border-radius:16px;
+                    display: inline-block;
+                    .spot{
+                        display: inline-block;
+                        width:24px;
+                        height:24px;
+                        background:rgba(223,229,238,1);
+                        border-radius:50%;
+                        opacity:1;
+                        margin-right: 8px;
+                        margin-left: 4px;
+                    }
+                    .hasChecked{
+                        width:72px;
+                        height:24px;
+                        font-size:24px;
+                        font-family:Noto Sans S Chinese;
+                        font-weight:400;
+                        line-height:40px;
+                        color:rgba(0,0,0,1);
+                        opacity:0.54;
+                        position: relative;
+                        top:-3px;
+                    }
+                    .point{
+                        float: right;
+                        margin-top: 6px;
+                    }
+                }
             }
         }
         .editMsg{
@@ -173,31 +258,44 @@ page {
         flex-direction: column;
         .contents{
             flex:1;
-            .spot{
-                display: inline-block;
-                width:48px;
-                height:48px;
-                background:rgba(223,229,238,1);
-                opacity:1;
-                border-radius:32px;
-                margin-left: 32px;
-                margin-top: 24px;
-                margin-right: 16px;
-            }
-            span{
-                width:96px;
-                height:24px;
-                font-size:24px;
-                font-family:Noto Sans S Chinese;
-                font-weight:400;
-                line-height:40px;
-                color:rgba(0,0,0,1);
-                opacity:0.87;
-                position: relative;
-                top: -12px;
+            width: 100%;
+            height: 94px;
+        }
+        navigator{
+            flex:1;
+            .contents{
+                
+                .spot{
+                    display: inline-block;
+                    width:48px;
+                    height:48px;
+                    background:rgba(223,229,238,1);
+                    opacity:1;
+                    border-radius:32px;
+                    margin-left: 32px;
+                    margin-top: 24px;
+                    margin-right: 16px;
+                }
+                .text{
+                    width:96px;
+                    height:24px;
+                    font-size:24px;
+                    font-family:Noto Sans S Chinese;
+                    font-weight:400;
+                    line-height:40px;
+                    color:rgba(0,0,0,1);
+                    opacity:0.87;
+                    position: relative;
+                    top: -12px;
+                }
+                .point{
+                    float: right;
+                    margin-top: 28px;
+                }
             }
         }
-    }
+        }
+        
     .character{
         width:720px;
         height:192px;
@@ -206,32 +304,43 @@ page {
         position: relative;
         top: -108px;
         margin-bottom: 32px;
-        .characters{
+        display: flex;
+        flex-direction: column;
+        navigator{
+            
             flex:1;
-            .spot{
-                display: inline-block;
-                width:48px;
-                height:48px;
-                background:rgba(223,229,238,1);
-                opacity:1;
-                border-radius:32px;
-                margin-left: 32px;
-                margin-top: 24px;
-                margin-right: 16px;
-            }
-            span{
-                width:96px;
-                height:24px;
-                font-size:24px;
-                font-family:Noto Sans S Chinese;
-                font-weight:400;
-                line-height:40px;
-                color:rgba(0,0,0,1);
-                opacity:0.87;
-                position: relative;
-                top: -12px;
+            .characters{
+                
+                .spot{
+                    display: inline-block;
+                    width:48px;
+                    height:48px;
+                    background:rgba(223,229,238,1);
+                    opacity:1;
+                    border-radius:32px;
+                    margin-left: 32px;
+                    margin-top: 24px;
+                    margin-right: 16px;
+                }
+                .text{
+                    width:96px;
+                    height:24px;
+                    font-size:24px;
+                    font-family:Noto Sans S Chinese;
+                    font-weight:400;
+                    line-height:40px;
+                    color:rgba(0,0,0,1);
+                    opacity:0.87;
+                    position: relative;
+                    top: -12px;
+                }
+                .point{
+                    float: right;
+                    margin-top: 28px;
+                }
             }
         }
+
     }
     .signOut{
         width: 100%;
