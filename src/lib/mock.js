@@ -61,6 +61,21 @@ const data = {
                 good: '@integer(0,1000)'
             }]
         }))
+    },
+    'GET /api/getMainContent': (req, res) => {
+        res.status('200').json(Mock.mock({
+            'data|10': [{
+                id: '@id',
+                title: '@ctitle(5,15)',
+                tag: '@ctitle(4)',
+                money: '@integer(100,5000)',
+                city: '@county(true)',
+                startTime: '@datetime(yyyy-MM-dd)',
+                endTime: '@datetime(yyyy-MM-dd)',
+                sort: '@increment',
+                good: '@integer(0,1000)'
+            }]
+        }))
     }
 }
 module.exports = delay(data, 2000)
