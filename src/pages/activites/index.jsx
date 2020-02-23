@@ -22,7 +22,7 @@ const Activites = props => {
     //监听上下滑动事件
     usePageScroll(res => {
         let { scrollTop } = res
-        if(scrollTop > 50 && data.Recommend.length >= 2) {
+        if(scrollTop > 50 && data.Recommend.length > 2) {
             if(!isDown) {
                 setIsDown(true)
             }

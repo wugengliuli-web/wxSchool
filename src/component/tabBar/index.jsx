@@ -1,5 +1,8 @@
 import Taro, { useState, useCallback } from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
+import homepage_sel from '../../static/img/homepage_sel.png'
+import Yizan_unsel from '../../static/img/Yizan_unsel.png'
+import mine_unsel from '../../static/img/mine_unsel.png'
 const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
     let link = useCallback(index => {
@@ -27,23 +30,24 @@ const TabBar = ({initIndex}) => {
     return <AtTabBar
                 fixed
                 backgroundColor={'#fff'}
-                color={'#000'}
+                color="rgba(0,0,0,0.3)"
                 fontSize={'20px'}
                 iconSize={'48px'}
+                selectedColor="rgba(0,0,0,0.45)"
                 tabList={[
                     {
                         title: '首页',
-                        iconType: 'home'
-                        
+                        selectedImage: homepage_sel,
+                        image: homepage_sel
                     }, {
                         title: '易赞助',
-                        iconType: 'heart'
-                        
+                        selectedImage: Yizan_unsel,
+                        image: Yizan_unsel
                     }, {
                         pagePath: '/pages/index/index',
                         title: '个人',
-                        iconType: 'message'
-                        
+                        selectedImage: mine_unsel,
+                        image: mine_unsel
                     }
                 ]}
                 onClick={link}
