@@ -130,7 +130,7 @@ const PersonalCenter = props => {
           <Button className="signOutbtn"><span>退出当前账号</span></Button>
         </View>
  
-        <TabBar></TabBar>
+        <TabBar initIndex={2}></TabBar>
       </View>  
         
     )

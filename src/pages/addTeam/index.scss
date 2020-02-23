@@ -1,0 +1,41 @@
+@import "~taro-ui/dist/style/components/list.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+page {
+    background:rgba(245,246,250,1);
+}
+
+
+.container {
+    padding: 0 32px;
+    background-color: #fff;
+    .head {
+        height: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            .title {
+                font-size:24px;
+                color:rgba(0,0,0,1);
+                opacity:0.87;
+                flex-grow: 1;
+            }
+            .info {
+                display: flex;
+                align-items: center;
+                text-align: right;
+                flex-grow: 9;
+                flex-direction: row-reverse;
+                .logo {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}
