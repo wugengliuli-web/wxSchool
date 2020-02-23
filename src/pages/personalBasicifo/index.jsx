@@ -1,6 +1,7 @@
 import Taro, { Component, useState, render, useCallback  } from '@tarojs/taro'
 import { View } from '@tarojs/components';
 import { useDispatch, useSelector } from '@tarojs/redux'
+import TabBar from '../../component/tabBar'
 import './index.scss'
 const PersonalBasicifo = props =>{
       PersonalBasicifo.config = {
