@@ -116,6 +116,12 @@ const data = {
                 }]
             }
         }))
+    },
+    'POST /api/addTeam': (req, res) => {
+        let { body } = req
+        res.status('200').json({
+            result: 'success'
+        })
     }
 }
 module.exports = delay(data, 2000)
