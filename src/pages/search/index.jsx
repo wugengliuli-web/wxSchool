@@ -6,6 +6,8 @@ import region from '../../lib/region'
 import './index.scss'
 import { getSearchContent, setCampusActivities, setMerchantSponsorship, setDreamCrowdFinancing } from '../../actions/search'
 import Skeleton from 'taro-skeleton'
+import locate from '../../static/img/locate.png'
+import search from '../../static/img/search.png'
 const Search = props => {
     const { params: { currentPage = 0 } } = useRouter()
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
@@ -249,12 +251,12 @@ const Search = props => {
                             onChange={setSearchContent}
                             onConfirm={submit}
                             >
-                            <AtIcon onClick={submit} className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                            <Image src={search} className="search"></Image>
                         </AtInput>
                     </AtForm>
                 </View>
                 <View className="positionWrapper">
-                    <AtIcon className="icon point" value='map-pin' size='18' color='#000'></AtIcon>
+                <Image src={locate} className="point"></Image>
                     {
                         position.map((item, index) => {
                             return (

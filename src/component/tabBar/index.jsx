@@ -12,7 +12,9 @@ const TabBar = ({initIndex}) => {
                 url: '/pages/Sponsor/index'
             })
         } else {
-            
+            Taro.reLaunch({
+                url: '/pages/personalCenter/index'
+            })
         }
         setCurrent(index)
     }, [])

@@ -32,16 +32,22 @@ const data = {
             res.status('200').json(Mock.mock({
                 'data|2': [{
                     id: '@id',
-                    url: Mock.Random.image('300x400', '#2db7f5', '#FFF', 'react'),
-                    text: '@ctitle(10, 20)'
+                    url: "@image(300x400, @color, @color, @word(5))",
+                    text: '@ctitle(10, 20)',
+                    logo: "@image(32x32, @color, @color)",
+                    name: '@ctitle(3,5)'
                 }, {
                     id: '@id',
-                    url: Mock.Random.image('200x300', '#50B347', '#FFF', 'test2'),
-                    text: '@ctitle(10, 20)'
+                    url: "@image(300x400, @color, @color, @word(5))",
+                    text: '@ctitle(10, 20)',
+                    logo: "@image(32x32, @color, @color)",
+                    name: '@ctitle(3,5)'
                 }, {
                     id: '@id',
-                    url: Mock.Random.image('250x360', '#894FC4', '#FFF', 'vue'),
-                    text: '@ctitle(10, 20)'
+                    url: "@image(300x400, @color, @color, @word(5))",
+                    text: '@ctitle(10, 20)',
+                    logo: "@image(32x32, @color, @color)",
+                    name: '@ctitle(3,5)'
                 }]
             }))
         }

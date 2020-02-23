@@ -1,14 +1,14 @@
 import Taro, { useDidShow, useCallback, useState } from '@tarojs/taro'
 import { View, Swiper, SwiperItem, Image, Picker, Text, Navigator } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
-
+import locate from '../../static/img/locate.png'
+import search from '../../static/img/search.png'
 import './index.scss'
 import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../../actions/home'
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 import TabBar from '../../component/tabBar'
 const Home = props => {
-  
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
@@ -18,7 +18,12 @@ const Home = props => {
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
-        
+        // Taro.navigateTo({
+        //     url: '/pages/addTeam/index',
+        //     data: {
+        //         id: Math.random() * 100000
+        //     }
+        // })
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -83,7 +88,7 @@ const Home = props => {
             </View>
             <View className="searchWrapper">
                 <View className="dropDown">
-                    <AtIcon className="icon point" value='map-pin' size='18' color='#000'></AtIcon>
+                    <Image src={locate} className="point"></Image>
                     <Picker className="picker" mode="region" onChange={bindchange} value={place} >
                         <Text className="pickerContent">
                             {
@@ -97,7 +102,7 @@ const Home = props => {
                     <View className="searchContainer">
                         {searchPlaceHolder}
                         <View className="searchIconWrapper">
-                            <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                        <Image src={search} className="search"></Image>
                         </View>
                     </View>
                 </Navigator>
@@ -112,7 +117,13 @@ const Home = props => {
                                     <View>
                                         <View className="contentContainer">
                                             <Image mode="widthFix" className="img" src={item.url} ></Image>
-                                            <View className="contentText">{item.text}</View>
+                                            <View className="infoWrapper">
+                                                <View className="contentText">{item.text}</View>
+                                                <View className="contentInfoWrapper">
+                                                    <Image mode="center" src={item.logo} className="logo"></Image>
+                                                    <View className="name">{item.name}</View>
+                                                </View>
+                                            </View>
                                         </View>
                                     </View>
                                 </Navigator>

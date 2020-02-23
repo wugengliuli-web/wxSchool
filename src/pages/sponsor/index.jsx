@@ -181,9 +181,4 @@ const Sponsor = props => {
         </View>
     )
 } 
-
-
-// set_campusActivities,
-//     set_merchantSponsorship,
-//     set_dreamCrowdFinancing
 export default Sponsor

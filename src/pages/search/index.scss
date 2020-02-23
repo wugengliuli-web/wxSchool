@@ -30,9 +30,8 @@ page {
             }
         }
         .searchWrapper {
-            height: 64px;
+            padding: 16px 0;
             background:rgba(245,246,250,1);
-            line-height: 64rpx;
             .at-input {
                 padding: 0;
                 background:rgba(245,246,250,1);
@@ -40,8 +39,13 @@ page {
                     border: none;
                 }
             }
+            .search {
+                width: 32px;
+                height: 32px;
+            }
         }
         .positionWrapper {
+            align-items: center;
             margin-top: 18px;
             height: 28px;
             line-height: 28px;
@@ -60,6 +64,10 @@ page {
             }
             .add {
                 width: 60px;
+            }
+            .point {
+                width: 34px;
+                height: 34px;
             }
         }
     }

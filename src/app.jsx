@@ -21,14 +21,12 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/login/index',
-<<<<<<< HEAD
       'pages/personalCenter/index',
-      'pages/personalBasicifo/index'
-=======
+      'pages/personalBasicifo/index',
       'pages/search/index',
       'pages/Sponsor/index',
-      'pages/activites/index'
->>>>>>> b071fbebd0e8149e5268984f8e1ccd38938eb0b3
+      'pages/activites/index',
+      'pages/addTeam/index'
     ],
     window: {
       backgroundTextStyle: 'light',
