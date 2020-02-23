@@ -1,4 +1,4 @@
-import {SET_SRC,SET_GOODCOUNT,SET_EMONEYCOUNT,SET_ESATRCOUNT} from '../constants/personalCenter'
+import {SET_SRC,SET_GOODCOUNT,SET_EMONEYCOUNT,SET_ESATRCOUNT,SET_NICKNAME} from '../constants/personalCenter'
 const INITIAL_STATE = {
     imgSrc:'../lib',
     goodCount:1000,
@@ -27,6 +27,11 @@ export default function personalCenter(state = INITIAL_STATE, action){
             return {
                 ...state,
                 estarCount:data
+            }
+        case SET_NICKNAME:
+            return {
+                ...state,
+                nickName:data
             }
         default:
             return state

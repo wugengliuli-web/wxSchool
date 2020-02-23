@@ -1,5 +1,5 @@
 import Taro from '@tarojs/taro'
-import {SET_SRC} from '../constants/personalCenter'
+import {SET_SRC,SET_NICKNAME} from '../constants/personalCenter'
 export const getSrc = ()=>{
     return async dispatch =>{
         let res = await Taro.request({
@@ -10,5 +10,11 @@ export const getSrc = ()=>{
             type:SET_SRC,
             data
         }) 
+    }
+}
+export const getNickname = () =>{
+    return 
+    {
+            type:SET_NICKNAME
     }
 }

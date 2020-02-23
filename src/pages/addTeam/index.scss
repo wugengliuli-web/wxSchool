@@ -14,6 +14,7 @@ page {
         flex-direction: column;
         justify-content: space-around;
         .item {
+            flex: 1;
             display: flex;
             align-items: center;
             .title {
@@ -27,6 +28,13 @@ page {
                 align-items: center;
                 text-align: right;
                 flex-grow: 9;
+                flex-direction: row-reverse;
+                .logo {
+                    width: 48px;
+                    height: 48px;
+                    border-radius: 50%;
+                    margin-right: 16px;
+                }
             }
         }
     }

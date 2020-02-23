@@ -4,20 +4,26 @@ const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
     let link = useCallback(index => {
         if(index === 0) {
-            Taro.reLaunch({
-                url: '/pages/index/index'
-            })
+            if(current !== 0) {
+                Taro.reLaunch({
+                    url: '/pages/index/index'
+                })
+            }
         } else if(index === 1) {
-            Taro.reLaunch({
-                url: '/pages/Sponsor/index'
-            })
+            if(current !== 1) {
+                Taro.reLaunch({
+                    url: '/pages/Sponsor/index'
+                })
+            }
         } else {
-            Taro.reLaunch({
-                url: '/pages/personalCenter/index'
-            })
+            if(current !== 2) {
+                Taro.reLaunch({
+                    url: '/pages/personalCenter/index'
+                })
+            }
         }
         setCurrent(index)
-    }, [])
+    }, [current])
     return <AtTabBar
                 fixed
                 backgroundColor={'#fff'}
