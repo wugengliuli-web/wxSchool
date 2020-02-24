@@ -8,6 +8,9 @@ import {
 import {
     set_schoolName
 } from '../constants/searchSchool'
+import {
+    set_activitesType
+} from '../constants/activitesType'
 //存储用户信息的状态
 const INITIAL_STATE = {
     enrollmentYear: '',  //入学年份
@@ -52,6 +55,11 @@ export default function identityAuthentication(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 schoolName: data
+            }
+        case set_activitesType:
+            return {
+                ...state,
+                activitesType: data
             }
         default:
             return state

@@ -45,16 +45,19 @@ page {
                         height: 32px;
                         width: 32px;
                         border-radius: 50%;
-                        border:2px solid rgba(153,153,153,1);
+                        border:2px solid rgba(153,153,153,1);;
                         display: flex;
                         margin-left: 36px;
                         .cicle {
                             margin: auto;
                             width:16px;
                             height:16px;
-                            background:rgba(153,153,153,1);
+                            background:rgba(67,239,209,1);
                             border-radius:50%;
                         }
+                    }
+                    .check {
+                        border:2px solid rgba(67,239,209,1);
                     }
                     .text {
                         color:rgba(153,153,153,1);
@@ -88,14 +91,14 @@ page {
         display: flex;
         justify-content: center;
         .btn {
+            letter-spacing: 10px;
             text-align: center;
             line-height: 80px;
             width:656px;
             height:80px;
-            background:rgba(223,229,238,1);
+            background:rgba(67,239,209,1);
             border-radius:8px;
-            color:rgba(0,0,0,1);
-            opacity:0.87;
+            color:rgba(255,255,255,0.87);
             font-size: 32px;
         }
     }

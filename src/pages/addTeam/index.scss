@@ -66,6 +66,7 @@ page {
         margin-top: 32px;
         .at-textarea {
             border: none;
+            padding: 0;
         }
     }
     .btnWrapper {
@@ -77,9 +78,10 @@ page {
             line-height: 80px;
             width:656px;
             height:80px;
-            background:rgba(223,229,238,1);
+            background:rgba(67,239,209,1);
             border-radius:8px;
-            color:rgba(0,0,0,1);
+            color:rgba(255,255,255,1);
+            letter-spacing: 8px;
             opacity:0.87;
             font-size: 32px;
         }

@@ -1,0 +1,1 @@
+export const set_activitesType = 'SET_ACTIVITESTYPE'

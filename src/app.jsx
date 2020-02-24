@@ -28,7 +28,8 @@ class App extends Component {
       'pages/activites/index',
       'pages/addTeam/index',
       'pages/identityAuthentication/index',
-      'pages/searchSchool/index'
+      'pages/searchSchool/index',
+      'pages/activitesType/index'
     ],
     window: {
       backgroundTextStyle: 'light',
