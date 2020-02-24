@@ -2,8 +2,7 @@ import {
     set_identityAuthentication,
     set_major,
     set_post,
-    set_departant,
-    set_teamName
+    set_departant
 } from '../constants/identityAuthentication'
 import {
     set_schoolName
@@ -11,6 +10,9 @@ import {
 import {
     set_activitesType
 } from '../constants/activitesType'
+import {
+    set_teamName
+} from '../constants/searchTeam'
 //存储用户信息的状态
 const INITIAL_STATE = {
     enrollmentYear: '',  //入学年份

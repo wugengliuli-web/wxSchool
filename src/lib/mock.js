@@ -119,9 +119,17 @@ const data = {
     },
     'POST /api/addTeam': (req, res) => {
         let { body } = req
+        let { info: { name } } = body
         res.status('200').json({
-            result: 'success'
+            result: 'success',
+            name
         })
+    },
+    'POST /api/getTeamName': (req, res) => {
+        let { body } = req
+        res.status('200').json(Mock.mock({
+            'data|3': ['@ctitle(3.5)']
+        }))
     }
 }
 module.exports = delay(data, 2000)

@@ -50,6 +50,9 @@ page {
                     color:rgba(0,0,0,1);
                     opacity:0.38;
                     padding: 0;
+                    .at-input__input {
+                        padding: 0;
+                    }
                     &::after {
                         border: none;
                     }
@@ -84,6 +87,9 @@ page {
             letter-spacing: 8px;
             opacity:0.87;
             font-size: 32px;
+        }
+        .disable {
+            opacity: 0.3;
         }
     }
 }

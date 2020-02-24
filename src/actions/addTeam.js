@@ -12,10 +12,16 @@ export const submitAddTeam = info => {
                     info
                 }
             })
-            let { data: { result } } = res
-            return result
+            let { data: { result, name = 'error' } } = res
+            return {
+                result,
+                name
+            }
         } catch(err) {
-            return 'error'
+            return {
+                result,
+                name
+            }
         }
     }
 }

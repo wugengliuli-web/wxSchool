@@ -42,6 +42,7 @@ const IdentityAuthentication = props => {
     const activitesType = useSelector(state => state.identityAuthentication.activitesType)
     const activitesTypeUrl = '/pages/activitesType/index'
     const teamName = useSelector(state => state.identityAuthentication.teamName)
+    const teamNameUrl = '/pages/searchTeam/index'
     const setMan = useCallback(() => {
         const newOptions = [...options]
         newOptions[0].checked = false
@@ -152,15 +153,14 @@ const IdentityAuthentication = props => {
                 </View>
                 <View className="item">
                     <View class="title">团队名称</View>
-                    <View className="info">
-                        <AtInput
-                            name='value'
-                            type='text'
-                            placeholder='请输入团队全称'
-                            value={teamName}
-                            onChange={setTeamNameProps}
-                        />
-                    </View>
+                    <Navigator className="link" url={teamNameUrl}>
+                        <View className="info">
+                            <AtIcon value='chevron-right' size='15' color='#999999'></AtIcon>
+                            <View className="text">
+                                { teamName }
+                            </View>
+                        </View>
+                    </Navigator>
                 </View>
                 <View className="item">
                     <View class="title">所属部门</View>
