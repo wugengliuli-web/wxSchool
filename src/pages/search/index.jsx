@@ -251,7 +251,7 @@ const Search = props => {
                             onChange={setSearchContent}
                             onConfirm={submit}
                             >
-                            <Image src={search} className="search"></Image>
+                            <Image onClick={e => submit(searchContent)} src={search} className="search"></Image>
                         </AtInput>
                     </AtForm>
                 </View>

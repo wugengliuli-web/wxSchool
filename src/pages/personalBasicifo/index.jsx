@@ -26,12 +26,12 @@ const PersonalBasicifo = props =>{
               <View className="checked">
                 <View className="spot"></View>
                 <Text className="hasChecked">已认证</Text>
-                <AtIcon className="point" value='chevron-right' size='12' color='rgba(153,153,153,1)'></AtIcon>
+
               </View>
               <View className="checkedRealname">
               <View className="spot"></View>
                 <Text className="hasChecked">已实名</Text>
-                <AtIcon className="point" value='chevron-right' size='12' color='rgba(153,153,153,1)'></AtIcon>
+                
               </View>
             </View>
                     </View>
@@ -39,20 +39,19 @@ const PersonalBasicifo = props =>{
 
                 <View className="motto">
                   <View className="spot"></View>
-                  <View className="texts">
-                  <AtTextarea  
-                    value={this.state.value}
-                    count={false}
-                    maxLength={50}
-                    placeholder='签名...'
-                    className="text">
-                    
-                    </AtTextarea >
-                  </View>
-
-                  
-                  
+                  <Navigator 
+                    hover-class="none"
+                    url = "/pages/personalCenter/index" 
+                    className="texts">
+                    <Text className="text">
+                    春天，马上就要来了，让我与你相遇的春天，就要来了，再也没有你的春天，就要来了。
+                    </Text >
+                  </Navigator>
                 </View>
+              </View>
+              <View className="options">
+                <Navigator className="basicIfo"></Navigator>
+                <Navigator className="activitiesIfo"></Navigator>
               </View>
               <TabBar></TabBar>
             </View>)

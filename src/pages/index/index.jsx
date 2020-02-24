@@ -24,6 +24,12 @@ const Home = props => {
                 id: Math.random() * 100000
             }
         })
+        // Taro.navigateTo({
+        //     url: '/pages/searchSchool/index',
+        //     data: {
+        //         id: Math.random() * 100000
+        //     }
+        // })
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
