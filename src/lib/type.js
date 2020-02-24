@@ -24,6 +24,12 @@ export const activitesTypeList = [
 ]  //活动类型
 
 
+export const activitesColor = {
+    blue: ['设计开发', '社会实践', '创业营销', '演讲辩论'],
+    red: ['文艺汇演', '影视音乐', '迎新招新', '拍摄摄影'],
+    green: ['体育竞技', '讲座论坛', '传单派送', '高校推广']
+}
+
 export const teamSizeList = [
     '少于40人',
     '40-100人',

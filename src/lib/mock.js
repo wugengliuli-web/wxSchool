@@ -58,7 +58,7 @@ const data = {
             'data|10': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
-                tag: '@ctitle(4)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
                 startTime: '@datetime(yyyy-MM-dd)',
@@ -73,7 +73,7 @@ const data = {
             'data|10': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
-                tag: '@ctitle(4)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
                 startTime: '@datetime(yyyy-MM-dd)',

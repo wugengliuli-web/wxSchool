@@ -1,7 +1,10 @@
 import Taro, { useState, useCallback } from '@tarojs/taro'
 import { AtTabBar } from 'taro-ui'
 import homepage_sel from '../../static/img/homepage_sel.png'
+import homepage_unsel from '../../static/img/homepage_unsel.png'
+import Yizan_sel from '../../static/img/Yizan_sel.png'
 import Yizan_unsel from '../../static/img/Yizan_unsel.png'
+import mine_sel from '../../static/img/mine_sel.png'
 import mine_unsel from '../../static/img/mine_unsel.png'
 const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
@@ -38,15 +41,15 @@ const TabBar = ({initIndex}) => {
                     {
                         title: '首页',
                         selectedImage: homepage_sel,
-                        image: homepage_sel
+                        image: homepage_unsel
                     }, {
                         title: '易赞助',
-                        selectedImage: Yizan_unsel,
+                        selectedImage: Yizan_sel,
                         image: Yizan_unsel
                     }, {
                         pagePath: '/pages/index/index',
                         title: '个人',
-                        selectedImage: mine_unsel,
+                        selectedImage: mine_sel,
                         image: mine_unsel
                     }
                 ]}
