@@ -57,7 +57,7 @@ const SearchSchool = props => {
         }
     }
     // const setProvinceWrapper = useCallback(info => {
-    //     let { detail: { value } } = info
+    //     let { target: { value } } = info
     //     value = ~~value
     //     setProvince(provinceList[value])
     //     if(value === 0) {
@@ -70,7 +70,7 @@ const SearchSchool = props => {
     //     setValWrapper('')
     // }, [])
     // const setCityWrapper = useCallback(info => {
-    //     let { detail: { value } } = info
+    //     let { target: { value } } = info
     //     value = ~~value
     //     setCity(cityList[value])
     //     setSchoolListWrapper(province, cityList[value])

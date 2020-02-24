@@ -30,7 +30,8 @@ class App extends Component {
       'pages/identityAuthentication/index',
       'pages/searchSchool/index',
       'pages/activitesType/index',
-      'pages/searchTeam/index'
+      'pages/searchTeam/index',
+      'pages/uploadStudentIDCard/index'
     ],
     window: {
       backgroundTextStyle: 'light',

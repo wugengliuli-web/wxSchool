@@ -1,0 +1,1 @@
+export const set_studentIdCard = 'SET_STUDENTIDCARD'

@@ -18,12 +18,12 @@ const Home = props => {
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
-        // Taro.navigateTo({
-        //     url: '/pages/addTeam/index',
-        //     data: {
-        //         id: Math.random() * 100000
-        //     }
-        // })
+        Taro.navigateTo({
+            url: '/pages/identityAuthentication/index',
+            data: {
+                id: Math.random() * 100000
+            }
+        })
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
@@ -44,7 +44,7 @@ const Home = props => {
     let bindchange = useCallback(async info => {
         const actionClear = clearContent()
         await dispatch(actionClear)
-        let { detail: { value } } = info
+        let { target: { value } } = info
         setLoading(true)
         setPlace(value)
         pageIndex = 0
