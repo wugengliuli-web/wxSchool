@@ -13,12 +13,15 @@ import {
 import {
     set_teamName
 } from '../constants/searchTeam'
+import {
+    set_studentIdCard
+} from '../constants/uploadStudentIDCard'
 //存储用户信息的状态
 const INITIAL_STATE = {
     enrollmentYear: '',  //入学年份
     major: '',  //大学专业
     schoolName: '',  //学校名称
-    studentIdCard: false,  //是否上传学生证,
+    studentIdCard: '',  //是否上传学生证,
     teamName: '',  //团队名称
     department: '',  //部门名称
     post: '',  //部门职位
@@ -62,6 +65,11 @@ export default function identityAuthentication(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 activitesType: data
+            }
+        case set_studentIdCard:
+            return {
+                ...state,
+                studentIdCard: data
             }
         default:
             return state

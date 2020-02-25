@@ -1,0 +1,59 @@
+page {
+    background:rgba(245,246,250,1);
+}
+
+.container {
+    padding: 32px;
+    .bg {
+        background:rgba(223,229,238,1);
+    }
+    .uploadWrapper {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        .imgWrapper {
+            margin-top: 100px;
+            text-align: center;
+            .img {
+                width: 128px;
+                height: 128px;
+            }
+        }
+        .text {
+            margin-top: 40px;
+            text-align: center;
+            font-size:20px;
+            color:rgba(255,255,255,1);
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .studentIDCard {
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+    .info {
+        margin-top: 48px;
+        font-size:20px;
+        text-align: center;
+        color:rgba(0,0,0,1);
+        opacity:0.38;
+    }
+    .btn {
+        letter-spacing: 10px;
+        margin-top: 16px;
+        text-align: center;
+        background:rgba(67,239,209,1);
+        border-radius: 8px;
+        height: 80px;
+        line-height: 80px;
+        color:rgba(255,255,255,0.87);
+    }
+    .disable {
+        opacity: 0.3;
+    }
+}

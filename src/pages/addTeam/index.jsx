@@ -14,7 +14,7 @@ import {
 } from '../../actions/searchTeam'
 const AddTeam = props => {
     const dispatch = useDispatch()
-    const logoSize = 1024 * 1024 * 3
+    const logoSize = 1024 * 1024 * 2
     const { params: { id } } = useRouter()
     const [logo, setLogo] = useState('')  //logo图片路径
     const [name, setName] = useState('')  //团队名
@@ -23,22 +23,22 @@ const AddTeam = props => {
     const [teamCharacter, setTeamCharacter] = useState('') //团队性质
     const [teamIntroduce, setTeamIntroduce] = useState('')
     const setTeamTypeWrapper = useCallback(info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         value = ~~value
         setTeamType(teamTypeList[value])
     }, [])
     const setTeamSizeWrapper = useCallback(info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         value = ~~value
         setTeamSize(teamSizeList[value])
     }, [])
     const setTeamCharacterWrapper = useCallback(info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         value = ~~value
         setTeamCharacter(teamCharacterList[value])
     }, [])
     const setTeamIntroduceWrapper = useCallback(info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         setTeamIntroduce(value)
     }, [])
     const uploadImg = useCallback(async () => {
@@ -49,19 +49,30 @@ const AddTeam = props => {
             let { path, size } = res.tempFiles[0]
             if(size > logoSize) {
                 Taro.showToast({
-                    title: '图片超出限制3MB',
-                    icon: 'success',
+                    title: '图片超出限制2MB',
                     duration: 2000
                 })
             } else {
-                setLogo(path)
+                const fd = Taro.getFileSystemManager()
+                const req = await new Promise((res, rej) => {
+                    fd.readFile({
+                        filePath: path,
+                        encoding: 'base64',
+                        success: ({ data }) => {
+                            res('data:image/png;base64,' + data)
+                        },
+                        fail: err => {
+                            rej(err)
+                        }
+                    })
+                })
+                setLogo(req)
             }
         } catch(err) {
-            let { errMsg } = err
+            let { errMsg = 'error' } = err
             if(errMsg !== 'chooseImage:fail cancel') {
                 Taro.showToast({
                     title: '上传失败',
-                    icon: 'loading',
                     duration: 2000
                 })
             }
@@ -187,7 +198,7 @@ const AddTeam = props => {
                 />
             </View>
             <View className="btnWrapper">
-                <View className={'btn'} onClick={submit}>提交</View>
+                <View className={logo && name && teamType && teamSize && teamCharacter && teamIntroduce ? 'btn' : 'btn disable'} onClick={submit}>提交</View>
             </View>
         </View>
     )

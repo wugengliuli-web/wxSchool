@@ -1,0 +1,179 @@
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+
+.container {
+    padding: 0 32px;
+    .divier {
+        height:0px;
+        border:2px solid rgba(245,246,250,1);
+    }
+    .activityNameWrapper {
+        display: flex;
+        align-items: center;
+        height: 72px;
+        justify-content: space-between;
+        .title {
+            flex-grow: 1;
+            font-size:24px;
+            color:rgba(0,0,0,1);
+            opacity:0.87;
+        }
+        .link {
+            flex-grow: 9;
+        }
+        .info {
+            display: flex;
+            align-items: center;
+            text-align: right;
+            flex-grow: 9;
+            flex-direction: row-reverse;
+            font-size: 24px;
+            color: #000;
+            opacity:0.87;
+            .placeholder {
+                color:rgba(0,0,0,1);
+                opacity:0.38;
+            }
+            .pickerPosition {
+                height: 30rpx;
+                width: 300px;
+            }
+            .text {
+                font-size: 24px;
+                margin-left: 8px;
+            }
+            .and {
+                margin: 0 10px;
+            }
+            .at-input {
+                margin: 0;
+                padding: 0;
+                text-align: right;
+                color:rgba(0,0,0,1);
+                .placeholder {
+                    opacity:0.38;
+                }
+                .at-input__input {
+                    font-size: 24px;
+                    padding: 0;
+                    width: 500px;
+                }
+                &::after {
+                    border: none;
+                }
+            }
+        }
+        .placeholder {
+            color:rgba(0,0,0,1);
+            opacity:0.38;
+        }
+    }
+    .imgWrapper {
+        margin: 32px 0;
+        display: flex;
+        .img {
+            width: 208px;
+            height: 208px;
+        }
+        .imgContainer {
+            position: relative;
+            width: 208px;
+            height: 208px;
+            .img {
+                width: 208px;
+                height: 208px;
+            }
+            .del {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .imgContainer:nth-child(2) {
+            margin: 0 30px;
+        }
+        
+    }
+    .infoWrapper {
+        font-size:24px;
+        padding-left: 32px;
+        display: flex;
+        align-items: center;
+        height: 72px;
+        justify-content: space-between;
+        .title {
+            flex-grow: 1;
+        }
+        .info {
+            flex-grow: 9;
+            .placeholder {
+                color:rgba(0,0,0,1);
+                opacity:0.38;
+            }
+            .at-input {
+                margin: 0;
+                padding: 0;
+                text-align: right;
+                color:rgba(0,0,0,1);
+                .placeholder {
+                    opacity:0.38;
+                }
+                .at-input__input {
+                    font-size: 24px;
+                    padding: 0;
+                    width: 400px;
+                }
+                &::after {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .youShouleKnowWrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 34px;
+        .wrapper {
+            display: flex;
+            align-items: center;
+            .check {
+                width:24px;
+                height:24px;
+                background:rgba(223,229,238,1);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .at-icon {
+                    margin-bottom: 10rpx;
+                }
+            }
+            .text {
+                margin-left: 14px;
+                color:#000000;
+                opacity:0.87;
+                font-size: 20px;
+                display: flex;
+                .link {
+                    color: #43EFD1;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+    .btn {
+        color: #fff;
+        margin: 18px 48px;
+        padding: 22px 0;
+        text-align: center;
+        letter-spacing: 10px;
+        border-radius:8px;
+        background:rgba(67,239,209,1);
+    }
+    .placeholder {
+        opacity: 0.3;
+    }
+}

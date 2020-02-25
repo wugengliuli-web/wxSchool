@@ -44,7 +44,7 @@ const Search = props => {
         }
     })
     const setPositionPicker = useCallback((info, index) => {
-        let { detail: { value: rangesIndex } } = info
+        let { target: { value: rangesIndex } } = info
         rangesIndex = ~~rangesIndex
         if(index === 0) {
             setPosition(['不限'])
@@ -56,13 +56,13 @@ const Search = props => {
         }
     }, [ranges])
     const setPositionProvince = useCallback(value => {
-        let { detail: { value: index } } = value
+        let { target: { value: index } } = value
         index = ~~index
         setPosition(['不限', ranges[1][index]])
         setRanges([ranges[0], ranges[1], region[index].city.map(item => item.name)])
     }, [ranges])
     const setPositionCity = useCallback(value => {
-        let { detail: { value: index } } = value
+        let { target: { value: index } } = value
         index = ~~index
         setPosition(['不限', position[1], ranges[2][index]])
     }, [ranges])

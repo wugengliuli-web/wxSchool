@@ -19,7 +19,7 @@ const Sponsor = props => {
     let merchantSponsorship = useSelector(state => state.sponsor.merchantSponsorship)  //商家赞助
     let dreamCrowdFinancing = useSelector(state => state.sponsor.dreamCrowdFinancing)  //梦想众筹
     let bindchange = useCallback(async info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         setPlace(value)
     }, [])
     const options = [

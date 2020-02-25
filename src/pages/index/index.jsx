@@ -19,6 +19,7 @@ const Home = props => {
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
         // Taro.navigateTo({
+<<<<<<< HEAD
         //     url: '/pages/personalBasicifo/index',
         //     data: {
         //         id: Math.random() * 100000
@@ -26,6 +27,9 @@ const Home = props => {
         // })
         // Taro.navigateTo({
         //     url: '/pages/searchSchool/index',
+=======
+        //     url: '/pages/release/index',
+>>>>>>> 9a384f89695ccb78ce2e03d730bb279f58cd5170
         //     data: {
         //         id: Math.random() * 100000
         //     }
@@ -50,7 +54,7 @@ const Home = props => {
     let bindchange = useCallback(async info => {
         const actionClear = clearContent()
         await dispatch(actionClear)
-        let { detail: { value } } = info
+        let { target: { value } } = info
         setLoading(true)
         setPlace(value)
         pageIndex = 0

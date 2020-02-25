@@ -8,6 +8,7 @@ import sponsor from './sponsor'
 import activites from './activites'
 import identityAuthentication from './identityAuthentication'
 import searchTeam from './searchTeam'
+import release from './release'
 export default combineReducers({
 	login,
 	home,
@@ -17,5 +18,6 @@ export default combineReducers({
 	sponsor,
 	activites,
 	identityAuthentication,
-	searchTeam
+	searchTeam,
+	release
 })

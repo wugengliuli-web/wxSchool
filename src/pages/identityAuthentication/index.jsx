@@ -33,7 +33,7 @@ const IdentityAuthentication = props => {
     const choolSchoolUrl = '/pages/searchSchool/index'
     //学生证
     const studentIdCard = useSelector(state => state.identityAuthentication.studentIdCard)
-    const uploadStudentIdCardUrl = ''
+    const uploadStudentIdCardUrl = '/pages/uploadStudentIDCard/index'
 
     //部门名称
     const department = useSelector(state => state.identityAuthentication.department)
@@ -56,7 +56,7 @@ const IdentityAuthentication = props => {
         setOptions(newOptions)
     }, [])
     const setEnrollmentYear = useCallback(info => {
-        let { detail: { value } } = info
+        let { target: { value } } = info
         value = ~~value
         const action = setIdentityAuthentication(enrollmentYearList[value])
         dispatch(action)
