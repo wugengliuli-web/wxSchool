@@ -1,5 +1,5 @@
 import Taro, { useState, useCallback, useDidShow } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Image } from '@tarojs/components'
 import TabBar from '../../component/tabBar'
 import './index.scss'
 import { useSelector, useDispatch } from '@tarojs/redux'
@@ -11,6 +11,9 @@ import {
     getDreamCrowdFinancing
 } from '../../actions/sponsor'
 import { activitesColor } from '../../lib/type'
+import basketball from '../../static/img/basketball.png'
+import company from '../../static/img/company.png'
+import dream from '../../static/img/dream.png'
 const Sponsor = props => {
     const dispatch = useDispatch()
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
@@ -23,9 +26,9 @@ const Sponsor = props => {
         setPlace(value)
     }, [])
     const options = [
-        { text1: '校园', text2: '活动', id: 'qwer', url: '/pages/search/index?currentPage=0' },
-        { text1: '商家', text2: '赞助', id: 'wert', url: '/pages/search/index?currentPage=1' },
-        { text1: '梦想', text2: '众筹', id: 'tyui', url: '/pages/search/index?currentPage=2' },
+        { text: '校园活动', id: 'qwer', url: '/pages/search/index?currentPage=0', icon: basketball },
+        { text: '商家赞助', id: 'wert', url: '/pages/search/index?currentPage=1', icon: company },
+        { text: '梦想众筹', id: 'tyui', url: '/pages/search/index?currentPage=2', icon: dream },
     ] 
     useDidShow(async () => {
         if(campusActivities.length === 0) {
@@ -66,13 +69,15 @@ const Sponsor = props => {
             </View>
             <View className="tagWrapper">
                 {
-                    options.map(item => {
+                    options.map((item, index) => {
                         return (
                             <Navigator key={item.id} url={item.url}>
-                                <View className="tag">
+                                <View className={index === 0 ? "tag green" : index === 1 ? 'tag blue' : 'tag sky'}>
                                     <View className="contentWrapper">
-                                        <View>{item.text1}</View>
-                                        <View>{item.text2}</View>
+                                        <View className="imgWrapper">
+                                            <Image src={item.icon} className="img"></Image>
+                                        </View>
+                                        <View className="text">{item.text}</View>
                                     </View>
                                 </View>
                             </Navigator>
