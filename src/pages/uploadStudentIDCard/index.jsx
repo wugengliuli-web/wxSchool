@@ -41,7 +41,6 @@ const UploadStudentIDCard = props => {
             if(errMsg !== 'chooseImage:fail cancel') {
                 Taro.showToast({
                     title: '上传失败',
-                    icon: 'loading',
                     duration: 2000
                 })
             }

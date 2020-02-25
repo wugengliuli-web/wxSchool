@@ -198,7 +198,7 @@ const AddTeam = props => {
                 />
             </View>
             <View className="btnWrapper">
-                <View className={'btn'} onClick={submit}>提交</View>
+                <View className={logo && name && teamType && teamSize && teamCharacter && teamIntroduce ? 'btn' : 'btn disable'} onClick={submit}>提交</View>
             </View>
         </View>
     )
