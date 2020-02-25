@@ -5,6 +5,7 @@ import './index.scss'
 
 
 const Index = props => {
+	const [disabled, setDisabled] = useState(true)
 	let [telNum, setTelNum] = useState('')
 	let [getVCode, setGetVCode] = useState('')
 	let [vCode, setVCode] = useState(false)
@@ -13,13 +14,30 @@ const Index = props => {
 			setVCode(true)
 		}
 	}, [vCode])
+	const setTelNumWrapper = useCallback(info => {
+		setTelNum(info)
+		if(info !=='' && getVCode !== '') {
+			setDisabled(false)
+		} else {
+			setDisabled(true)
+		}
+	}, [getVCode])
+
+	const setGetVCodeWrapper = useCallback(info => {
+		setGetVCode(info)
+		if(info !=='' && telNum !== '') {
+			setDisabled(false)
+		} else {
+			setDisabled(true)
+		}
+	}, [telNum])
 	let timer = useCallback(e => {
 		setVCode(false)
 	}, [])
 	let submit = useCallback(
 		(e) => {
 			Taro.redirectTo({
-				url: '/pages/home/index'
+				url: '/pages/index/index'
 			})
 		},
 		[telNum, getVCode],
@@ -35,7 +53,7 @@ const Index = props => {
 							type='phone'
 							placeholder='手机号一键登录注册'
 							value={telNum}
-							onChange={setTelNum}
+							onChange={setTelNumWrapper}
 							placeholderClass="inputPlaceholder"
 						/>
 						<View className="divier"></View>
@@ -47,7 +65,7 @@ const Index = props => {
 							type='text'
 							placeholder='请输入验证码'
 							value={getVCode}
-							onChange={setGetVCode}
+							onChange={setGetVCodeWrapper}
 							placeholderClass="inputPlaceholder"
 						/>
 						<View className="sendWrapper">
@@ -60,7 +78,7 @@ const Index = props => {
 										<AtCountdown
 											className="cownDown"
 											isShowHour={false}
-											format={{ hours: ':', minutes: ':', seconds: '秒' }}
+											format={{ hours: ':', minutes: ':', seconds: 's后再次获取' }}
 											seconds={59}
 											isShowMin={false}
 											onTimeUp={timer}
@@ -71,7 +89,7 @@ const Index = props => {
 						
 					</View>
 					<View className="divier"></View>
-					<AtButton className="btn" formType='submit'>登录</AtButton>
+					<AtButton className="btn" formType='submit' disabled={disabled}>登录</AtButton>
 				</AtForm>
 				<View className="wxLoginWrapper">
 					<View className="wxLogin">

@@ -56,27 +56,26 @@ const SearchSchool = props => {
             setSchoolListShow(schoolList.filter(item => item.includes(info)))
         }
     }
-    const setProvinceWrapper = useCallback(info => {
-        let { detail: { value } } = info
-        console.log(info)
-        value = ~~value
-        setProvince(provinceList[value])
-        if(value === 0) {
-            setCityList(['不限'])
-        } else {
-            setCityList(['不限'].concat(school[value - 1].cities.map(item => item.city_name)))
-        }
-        setCity('不限')
-        setSchoolListWrapper(provinceList[value], '不限')
-        setValWrapper('')
-    }, [])
-    const setCityWrapper = useCallback(info => {
-        let { detail: { value } } = info
-        value = ~~value
-        setCity(cityList[value])
-        setSchoolListWrapper(province, cityList[value])
-        setValWrapper('')
-    }, [cityList])
+    // const setProvinceWrapper = useCallback(info => {
+    //     let { detail: { value } } = info
+    //     value = ~~value
+    //     setProvince(provinceList[value])
+    //     if(value === 0) {
+    //         setCityList(['不限'])
+    //     } else {
+    //         setCityList(['不限'].concat(school[value - 1].cities.map(item => item.city_name)))
+    //     }
+    //     setCity('不限')
+    //     setSchoolListWrapper(provinceList[value], '不限')
+    //     setValWrapper('')
+    // }, [])
+    // const setCityWrapper = useCallback(info => {
+    //     let { detail: { value } } = info
+    //     value = ~~value
+    //     setCity(cityList[value])
+    //     setSchoolListWrapper(province, cityList[value])
+    //     setValWrapper('')
+    // }, [cityList])
     const link = useCallback(async schoolName => {
         const action = setSchoolName(schoolName)
         await dispatch(action)
@@ -100,7 +99,7 @@ const SearchSchool = props => {
                         <Image src={search} className="img"></Image>
                     </View>
                 </View>
-                <View className="tagWrapper">
+                {/* <View className="tagWrapper">
                     <Image src={locate} className="img"></Image>
                     <Picker mode='selector' range={provinceList} onChange={setProvinceWrapper}>
                         <View className='picker'>
@@ -112,7 +111,7 @@ const SearchSchool = props => {
                             {city}
                         </View>
                     </Picker>
-                </View>
+                </View> */}
                 <View className="searchAns">
                     {
                         schoolListShow.map((item, index) => {

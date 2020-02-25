@@ -2,7 +2,7 @@ import Taro, { useCallback, useState, useRouter } from '@tarojs/taro'
 import './index.scss'
 import { AtIcon, AtInput } from "taro-ui"
 import { useSelector, useDispatch } from '@tarojs/redux'
-import { View, Navigator } from '@tarojs/components'
+import { View, Navigator, Picker } from '@tarojs/components'
 import {
     enrollmentYearList
 } from '../../lib/type'
@@ -30,7 +30,7 @@ const IdentityAuthentication = props => {
     const major = useSelector(state => state.identityAuthentication.major)
     //学校名称
     const schoolName = useSelector(state => state.identityAuthentication.schoolName)
-    const choolSchoolUrl = ''
+    const choolSchoolUrl = '/pages/searchSchool/index'
     //学生证
     const studentIdCard = useSelector(state => state.identityAuthentication.studentIdCard)
     const uploadStudentIdCardUrl = ''
@@ -40,7 +40,7 @@ const IdentityAuthentication = props => {
     //部门职位
     const post = useSelector(state => state.identityAuthentication.post)
     const activitesType = useSelector(state => state.identityAuthentication.activitesType)
-    const activitesTypeUrl = ''
+    const activitesTypeUrl = '/pages/activitesType/index'
     const teamName = useSelector(state => state.identityAuthentication.teamName)
     const setMan = useCallback(() => {
         const newOptions = [...options]
@@ -88,7 +88,7 @@ const IdentityAuthentication = props => {
                         {
                             options.map(item => {
                                 return <View key={item.name} className="radioWrapper" onClick={item.name === 'man' ? setMan : setWoman}>
-                                    <View className="radio">
+                                    <View className={item.checked ? 'radio check' : 'radio'}>
                                         {
                                             item.checked ?
                                             <View className="cicle"></View>
@@ -158,7 +158,7 @@ const IdentityAuthentication = props => {
                             type='text'
                             placeholder='请输入团队全称'
                             value={teamName}
-                            onChange={setTeamName}
+                            onChange={setTeamNameProps}
                         />
                     </View>
                 </View>

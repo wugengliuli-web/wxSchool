@@ -25,21 +25,23 @@ page {
         font-size:24px;
         line-height:40px;
         color:rgba(0,0,0,1);
-        opacity:0.38;
         margin: 0;
         padding: 32px 16px;
         background: #F5F6FA;
+        .at-input__input {
+          opacity: 0.87;
+        }
+        .inputPlaceholder {
+          font-family:Noto Sans S Chinese;
+          font-size:24px;
+          line-height:40px;
+          color:rgba(0,0,0,1);
+          opacity:0.38;
+        }
         &::after {
           border: none;
         }
       }
-    }
-    .inputPlaceholder {
-      font-family:Noto Sans S Chinese;
-      font-size:24px;
-      line-height:40px;
-      color:rgba(0,0,0,1);
-      opacity:0.38;
     }
     .divier {
       width: 100%;
@@ -55,11 +57,20 @@ page {
         font-size:24px;
         line-height:40px;
         color:rgba(0,0,0,1);
-        opacity:0.38;
         background: #F5F6FA;
         margin: 0;
-        width: 380px;
         padding: 32px 16px;
+        padding-right: 0;
+        .at-input__input {
+          opacity: 0.87;
+        }
+        .inputPlaceholder {
+          font-family:Noto Sans S Chinese;
+          font-size:24px;
+          line-height:40px;
+          color:rgba(0,0,0,1);
+          opacity:0.38;
+        }
         &::after {
           border: none;
         }
@@ -68,9 +79,10 @@ page {
         display: flex;
         align-items: center;
         .division {
-          width:6px;
-          height:38px;
-          background:rgba(112,112,112,1);
+          height:32px;
+          border:2px solid rgba(0,0,0,1);
+          opacity:0.12;
+          border-radius:2px;
         }
         .getVCode {
           margin-left: 16px;
@@ -100,6 +112,8 @@ page {
             }
             
             .at-countdown__separator {
+              padding: 0;
+              white-space: nowrap;
               font-size:24px;
               font-family:Noto Sans S Chinese;
               font-weight:400;
@@ -123,6 +137,14 @@ page {
       color:rgba(0,0,0,1);
       opacity:0.87;
       border: none;
+      background:rgba(67,239,209,1);
+      color: #fff;
+    }
+    .at-button--disabled {
+      opacity:0.3;
+      .at-button__text {
+        opacity: 0.3;
+      }
     }
     .wxLoginWrapper {
       width: 100%;
