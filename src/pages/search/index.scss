@@ -146,15 +146,28 @@ page {
                                 font-size:32px;
                                 color:rgba(0,0,0,1);
                             }
-                            .contentTag {
-                                line-height: 32rpx;
+                            .tagContainer {
+                                display: flex;
+                                float: right;
                                 margin-left: 16px;
-                                height:32px;
-                                background:rgba(223,229,238,1);
-                                border-radius:8px;
-                                padding: 6px 8px;
-                                font-size:20px;
-                                color:rgba(255,255,255,1);
+                                .contentTag {
+                                    margin: 0 10px;
+                                    white-space:nowrap;
+                                    background:rgba(223,229,238,1);
+                                    border-radius:8px;
+                                    padding: 6px 8px;
+                                    font-size:20px;
+                                    color:rgba(255,255,255,1);
+                                }
+                                .red {
+                                    background:rgba(255,107,129,1);
+                                }
+                                .green {
+                                    background:rgba(123,237,159,1);
+                                }
+                                .blue {
+                                    background:rgba(112,161,255,1);
+                                }
                             }
                         }
                         .address {

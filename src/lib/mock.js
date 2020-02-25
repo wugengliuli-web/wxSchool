@@ -58,7 +58,7 @@ const data = {
             'data|10': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
-                tag: '@ctitle(4)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
                 startTime: '@datetime(yyyy-MM-dd)',
@@ -73,7 +73,7 @@ const data = {
             'data|10': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
-                tag: '@ctitle(4)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
                 startTime: '@datetime(yyyy-MM-dd)',
@@ -91,7 +91,7 @@ const data = {
                 id: id,
                 title: '@ctitle(5,15)',
                 img: "@image(720x900, @color, @color, png, @word(5))",
-                tag: '@ctitle(4)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
                 startTime: '@datetime',
@@ -99,16 +99,19 @@ const data = {
                 browseTimes: '@integer(0,400)', //浏览次数
                 applicantsNum: '@integer(0,50)',  //申请人数
                 logo: "@image(64x64, @color, @color, png, logo)",
-                name: '@ctitle(5,10)',  //协会名称
+                name: '@ctitle(5,10)',  //发布人名
                 introduce: '@ctitle(5,20)', //协会介绍
                 activityPlan: '@ctitle(5,10)', //活动方案
-                'associationTag|1-3': [
-                    '@ctitle(5,10)'
-                ],  //协会tag
+                associationName: '@ctitle(5,10)',
+                'associationSize|+1': [
+                    '少于40人',
+                    '40-100人',
+                    '100人以上'
+                ],
                 'Recommend|1-5': [{
                     id: '@id',
                     title: '@ctitle(5,15)',
-                    tag: '@ctitle(4)',
+                    tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                     money: '@integer(100,5000)',
                     city: '@county(true)',
                     startTime: '@datetime(yyyy-MM-dd)',
@@ -119,9 +122,17 @@ const data = {
     },
     'POST /api/addTeam': (req, res) => {
         let { body } = req
+        let { info: { name } } = body
         res.status('200').json({
-            result: 'success'
+            result: 'success',
+            name
         })
+    },
+    'POST /api/getTeamName': (req, res) => {
+        let { body } = req
+        res.status('200').json(Mock.mock({
+            'data|3': ['@ctitle(3.5)']
+        }))
     }
 }
 module.exports = delay(data, 2000)

@@ -9,7 +9,9 @@ import {
     teamSizeList,
     teamCharacterList
 } from '../../lib/type'
-
+import {
+    setTeamName
+} from '../../actions/searchTeam'
 const AddTeam = props => {
     const dispatch = useDispatch()
     const logoSize = 1024 * 1024 * 3
@@ -58,7 +60,7 @@ const AddTeam = props => {
             let { errMsg } = err
             if(errMsg !== 'chooseImage:fail cancel') {
                 Taro.showToast({
-                    title: '上传图片失败,请重试',
+                    title: '上传失败',
                     icon: 'loading',
                     duration: 2000
                 })
@@ -77,8 +79,7 @@ const AddTeam = props => {
         for(let i in info) {
             if(info[i] === '' && i !== 'teamIntroduce') {
                 Taro.showToast({
-                    title: '请确保信息的完整性',
-                    icon: 'loading',
+                    title: '请检查信息',
                     duration: 2000
                 })
                 return
@@ -86,27 +87,32 @@ const AddTeam = props => {
         }
         Taro.showLoading({
             title: '提交中',
+            mask: true
         })
         try {
             const action = submitAddTeam(info)
             const res = await dispatch(action)
-            if(res === 'success') {
+            const { result, name } = res
+            if(result === 'success') {
                 Taro.showToast({
                     title: '上传成功',
                     icon: 'success',
                     duration: 2000
                 })
+                const action = setTeamName(name)
+                await dispatch(action)
+                Taro.redirectTo({
+                    url: '/pages/identityAuthentication/index'
+                })
             } else {
                 Taro.showToast({
                     title: '上传失败',
-                    icon: 'loading',
                     duration: 2000
                 })
             }
         } catch(err) {
             Taro.showToast({
                 title: '上传失败',
-                icon: 'loading',
                 duration: 2000
             })
         }
@@ -181,14 +187,14 @@ const AddTeam = props => {
                 />
             </View>
             <View className="btnWrapper">
-                <View className="btn" onClick={submit}>提交</View>
+                <View className={'btn'} onClick={submit}>提交</View>
             </View>
         </View>
     )
 }
 
 AddTeam.config = {
-    navigationBarTitleText: '添加团队'
+    navigationBarTitleText: '添加社团'
 }
 
 export default AddTeam

@@ -8,6 +8,7 @@ import { getSearchContent, setCampusActivities, setMerchantSponsorship, setDream
 import Skeleton from 'taro-skeleton'
 import locate from '../../static/img/locate.png'
 import search from '../../static/img/search.png'
+import { activitesColor } from '../../lib/type'
 const Search = props => {
     const { params: { currentPage = 0 } } = useRouter()
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
@@ -328,7 +329,13 @@ const Search = props => {
                                                             <View className="content" key={item.id}>
                                                                 <View className="contentHead">
                                                                     <View className="title">{item.title}</View>
-                                                                    <View className="contentTag">{item.tag}</View>
+                                                                    <View className="tagContainer">
+                                                                        {
+                                                                            item.tag.map(key => {
+                                                                                return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                                            })
+                                                                        }
+                                                                    </View>
                                                                 </View>
                                                                 <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                                                 <View className="contentBottom">
@@ -378,7 +385,13 @@ const Search = props => {
                                                             <View className="content" key={item.id}>
                                                                 <View className="contentHead">
                                                                     <View className="title">{item.title}</View>
-                                                                    <View className="contentTag">{item.tag}</View>
+                                                                    <View className="tagContainer">
+                                                                        {
+                                                                            item.tag.map(key => {
+                                                                                return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                                            })
+                                                                        }
+                                                                    </View>
                                                                 </View>
                                                                 <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                                                 <View className="contentBottom">
@@ -427,7 +440,13 @@ const Search = props => {
                                                             <View className="content" key={item.id}>
                                                                 <View className="contentHead">
                                                                     <View className="title">{item.title}</View>
-                                                                    <View className="contentTag">{item.tag}</View>
+                                                                    <View className="tagContainer">
+                                                                        {
+                                                                            item.tag.map(key => {
+                                                                                return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                                            })
+                                                                        }
+                                                                    </View>
                                                                 </View>
                                                                 <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                                                 <View className="contentBottom">

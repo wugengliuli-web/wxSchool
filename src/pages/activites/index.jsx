@@ -4,6 +4,7 @@ import { AtToast } from "taro-ui"
 import { View, Image, Text } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getActivitesContent } from '../../actions/activites'
+import { activitesColor } from '../../lib/type'
 const Activites = props => {
     const dispatch = useDispatch()
     const { params: { id } } = useRouter()
@@ -51,7 +52,13 @@ const Activites = props => {
                         <View className="activiterMain">
                             <View className="contentHead">
                                 <View className="title">{data.title}</View>
-                                <View className="contentTag">{data.tag}</View>
+                                <View className="tagContainer">
+                                    {
+                                        data.tag.map(key => {
+                                            return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                        })
+                                    }
+                                </View>
                             </View>
                             <View className="money">活动预算：￥{data.money}</View>
                             <View className="time">赞助时间：{data.startTime} 至 {data.endTime}</View>
@@ -72,11 +79,8 @@ const Activites = props => {
                             <View className="introduce">
                                 <View className="name">{data.name}</View>
                                 <View className="tagWrapper">
-                                    {
-                                        data.associationTag.map((item, index) => {
-                                            return <View className="tag" key={index + '1'}>{item}</View>
-                                        })
-                                    }
+                                    <View className="tag red">{data.associationName}</View>
+                                    <View className="tag blue">{data.associationSize}</View>
                                 </View>
                             </View>
                         </View>
@@ -92,7 +96,13 @@ const Activites = props => {
                                             <View className="content" key={item.id}>
                                                 <View className="contentHead">
                                                     <View className="title">{item.title}</View>
-                                                    <View className="contentTag">{item.tag}</View>
+                                                    <View className="tagContainer">
+                                                        {
+                                                            item.tag.map(key => {
+                                                                return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                            })
+                                                        }
+                                                    </View>
                                                 </View>
                                                 <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                                 <View className="contentBottom">

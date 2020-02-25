@@ -10,6 +10,7 @@ import {
     getMerchantSponsorship,
     getDreamCrowdFinancing
 } from '../../actions/sponsor'
+import { activitesColor } from '../../lib/type'
 const Sponsor = props => {
     const dispatch = useDispatch()
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
@@ -98,7 +99,13 @@ const Sponsor = props => {
                                         <View className="content" >
                                             <View className="contentHead">
                                                 <View className="title">{item.title}</View>
-                                                <View className="contentTag">{item.tag}</View>
+                                                <View className="tagContainer">
+                                                    {
+                                                        item.tag.map(key => {
+                                                            return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                        })
+                                                    }
+                                                </View>
                                             </View>
                                             <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                             <View className="contentBottom">
@@ -130,7 +137,13 @@ const Sponsor = props => {
                                         <View className="content">
                                             <View className="contentHead">
                                                 <View className="title">{item.title}</View>
-                                                <View className="contentTag">{item.tag}</View>
+                                                <View className="tagContainer">
+                                                    {
+                                                        item.tag.map(key => {
+                                                            return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                        })
+                                                    }
+                                                </View>
                                             </View>
                                             <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                             <View className="contentBottom">
@@ -162,7 +175,13 @@ const Sponsor = props => {
                                         <View className="content" key={item.id}>
                                             <View className="contentHead">
                                                 <View className="title">{item.title}</View>
-                                                <View className="contentTag">{item.tag}</View>
+                                                <View className="tagContainer">
+                                                    {
+                                                        item.tag.map(key => {
+                                                            return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
+                                                        })
+                                                    }
+                                                </View>
                                             </View>
                                             <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
                                             <View className="contentBottom">

@@ -1,25 +1,30 @@
-import Taro, { Component, useState, render, useCallback  } from '@tarojs/taro'
-import { View } from '@tarojs/components';
+import Taro, { Component, useState, render, useCallback } from '@tarojs/taro'
+import { View,Navigator,Text } from '@tarojs/components';
 import { useDispatch, useSelector } from '@tarojs/redux'
 import TabBar from '../../component/tabBar'
-import { AtTabs, AtTabsPane  } from 'taro-ui'
+import { AtTabs, AtTabsPane,AtAvatar } from 'taro-ui'
 import './index.scss'
 const PersonalBasicifo = props =>{
       PersonalBasicifo.config = {
         navigationBarTitleText:'学生主页'
       }
 
-
-    let [currents,setCurrents] = useState(0)
+    // let items = useSelector(state => state.personalCenter)
+    // let [currents,setCurrensts] = useState(0)
     let [nickName,setnickName] = useState('Jack')
-    const tabList = [{ title: '基本信息' }, { title: '活动信息' }]
+    let [activeclassName,setactiveclassName] =useState('basicIfo_active')
+    let [nomalclassName,setnomalclassName] = useState('activitiesIfo')
     // let imgSrc = useSelector(state => state.personalCenter.imgSrc)
     let checkNow = useCallback(
       () =>{
         console.log(123)
       }
     )
-
+    let changeActive = useCallback(
+      () => {
+        console.log(111)
+      }
+    )
     // let learnPeerrecommendation = useSelector(state => state.searchSchool.url)
     return (<View className="container">
               <View className="header">
@@ -61,42 +66,65 @@ const PersonalBasicifo = props =>{
                 </View>
               </View>
               <View className="content">      
-                <AtTabs className="options" current={currents} tabList={tabList} onClick={(value) =>{
-                  setCurrents(()=>{
-                    return currents = value
-                  })
-                }}>
-                  <AtTabsPane current={0} index={0} className = "basicIfo">
-                    <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;border-bottom = 0px' 
-                    
-                    className = "basicIfo">
-                      <View className="position">
-                        <View className="title"></View>
-                        <View className="department"></View>
-                        <View className="detailedInformation"></View>
+                <View className="options">
+                  <View className={activeclassName} onClick={changeActive}>
+                    <Text className="text">基本信息</Text>
+                    <View className="spot"></View>
+                  </View>
+                  <View className={nomalclassName}>
+                    <Text className="text">活动信息</Text>
+                    <View className="spot"></View>
+                  </View>
+                </View>
+                <View className="contentBody">
+                  <View className="basicContent">
+                    <View className="positions">
+                      <View className="head">
+                        <Text className = "text">任职信息</Text>
                       </View>
-                      <View className="contact">
-                        <Text>联系方式</Text>
-                        <Text 
-                        onClick={checkNow}
-                        >立即查看</Text>
-                      </View>
-                      <View className="peerRecommendation">
-                        <Text>同校推荐</Text>
-                          <Navigator 
-                          // url={learnPeerrecommendation}
-                          >更多</Navigator>
+                      <Navigator className="department">
+                        <AtAvatar className="pic"></AtAvatar >
+                          <View className="amountMsg">
+                            <View className="teamName"></View>
+                            <View className="leaderPosition"></View>
+                            <View className="scale">
+                              <Text>scaleCounts</Text>
+                            </View>
+                          </View>
+                      </Navigator>
+                      <View className="msg">
+                        <Text>asd</Text>
                       </View>
                     </View>
-                  </AtTabsPane>
-                  <AtTabsPane current={1} index={1}>
-                    <View style='padding: 100px 50px;background-color: #FAFBFC;text-align: center;'
-                    className ="activities"
-                    >
-                      asdfasd
+                    <Navigator className="connection" url="/pages/personalCenter/index">
+                      <Text>联系方式</Text>
+                      <Text>立即查看</Text>
+                    </Navigator>
+                    <View className="recommendation">
+                      <Text>同校推荐</Text>
+                      <Navigator url="/pages/personalCenter/index">更多</Navigator>
+                      {/* <View>
+                        {
+                          items.map((item)=>{
+                            return (
+                              <Navigator>
+                                <AtAvatar ></AtAvatar >
+                                <View>
+                                  <View className="teamName"></View>
+                                  <View className="leaderPosition"></View>
+                                  <View className="scale">
+                                    <Text>{scaleCounts}</Text>
+                                  </View>
+                                </View>
+                              </Navigator>
+                            )
+                          })
+                        }
+                      </View> */}
                     </View>
-                  </AtTabsPane>
-                </AtTabs>
+                  </View>
+                  <View className="activitiesContent"></View>
+                </View>
               </View>
               <TabBar></TabBar>
             </View>)

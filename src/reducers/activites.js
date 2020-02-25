@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     id: '',
     img: '',//活动图片
     title: '',  //活动标题
-    tag: '',  //活动tag
+    tag: [],  //活动tag
     money: '',  //活动预算
     city: '', //活动地点
     startTime: '',  //开始时间
@@ -14,10 +14,11 @@ const INITIAL_STATE = {
     browseTimes: '',  //浏览次数
     applicantsNum: '',  //申请人数
     logo: '',  //社团logo
-    name: '',  //社团名
+    name: '',  //发布人名
     introduce: '',  //社团介绍
     activityPlan: '',  //活动方案,
-    associationTag: [],  //社团tag
+    associationName: '',  //社团名
+    associationSize: '',  //社团规模
     Recommend: [],  //相关推荐
 }
 
