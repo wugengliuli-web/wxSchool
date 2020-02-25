@@ -70,13 +70,31 @@
     }
     .imgWrapper {
         margin: 32px 0;
+        display: flex;
         .img {
             width: 208px;
             height: 208px;
         }
-    }
-    .img:nth-child(2) {
-        margin: 0 30px;
+        .imgContainer {
+            position: relative;
+            width: 208px;
+            height: 208px;
+            .img {
+                width: 208px;
+                height: 208px;
+            }
+            .del {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 32px;
+                height: 32px;
+            }
+        }
+        .imgContainer:nth-child(2) {
+            margin: 0 30px;
+        }
+        
     }
     .infoWrapper {
         font-size:24px;

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from '@tarojs/redux'
 import { AtInput, AtIcon } from 'taro-ui'
 import './index.scss'
 import add_poster from '../../static/img/add_poster.png'
-
+import delete_pic from '../../static/img/delete_pic.png'
 function getNowTime() {
     const date = new Date()
     let year = date.getFullYear()
@@ -174,6 +174,11 @@ const Release = props => {
             urls: img
         })
     }, [img])
+    const del = useCallback(index => {
+        let newImg = [...img]
+        newImg.splice(index, 1)
+        setImg(newImg)
+    }, [img])
     return (
         <View className="container">
             <View className="activityNameWrapper">
@@ -326,14 +331,19 @@ const Release = props => {
                 <View className="imgWrapper">
                     {
                         img.map((item, index) => {
-                            return <Image onClick={() => previewImage(index)} key={index+'44'} src={item} className="img"></Image>
+                            return <View className="imgContainer" key={index+'44'}>
+                                <Image onClick={e => del(index)} src={delete_pic} className="del"></Image>
+                                <Image onClick={() => previewImage(index)}  src={item} className="img"></Image>
+                            </View>
                         })
                     }
                     {
                         img.length === 3 ?
                         null
                         :
-                        <Image onClick={addImg} className="img" src={add_poster}></Image>
+                        <View className="imgContainer">
+                            <Image onClick={addImg} className="img" src={add_poster}></Image>
+                        </View>
                     }
                 </View>
             </View>
