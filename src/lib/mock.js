@@ -133,6 +133,23 @@ const data = {
         res.status('200').json(Mock.mock({
             'data|3': ['@ctitle(3.5)']
         }))
+    },
+    'GET /api/getGoing': (req, res) => {
+        res.status('200').json(Mock.mock({
+            'data|10': [{
+                id: '@id',
+                title: '@ctitle(5,15)',
+                tag: [ '文艺汇演', '体育竞技', '设计开发' ],
+                money: '@integer(100,5000)',
+                city: '@county(true)',
+                startTime: '@datetime(yyyy-MM-dd)',
+                endTime: '@datetime(yyyy-MM-dd)',
+                friend: {
+                    name: '@ctitle(5,15)',
+                    id: '@id'
+                }
+            }]
+        }))
     }
 }
 module.exports = delay(data, 2000)
