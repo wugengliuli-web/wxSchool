@@ -11,6 +11,7 @@ import searchTeam from './searchTeam'
 import release from './release'
 import myCooperation from './myCooperation'
 import evaluate from './evaluate'
+import myRelease from './myRelease'
 export default combineReducers({
 	login,
 	home,
@@ -23,5 +24,6 @@ export default combineReducers({
 	searchTeam,
 	release,
 	myCooperation,
-	evaluate
+	evaluate,
+	myRelease
 })

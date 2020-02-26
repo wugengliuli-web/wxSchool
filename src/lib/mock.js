@@ -153,7 +153,7 @@ const data = {
     },
     'GET /api/getEvaluated': (req, res) => {
         res.status('200').json(Mock.mock({
-            'data|10': [{
+            'data|3': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
                 tag: [ '文艺汇演', '体育竞技', '设计开发' ],
@@ -161,7 +161,8 @@ const data = {
                 city: '@county(true)',
                 startTime: '@datetime(yyyy-MM-dd)',
                 endTime: '@datetime(yyyy-MM-dd)',
-                evaluate: '@ctitle(0, 10)'
+                evaluate: '@ctitle(0, 10)',
+                'people|0-100': 100
             }]
         }))
     },

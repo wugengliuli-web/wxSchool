@@ -36,7 +36,8 @@ class App extends Component {
       'pages/release/index',
       'pages/activityType/index',
       'pages/myCooperation/index',
-      'pages/evaluate/index'
+      'pages/evaluate/index',
+      'pages/myRelease/index'
     ],
     window: {
       backgroundTextStyle: 'light',
