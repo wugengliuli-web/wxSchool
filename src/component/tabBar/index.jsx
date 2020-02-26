@@ -43,7 +43,7 @@ const TabBar = ({initIndex}) => {
                         selectedImage: homepage_sel,
                         image: homepage_unsel
                     }, {
-                        title: '易赞助',
+                        title: '易赞',
                         selectedImage: Yizan_sel,
                         image: Yizan_unsel
                     }, {

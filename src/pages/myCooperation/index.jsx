@@ -147,7 +147,7 @@ const MyCooperation = props => {
                                                 <Navigator url={`${friendLink}?id=${item.friend.id}`}>
                                                     <Text className="link">{item.friend.name}</Text>
                                                 </Navigator>
-                                                <Text>合作中</Text>
+                                                <Text>合作完成</Text>
                                             </View>
                                         </View>
                                     )
