@@ -1,7 +1,7 @@
 import Taro, { useDidShow, useCallback, useState, useRouter, usePageScroll } from '@tarojs/taro'
 import './index.scss'
 import { AtToast } from "taro-ui"
-import { View, Image, Text } from '@tarojs/components'
+import { View, Image, Text, Navigator } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getActivitesContent } from '../../actions/activites'
 import { activitesColor } from '../../lib/type'
@@ -71,21 +71,23 @@ const Activites = props => {
                             </View>
                         </View>
                     </View>
-                    <View className="associationWrapper">
-                        <View className="top">
-                            <View className="logoWrapper">
-                                <Image className="logo" src={data.logo} mode="center"></Image>
-                            </View>
-                            <View className="introduce">
-                                <View className="name">{data.name}</View>
-                                <View className="tagWrapper">
-                                    <View className="tag red">{data.associationName}</View>
-                                    <View className="tag blue">{data.associationSize}</View>
+                    <Navigator url={`/pages/personalBasicifo/index?id=${data.associationId}`}>
+                        <View className="associationWrapper">
+                            <View className="top">
+                                <View className="logoWrapper">
+                                    <Image className="logo" src={data.logo} mode="center"></Image>
+                                </View>
+                                <View className="introduce">
+                                    <View className="name">{data.name}</View>
+                                    <View className="tagWrapper">
+                                        <View className="tag red">{data.associationName}</View>
+                                        <View className="tag blue">{data.associationSize}</View>
+                                    </View>
                                 </View>
                             </View>
+                            <View className="bottom">{data.introduce}</View>
                         </View>
-                        <View className="bottom">{data.introduce}</View>
-                    </View>
+                    </Navigator>
                     <View className="RecommendWrapper">
                         <View className="title">相关推荐</View>
                         <View className="recommendContent">

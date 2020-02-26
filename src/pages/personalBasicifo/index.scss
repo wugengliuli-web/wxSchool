@@ -1,294 +1,363 @@
-@import "~taro-ui/dist/style/components/icon.scss";
-@import "~taro-ui/dist/style/components/tab-bar.scss";
-@import "~taro-ui/dist/style/components/badge.scss";
-@import "~taro-ui/dist/style/components/nav-bar.scss";
-@import "~taro-ui/dist/style/components/textarea.scss";
-@import "~taro-ui/dist/style/components/tabs.scss";
-@import "~taro-ui/dist/style/components/avatar.scss";
 page {
-    background: rgba(245,246,250,1);
+    background:rgba(245,246,250,1);
 }
 
-.container{
 
-    background:rgba(245,246,250,1);
-    width: 100%;
-    .header{
-        width:100%;
-        height:266px;
+
+.container {
+    .head {
         background:radial-gradient(circle,rgba(0,183,191,1) 0%,rgba(85,255,214,1) 100%);
-        opacity:1;
-        font-size: 0px;
-        .headTop{
-            width: 100%;
-            height: 142px;
-            .headPic{
-                vertical-align: top;
-                display:inline-block;
-                width:128px;
-                height:128px;
-                .pic{
-                    display: inline-block;
-                    margin-top: 32px;
-                    margin-left: 32px;
-                    width:96px;
-                    height:96px;
+        opacity: 1;
+        padding: 32px;
+        .info {
+            .userInfoWrapper {
+                display: flex;
+                .img {
+                    width: 96px;
+                    height: 96px;
+                    border-radius: 50%;
                     background:rgba(245,246,250,1);
-                    border-radius:50%;
-                    opacity:1;
-                    overflow: hidden;
-                    .photo{
-                        width: 96px;
-                        height: 96px;
-                    }
                 }
-            }
-            .nickName{
-                vertical-align: top;
-                display:inline-block;
-                width: 592px;
-                height: 128px;
-                .name{
+                .userInfo {
                     margin-left: 16px;
-                    margin-top: 36px;
-                    width: 100%;
-                    height: 40px;
-                    font-size: 40px;
-                    font-weight: bold;
-                }
-                .asure{
-                    width: 100%;
-                    height: 116px;
-                    margin-top: 24px;
-                    margin-left: 16px;
-                    .checked{
-                        margin-right: 20px;
-                        width:124px;
-                        height:32px;
-                        background:rgba(245,246,250,.3);
-                        border-radius:16px;
-                        display: inline-block;
-                        
-                        .spot{
-                            display: inline-block;
-                            width:24px;
-                            height:24px;
-                            background:rgba(223,229,238,1);
-                            border-radius:50%;
-                            opacity:1;
-                            margin-right: 8px;
-                            margin-left: 4px;
-                        }
-                        .hasChecked{
-                            width:72px;
-                            height:24px;
-                            font-size:24px;
-                            font-family:Noto Sans S Chinese;
-                            font-weight:400;
-                            line-height:40px;
-                            color:rgba(255,255,255,1);
-                            opacity:1;
-                            position: relative;
-                            top:-3px;    
-                            
-                        }
-
+                    .name {
+                        font-size:40px;
+                        color:rgba(255,255,255,1);
+                        font-weight:bold;
+                        height: 45px;
                     }
-                    .checkedRealname{
-                        
-                        width:124px;
-                        height:32px;
-                        background:rgba(245,246,250,.3);
-                        
-                        border-radius:16px;
-                        display: inline-block;
-                        .spot{
-                            display: inline-block;
-                            width:24px;
-                            height:24px;
-                            background:rgba(223,229,238,1);
-                            border-radius:50%;
-                            opacity:1;
-                            margin-right: 8px;
-                            margin-left: 4px;
+                    .authenticationWrapper {
+                        margin-top: 16px;
+                        display: flex;
+                        .identityAuthentication {
+                            background:rgba(245,246,250,0.3);
+                            border-radius:16px;
+                            display: flex;
+                            align-items: center;
+                            padding: 4px 16px 4px 4px;
+                            .identityAuthenticationImg {
+                                width: 24px;
+                                height: 24px;
+                            }
+                            .text {
+                                font-size:24px;
+                                color:rgba(255,255,255,1);
+                                margin-left: 8px;
+                            }
                         }
-                        .hasChecked{
-                            width:72px;
-                            height:24px;
-                            font-size:24px;
-                            font-family:Noto Sans S Chinese;
-                            font-weight:400;
-                            line-height:40px;
-                            color:rgba(255,255,255,1);
-                            opacity: 1;
-                            position: relative;
-                            top:-3px;
+                        .realNameAuthentication {
+                            background:rgba(245,246,250,0.3);
+                            border-radius:16px;
+                            display: flex;
+                            align-items: center;
+                            padding: 4px 16px 4px 4px;
+                            margin-left: 16px;
+                            .realNameAuthenticationImg {
+                                width: 24px;
+                                height: 24px;
+                            }
+                            .text {
+                                font-size:24px;
+                                color:rgba(255,255,255,1);
+                                margin-left: 8px;
+                            }
                         }
-
                     }
                 }
             }
         }
-        .motto{
-            width: 100%;
-            height: 128px;
-            .spot{
-                display: inline-block;
-                vertical-align: top;
-                width:32px;
-                height:32px;
-                background:rgba(245,246,250,1);
-                border-radius:50%;
-                opacity:1;
-                margin-left: 32px;  
-                margin-top: 22px;  
-                margin-right: 8px;        
-            }
-            .texts{
-                width:648px;
-                height:70px;
-                display: inline-block;
-                line-height:40px;
-                margin-top: 22px; 
-                
-                .text{
-                   
-                    width:616px;
-                    height:70px;
-                    font-size:24px;
-                    font-family:Noto Sans S Chinese;
-                    font-weight:400;
-                    line-height:40px;
-                    color:rgba(255,255,255,1);
-                    opacity:1;
-                    
-                }
-            }
 
-        }
-    }
-    .content{
-        width: 100%;
-        height: 944px;
-        .options{
-            width: 100%;
-            height: 96px;
+        .signWrapper {
+            margin-top: 36px;
             display: flex;
-            margin-bottom: 16px;
-            .basicIfo_active{
-                flex: 1;
-                height:100%;
-                text-align: center; 
-                line-height:96px;
-                // opacity:1;   
-
-                .text{
-                    width:128px;
-                    height:32px;
-                    font-size:32px;
-                    font-family:Noto Sans S Chinese;
-                    font-weight:500;
-                    line-height:54px;
-                    color:rgba(0,0,0,1);
-                    opacity:0.87;
-                }
-                .spot{
-                    width:64px;
-                    height:8px;
-                    background:rgba(67,239,209,1);
-                    opacity:1;
-                    border-radius:4px;
-                    position: relative;
-                    top: -10px;
-                    left: 148px;
+            .imgWrapper {
+                .img {
+                    width: 36px;
+                    height: 36px;
                 }
             }
-            .activitiesIfo{
-                flex: 1;
-                height:100%;
-                text-align: center;
-                line-height:96px;
-                opacity:1; 
-                .text{
-                    width:128px;
-                    height:32px;
-                    font-size:32px;
-                    font-family:Noto Sans S Chinese;
-                    font-weight:400;
-                    line-height:54px;
-                    color:rgba(0,0,0,1);
-                    opacity:0.38;
-                }
+            .sign {
+                margin-left: 6px;
+                font-size:24px;
+                color:rgba(255,255,255,.87);
             }
         }
-        .contentBody{
-            width: 100%;
-            height: 832px;
-            overflow: hidden;
-            .basicContent{
-                width: 100%;
-                height: 848px;
-                background-color: red;
-                .positions{
-                    width: 100%;
-                    height: 268px;
-                    .head{
-                        width: 100%;
-                        height: 48px;
-                        line-height:48px;
-                        .text{
-                            width:112px;
-                            height:28px;
-                            font-size:28px;
-                            font-family:Noto Sans S Chinese;
-                            font-weight:400;
-                            color:rgba(0,0,0,1);
-                            opacity:0.87;
-                            margin-left: 32px;
-                            position: relative;
-                            top: 18px;
-                        }
-                    }
-                    .department{
- 
-                        width: 100%;
-                        height: 64px;
-                        .pic{
-                            width: 64px;
-                            height: 64px;
-                            border-radius:50%;
-                            opacity:1;
-                            margin-left: 32px;
-                            margin-top: 24px;
-                            margin-right: 16px;
-                            display: inline-block;
-                        }
-                        .amountMsg{
-                            width: 470px;
-                            height: 64px;
-                            margin-top: 24px;
-                            display: inline-block;
-                            vertical-align: top;
-                        }
-                        .scale{
-                            vertical-align: top;
-                            display: inline-block;
-                            width: 138px;
-                            height: 64px;
-                        }
-                    }
-                    .msg{
-                        margin-top: 36px;
-                        margin-left: 32px;
-                    }
+
+        
+    }
+
+    .selectWrapper {
+        background-color: #fff;
+        display: flex;
+        margin:  0 0 16px 0;
+        .item {
+            flex: 1;
+            text-align: center;
+            padding: 26px 0;
+            font-size:28px;
+            opacity:0.54;
+            position: relative;
+            .line {
+                bottom: 10px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width:64px;
+                height:8px;
+                background:rgba(43,219,203,1);
+                opacity:1;
+                border-radius:4px;
+            }
+        }
+        .select {
+            opacity:0.87;
+            font-size:28px;
+            font-weight:bold;
+        }
+    }
+
+
+    .contentWrapper {
+        overflow: hidden;
+        .imgWrapper {
+            margin-top: 160px;
+            text-align: center;
+            .notIdentityAuthentication {
+                width:240px;
+                height:240px;
+                background-color: #fff;
+            }
+        }
+        .text {
+            font-size:28px;
+            color:rgba(0,0,0,1);
+            opacity:0.54;
+            text-align: center;
+            margin-top: 32px;
+        }
+    }
+
+    .identityInfoWrapper {
+        padding: 32px 24px 24px 24px;
+        background: #fff;
+        .title {
+            font-size:28px;
+            color:rgba(0,0,0,0.87);
+        }
+        .content {
+            margin-top: 26px;
+            display: flex;
+            position: relative;
+            .left {
+                .img {
+                    width: 64px;
+                    height: 64px;
+                    background: #999;
+                    border-radius: 50%;
                 }
             }
-            .activitiesContent{
-                width: 100%;
-                height: 848px;
-                background-color: green($color: #000000);
+            .right {
+                margin-left: 16px;
+                .schoolName {
+                    font-size:28px;
+                    font-weight:bold;
+                    color:rgba(0,0,0,0.87);
+                }
+                .position {
+                    font-size:24px;
+                    color:rgba(0,0,0,0.87);
+                }
+            }
+            .size {
+                right: 0;
+                position: absolute;
+                padding: 6px;
+                font-size:20px;
+                color:rgba(255,255,255,0.87);
+                background:rgba(112,161,255,1);
+                border-radius: 8px;
+            }
+        }
+        .school {
+            font-size:24px;
+            margin-top: 34px;
+            color:rgba(0,0,0,0.87);
+        }
+        .type {
+            margin-top: 6px;
+            font-size:24px;
+            color:rgba(0,0,0,0.87);
+        }
+    }
+
+    .concatInfoWrapper {
+        background: #fff;
+        margin: 16px 0;
+        padding: 32px;
+        display: flex;
+        justify-content: space-between;
+        .link {
+            color:rgba(0,0,0,0.84);
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .look {
+            text-align: right;
+            color:rgba(0,0,0,0.54);
+            font-size: 24px;
+        }
+    }
+    .RecommendWrapper {
+        background: #fff;
+        padding: 32px;
+        .RecommendHead {
+            display: flex;
+            justify-content: space-between;
+            .link {
+                color:rgba(0,0,0,0.84);
+                font-size: 28px;
+                font-weight: bold;
+            }
+            .look {
+                text-align: right;
+                color:rgba(0,0,0,0.54);
+                font-size: 24px;
+            }
+        }
+        .Recommendcontent {
+            margin-top: 26px;
+            display: flex;
+            position: relative;
+            .Recommendleft {
+                .Recommendimg {
+                    width: 64px;
+                    height: 64px;
+                    background: #999;
+                    border-radius: 50%;
+                }
+            }
+            .Recommendright {
+                margin-left: 16px;
+                .RecommendschoolName {
+                    font-size:28px;
+                    font-weight:bold;
+                    color:rgba(0,0,0,0.87);
+                }
+                .Recommendposition {
+                    font-size:24px;
+                    color:rgba(0,0,0,0.87);
+                }
+            }
+            .Recommendsize {
+                right: 0;
+                position: absolute;
+                padding: 6px;
+                font-size:20px;
+                color:rgba(255,255,255,0.87);
+                background:rgba(112,161,255,1);
+                border-radius: 8px;
             }
         }
     }
 
+    .activeWrapper {
+        padding: 24px 16px;
+        .goingWrapper {
+            .title {
+                color:rgba(0,0,0,0.87);
+                font-size: 28px;
+            }
+            .wrapper {
+                background-color: #fff;
+            }
+            .content {
+                position: relative;
+                overflow: hidden;
+                margin: 16px auto;
+                background: #fff;
+                padding: 24px;
+                .contentHead {
+                    display: flex;
+                    .title {
+                        white-space:nowrap;
+                        overflow:hidden;
+                        text-overflow:ellipsis;
+                        max-width: 512px;
+                        font-size:32px;
+                        color:rgba(0,0,0,1);
+                    }
+                    .tagContainer {
+                        display: flex;
+                        float: right;
+                        margin-left: 16px;
+                        .contentTag {
+                            margin: 0 10px;
+                            white-space:nowrap;
+                            background:rgba(223,229,238,1);
+                            border-radius:8px;
+                            padding: 6px 8px;
+                            font-size:20px;
+                            color:rgba(255,255,255,1);
+                        }
+                        .red {
+                            background:rgba(255,107,129,1);
+                        }
+                        .green {
+                            background:rgba(123,237,159,1);
+                        }
+                        .blue {
+                            background:rgba(112,161,255,1);
+                        }
+                    }
+                }
+                .address {
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    margin-top: 32px;
+                    font-size:24px;
+                    color: #000;
+                }
+                .contentBottom {
+                    margin-top: 16px;
+                    .timer {
+                        font-size:24px;
+                        color: #000;
+                    }
+                    .money {
+                        right: 16px;
+                        bottom: -8px;
+                        position: absolute;
+                        float: right;
+                        font-weight:bold;
+                        line-height:54px;
+                        color:rgba(0,0,0,1);
+                        font-size: 32px;
+                        margin: 16px;
+                    }
+                }
+            }
+            .divider {
+                margin: 16px 24px;
+                height:0px;
+                border:2px solid rgba(245,246,250,1);
+            }
+            .textWrapper {
+                padding: 0 24px 16px 24px;
+                font-size:24px;
+                color:rgba(0,0,0,0.54);
+                display: flex;
+                .at-input {
+                    margin: 0;
+                    padding: 5rpx 0 5rpx 16rpx;
+                    background:rgba(245,246,250,1);
+                    border-radius:16px;
+                    .at-input__input {
+                        width: 635rpx;
+                        font-size: 24px;
+                    }
+                }
+            }
+        }
+    }
 }

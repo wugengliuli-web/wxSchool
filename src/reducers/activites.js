@@ -19,6 +19,7 @@ const INITIAL_STATE = {
     activityPlan: '',  //活动方案,
     associationName: '',  //社团名
     associationSize: '',  //社团规模
+    associationId: '',  //社团id
     Recommend: [],  //相关推荐
 }
 

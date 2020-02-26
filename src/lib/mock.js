@@ -94,14 +94,15 @@ const data = {
                 tag: [ '文艺汇演', '体育竞技', '设计开发' ],
                 money: '@integer(100,5000)',
                 city: '@county(true)',
-                startTime: '@datetime',
-                endTime: '@datetime',
+                startTime: '@datetime(yyyy-MM-dd)',
+                endTime: '@datetime(yyyy-MM-dd)',
                 browseTimes: '@integer(0,400)', //浏览次数
                 applicantsNum: '@integer(0,50)',  //申请人数
                 logo: "@image(64x64, @color, @color, png, logo)",
                 name: '@ctitle(5,10)',  //发布人名
                 introduce: '@ctitle(5,20)', //协会介绍
                 activityPlan: '@ctitle(5,10)', //活动方案
+                associationId: '@id',
                 associationName: '@ctitle(5,10)',
                 'associationSize|+1': [
                     '少于40人',
@@ -136,7 +137,7 @@ const data = {
     },
     'GET /api/getGoing': (req, res) => {
         res.status('200').json(Mock.mock({
-            'data|10': [{
+            'data|3': [{
                 id: '@id',
                 title: '@ctitle(5,15)',
                 tag: [ '文艺汇演', '体育竞技', '设计开发' ],
@@ -170,6 +171,48 @@ const data = {
         res.status('200').json(Mock.mock({
             "data|1-2": true
         }))
-    }
+    },
+    'GET /api/getUserInfo': (req, res) => {
+        res.status('200').json(Mock.mock({
+            name: '@ctitle(1,8)',
+            'identityAuthentication': true,
+            'realNameAuthentication': true,
+            headLogo: '@image(96x96, @color, @color)',
+            sign: '@ctitle(5,20)'
+        }))
+    },
+    'GET /api/getIdentityInfo': (req, res) => {
+        res.status('200').json(Mock.mock({
+            associationName: '@ctitle(1,8)',
+            associationLogo: '@image(64x64, @color, @color)',
+            sign: '@ctitle(5,20)',
+            'associationSize|+1': [
+                '少于40人',
+                '40-100人',
+                '100人以上'
+            ],
+            associationSchoold: '@ctitle(1,8)',
+            associationType: [ '文艺汇演', '体育竞技', '设计开发' ],
+            associationPosition: '@ctitle(1,8)'
+        }))
+    },
+    'GET /api/getRecommend': (req, res) => {
+        res.status('200').json(Mock.mock({
+            'data|3': [{
+                id: '@id',
+                associationName: '@ctitle(1,8)',
+                associationLogo: '@image(64x64, @color, @color)',
+                sign: '@ctitle(5,20)',
+                'associationSize|+1': [
+                    '少于40人',
+                    '40-100人',
+                    '100人以上'
+                ],
+                associationSchoold: '@ctitle(1,8)',
+                associationType: [ '文艺汇演', '体育竞技', '设计开发' ],
+                associationPosition: '@ctitle(1,8)'
+            }]
+        }))
+    },
 }
 module.exports = delay(data, 2000)

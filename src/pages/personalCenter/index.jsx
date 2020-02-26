@@ -35,7 +35,7 @@ const PersonalCenter = props => {
 	let estarCount = useSelector(state => state.personalCenter.estarCount)
 	let [isChceked, setIscheckd] = useState('true')
 	let [isNamed, setIsnamed] = useState('true')
-
+	const id = 456
 	useDidShow(async () => {
 		if (login.nickName == '') {
 			const action = getNickname()
@@ -45,18 +45,21 @@ const PersonalCenter = props => {
 
 	let edit = useCallback(
 		() => {
-			console.log("编辑")
-		}
+			
+		},
+		[id]
 	)
 	return (
 		<View className="container">
 			<View className="header">
 				<View className="headPic">
 					<View className="pic">
-						<Image
-							className="photo"
-
-							src={imgSrc} />
+						<Navigator url={`/pages/personalBasicifo/index?id=${id}`}>
+							<Image
+								className="photo"
+								src={''} 	
+							/>
+						</Navigator>
 					</View>
 				</View>
 				<View className="nickName">
