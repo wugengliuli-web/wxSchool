@@ -10,6 +10,7 @@ import identityAuthentication from './identityAuthentication'
 import searchTeam from './searchTeam'
 import release from './release'
 import myCooperation from './myCooperation'
+import evaluate from './evaluate'
 export default combineReducers({
 	login,
 	home,
@@ -21,5 +22,6 @@ export default combineReducers({
 	identityAuthentication,
 	searchTeam,
 	release,
-	myCooperation
+	myCooperation,
+	evaluate
 })

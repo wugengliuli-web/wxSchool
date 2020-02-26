@@ -19,7 +19,7 @@ const Home = props => {
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
         Taro.navigateTo({
-            url: '/pages/myCooperation/index',
+            url: '/pages/evaluate/index',
             data: {
                 id: Math.random() * 100000
             }

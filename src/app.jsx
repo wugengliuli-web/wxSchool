@@ -35,7 +35,8 @@ class App extends Component {
       'pages/uploadIDCard/index',
       'pages/release/index',
       'pages/activityType/index',
-      'pages/myCooperation/index'
+      'pages/myCooperation/index',
+      'pages/evaluate/index'
     ],
     window: {
       backgroundTextStyle: 'light',
