@@ -30,6 +30,9 @@ const PersonalCenter = props => {
   let goodCount = useSelector(state =>state.personalCenter.goodCount)
   let emoneyCount =useSelector(state => state.personalCenter.emoneyCount)
   let estarCount = useSelector(state => state.personalCenter.estarCount)
+  let [isChceked,setIscheckd] = useState('true')
+  let [isNamed,setIsnamed] = useState('true')
+  
   useDidShow(async ()=>{
     if(login.nickName == ''){
       const action = getNickname()
@@ -60,14 +63,26 @@ const PersonalCenter = props => {
                 <View className="spot">
                   <Image className="icon" src={certified}></Image>
                 </View>
-                <Text className="hasChecked">已认证</Text>
+                {
+                  !isNamed?
+                  <Text className="hasChecked">未认证</Text>
+                  :
+                  <Text className="hasChecked">已认证</Text>
+                }
+                
                 <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
               </View>
               <View className="checkedRealname">
               <View className="spot">
                 <Image className='icon' src = {real_named}></Image>
               </View>
-                <Text className="hasChecked">已实名</Text>
+                {
+                  !isChceked?
+                  <Text className="hasChecked">未实名</Text>
+                  :
+                  <Text className="hasChecked">已实名</Text>
+                }
+                
                 <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
               </View>
             </View>

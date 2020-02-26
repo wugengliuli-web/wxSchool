@@ -19,24 +19,17 @@ const Home = props => {
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
         Taro.navigateTo({
-<<<<<<< HEAD
             url: '/pages/personalCenter/index',
-=======
-            url: '/pages/myRelease/index',
->>>>>>> 31b617edfa4c0d755aea636b43b0f26868e4f895
             data: {
                 id: Math.random() * 100000
             }
         })
-<<<<<<< HEAD
         // Taro.navigateTo({
         //     url: '/pages/searchSchool/index',
         //     data: {
         //         id: Math.random() * 100000
         //     }
         // })
-=======
->>>>>>> 31b617edfa4c0d755aea636b43b0f26868e4f895
         //进入页面获取轮播图信息
         if(bannerUrl.length === 0) {
             const aciton = getBanner()
