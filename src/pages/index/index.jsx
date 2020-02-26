@@ -18,18 +18,14 @@ const Home = props => {
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
-        // Taro.navigateTo({
-<<<<<<< HEAD
-        //     url: '/pages/personalBasicifo/index',
-        //     data: {
-        //         id: Math.random() * 100000
-        //     }
-        // })
+        Taro.navigateTo({
+            url: '/pages/personalCenter/index',
+            data: {
+                id: Math.random() * 100000
+            }
+        })
         // Taro.navigateTo({
         //     url: '/pages/searchSchool/index',
-=======
-        //     url: '/pages/release/index',
->>>>>>> 9a384f89695ccb78ce2e03d730bb279f58cd5170
         //     data: {
         //         id: Math.random() * 100000
         //     }
