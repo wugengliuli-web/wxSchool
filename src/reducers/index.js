@@ -9,6 +9,9 @@ import activites from './activites'
 import identityAuthentication from './identityAuthentication'
 import searchTeam from './searchTeam'
 import release from './release'
+import myCooperation from './myCooperation'
+import evaluate from './evaluate'
+import myRelease from './myRelease'
 export default combineReducers({
 	login,
 	home,
@@ -19,5 +22,8 @@ export default combineReducers({
 	activites,
 	identityAuthentication,
 	searchTeam,
-	release
+	release,
+	myCooperation,
+	evaluate,
+	myRelease
 })

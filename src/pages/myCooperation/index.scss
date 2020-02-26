@@ -1,0 +1,125 @@
+page {
+    background:rgba(245,246,250,1);
+}
+
+
+.container {
+    .head {
+        background-color: #fff;
+        display: flex;
+        margin: 16px 0;
+        .item {
+            flex: 1;
+            text-align: center;
+            padding: 26px 0;
+            font-size:28px;
+            opacity:0.54;
+            position: relative;
+            .line {
+                bottom: 10px;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width:64px;
+                height:8px;
+                background:rgba(43,219,203,1);
+                opacity:1;
+                border-radius:4px;
+            }
+        }
+        .select {
+            opacity:0.87;
+            font-size:28px;
+            font-weight:bold;
+        }
+    }
+
+    .containerWrapper {
+        padding: 0 16px;
+        .wrapper {
+            background-color: #fff;
+        }
+        .content {
+            position: relative;
+            overflow: hidden;
+            margin: 16px auto;
+            background: #fff;
+            padding: 24px;
+            .contentHead {
+                display: flex;
+                .title {
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    max-width: 512px;
+                    font-size:32px;
+                    color:rgba(0,0,0,1);
+                }
+                .tagContainer {
+                    display: flex;
+                    float: right;
+                    margin-left: 16px;
+                    .contentTag {
+                        margin: 0 10px;
+                        white-space:nowrap;
+                        background:rgba(223,229,238,1);
+                        border-radius:8px;
+                        padding: 6px 8px;
+                        font-size:20px;
+                        color:rgba(255,255,255,1);
+                    }
+                    .red {
+                        background:rgba(255,107,129,1);
+                    }
+                    .green {
+                        background:rgba(123,237,159,1);
+                    }
+                    .blue {
+                        background:rgba(112,161,255,1);
+                    }
+                }
+            }
+            .address {
+                white-space:nowrap;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                margin-top: 32px;
+                font-size:24px;
+                color: #000;
+            }
+            .contentBottom {
+                margin-top: 16px;
+                .timer {
+                    font-size:24px;
+                    color: #000;
+                }
+                .money {
+                    right: 16px;
+                    bottom: -8px;
+                    position: absolute;
+                    float: right;
+                    font-weight:bold;
+                    line-height:54px;
+                    color:rgba(0,0,0,1);
+                    font-size: 32px;
+                    margin: 16px;
+                }
+            }
+        }
+        .divider {
+            margin: 16px 24px;
+            height:0px;
+            border:2px solid rgba(245,246,250,1);
+        }
+        .textWrapper {
+            padding: 0 24px 16px 24px;
+            font-size:24px;
+            color:rgba(0,0,0,0.54);
+            display: flex;
+            .link {
+                color: #2BDBCB;
+                margin: 0 10px;
+            }
+        }
+    }
+}
