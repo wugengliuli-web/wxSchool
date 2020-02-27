@@ -15,6 +15,7 @@ const ActivitesType = props => {
     const [activitesTypeListState, setActivitesTypeListState] = useState([])
     const [checkNum, setCheckNum] = useState(0)
     const { params: { type } } = useRouter()
+    const maxNum = 1
     useDidShow(() => {
         setActivitesTypeListState(activitesTypeList.map(item => ({name: item, isCheck: false})))
     })
@@ -34,7 +35,7 @@ const ActivitesType = props => {
             }))
         } else {
             //如果是点击的未选中状态
-            if(checkNum === 3) return
+            if(checkNum === maxNum) return
             setActivitesTypeListState(prve => prve.map((item, i) => {
                 if(index === i) {
                     return {
@@ -78,7 +79,7 @@ const ActivitesType = props => {
                     })
                 }
             </View>
-            <View className="showNum">{checkNum}/3</View>
+            {/* <View className="showNum">{checkNum}/3</View> */}
             <View className={checkNum === 0 ? "btn disable" : "btn"} onClick={submit}>确定</View>
         </View>
     )
