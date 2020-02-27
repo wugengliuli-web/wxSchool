@@ -6,8 +6,11 @@ import Yizan_sel from '../../static/img/Yizan_sel.png'
 import Yizan_unsel from '../../static/img/Yizan_unsel.png'
 import mine_sel from '../../static/img/mine_sel.png'
 import mine_unsel from '../../static/img/mine_unsel.png'
+import { useSelector } from '@tarojs/redux'
 const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
+    let userId = useSelector(state => state.personalCenter.userId)
+    const nickName = useSelector(state => state.personalCenter.nickName)
     let link = useCallback(index => {
         if(index === 0) {
             if(current !== 0) {
@@ -23,9 +26,15 @@ const TabBar = ({initIndex}) => {
             }
         } else {
             if(current !== 2) {
-                Taro.reLaunch({
-                    url: '/pages/personalCenter/index'
-                })
+                if(nickName === '' && userId === Infinity) {
+                    Taro.reLaunch({
+                        url: '/pages/login/index'
+                    })
+                } else {
+                    Taro.reLaunch({
+                        url: '/pages/personalCenter/index'
+                    })
+                }
             }
         }
         setCurrent(index)

@@ -10,7 +10,8 @@ const INITIAL_STATE = {
     searchPlaceHolder: '',
     content: [],  //内容
     hasMore: true,
-    pageIndex: 0
+    pageIndex: 1,
+    size: 6
 }
 
 export default function home(state = INITIAL_STATE, action) {
@@ -31,7 +32,7 @@ export default function home(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 content: state.content.concat(data),
-                hasMore: data.length === 0 ? false : true,
+                hasMore: data.length < state.size ? false : true,
                 pageIndex: pageIndex
             }
         case clear_content:

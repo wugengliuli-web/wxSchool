@@ -9,6 +9,7 @@ import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 import TabBar from '../../component/tabBar'
 const Home = props => {
+    const defaultLogo = ''
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
     let dispatch = useDispatch()
@@ -22,11 +23,11 @@ const Home = props => {
         //     url: '/pages/personalBasicifo/index?id=' + Math.random() * 100000
         // })
         //进入页面获取轮播图信息
-        if(bannerUrl.length === 0) {
-            const aciton = getBanner()
-            dispatch(aciton)
-        }
-        //获取搜索区域的内容
+        // if(bannerUrl.length === 0) {
+        //     const aciton = getBanner()
+        //     dispatch(aciton)
+        // }
+        // //获取搜索区域的内容
         if(searchPlaceHolder === '') {
             const aciton = getSearchPlaceHolder()
             dispatch(aciton)
@@ -44,7 +45,7 @@ const Home = props => {
         let { target: { value } } = info
         setLoading(true)
         setPlace(value)
-        pageIndex = 0
+        pageIndex = 1
         const aciton = getContent(pageIndex, value)
         await dispatch(aciton)
         setLoading(false)
@@ -56,7 +57,7 @@ const Home = props => {
         const aciton = getContent(pageIndex, place)
         await dispatch(aciton)
         setLoading(false)
-    }, [pageIndex])
+    }, [pageIndex, hasMore])
     return (
 
         <View className="container">
@@ -114,12 +115,12 @@ const Home = props => {
                                 <Navigator className="link" url={`/pages/activites/index?id=${item.id}`} key={item.id} >
                                     <View className="contentWrapperBorder">
                                         <View className="contentContainer">
-                                            <Image mode="widthFix" className="img" src={item.url} ></Image>
+                                            <Image mode="widthFix" className="img" src={item.poster} ></Image>
                                             <View className="infoWrapper">
-                                                <View className="contentText">{item.text}</View>
+                                                <View className="contentText">{item.name}</View>
                                                 <View className="contentInfoWrapper">
-                                                    <Image mode="center" src={item.logo} className="logo"></Image>
-                                                    <View className="name">{item.name}</View>
+                                                    <Image mode="center" src={item.head.avatar ? item.head.avatar : defaultLogo} className="logo"></Image>
+                                                    <View className="name">{item.head.name}</View>
                                                 </View>
                                             </View>
                                         </View>

@@ -108,13 +108,12 @@ page {
                         padding: 16px;
                         .contentText {
                             text-align: left;
-                            font-size:20px;
-                            height: 80px;
+                            font-size:28px;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             line-clamp: 2;
                             box-orient: vertical;
-                            font-size: 32px;
+                            color:rgba(0,0,0,0.87);
                         }
                         .contentInfoWrapper {
                             margin-top: 16px;

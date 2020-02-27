@@ -1,12 +1,14 @@
-import Taro, { Component, useState, useCallback, useDidShow } from '@tarojs/taro'
+import Taro, { useState, useCallback, useDidShow } from '@tarojs/taro'
 import './index.scss'
 import { useDispatch, useSelector } from '@tarojs/redux'
 import { View, Button, Image, Text, Navigator } from '@tarojs/components'
 import { AtIcon } from 'taro-ui'
 import TabBar from '../../component/tabBar'
-import { getNickname } from '../../actions/personalCenter'
+// import { getNickname } from '../../actions/personalCenter'
 import certified from '../../static/img/icon/certified.png'
-import real_named from '../..//static/img/icon/real_named.png'
+import uncertified from '../../static/img/uncertified.png'
+import real_named from '../../static/img/icon/real_named.png'
+import nonReal_named from '../../static/img/non-real_named.png'
 import setting from '../../static/img/icon/setting.png'
 import activity from '../../static/img/icon/activity.png'
 import application from '../../static/img/icon/application.png'
@@ -28,36 +30,31 @@ const PersonalCenter = props => {
 	let dispatch = useDispatch()
 	let login = useSelector(state => state.login)
 
-	let [nickName, setnickName] = useState('')
+	let nickName= useSelector(state => state.personalCenter.nickName)
+	console.log(nickName)
 	let imgSrc = useSelector(state => state.personalCenter.imgSrc)
 	let goodCount = useSelector(state => state.personalCenter.goodCount)
 	let emoneyCount = useSelector(state => state.personalCenter.emoneyCount)
 	let estarCount = useSelector(state => state.personalCenter.estarCount)
-	let [isChceked, setIscheckd] = useState('true')
-	let [isNamed, setIsnamed] = useState('true')
-	const id = 456
-	useDidShow(async () => {
-		if (login.nickName == '') {
-			const action = getNickname()
-			dispatch(action)
-		}
-	})
+	let isChceked = useSelector(state => state.personalCenter.isChceked)
+	let isNamed = useSelector(state => state.personalCenter.isNamed)
+	let userId = useSelector(state => state.personalCenter.userId)
 
 	let edit = useCallback(
 		() => {
 			
 		},
-		[id]
+		[userId]
 	)
 	return (
 		<View className="container">
 			<View className="header">
 				<View className="headPic">
 					<View className="pic">
-						<Navigator url={`/pages/personalBasicifo/index?id=${id}`}>
+						<Navigator url={`/pages/personalBasicifo/index?id=${userId}`}>
 							<Image
 								className="photo"
-								src={''} 	
+								src={imgSrc} 	
 							/>
 						</Navigator>
 					</View>
@@ -65,32 +62,44 @@ const PersonalCenter = props => {
 				<View className="nickName">
 					<View className="name">{nickName}</View>
 					<View className="asure">
-						<View className="checked">
-							<View className="spot">
-								<Image className="icon" src={certified}></Image>
+						{
+							isChceked ?
+							<View className="checked">
+								<View className="spot">
+									<Image className="icon" src={certified}></Image>
+								</View>
+								<Text className="hasChecked">已认证</Text>
+								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
 							</View>
-							{
-								!isNamed ?
-									<Text className="hasChecked">未认证</Text>
-									:
-									<Text className="hasChecked">已认证</Text>
-							}
-
-							<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
-						</View>
-						<View className="checkedRealname">
-							<View className="spot">
-								<Image className='icon' src={real_named}></Image>
+							:
+							<View className="checked">
+								<View className="spot">
+									<Image className="icon" src={uncertified}></Image>
+								</View>
+								<Text className="hasChecked">未认证</Text>
+								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
 							</View>
-							{
-								!isChceked ?
-									<Text className="hasChecked">未实名</Text>
-									:
-									<Text className="hasChecked">已实名</Text>
-							}
+						}
+						{
+							isNamed ?
+							<View className="checkedRealname">
+								<View className="spot">
+									<Image className='icon' src={real_named}></Image>
+								</View>
+								<Text className="hasChecked">已实名</Text>
 
-							<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
-						</View>
+								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+							</View>
+							:
+							<View className="checkedRealname">
+								<View className="spot">
+									<Image className='icon' src={nonReal_named}></Image>
+								</View>
+								<Text className="hasChecked">未实名</Text>
+
+								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+							</View>
+						}
 					</View>
 				</View>
 				<View className="editMsg">

@@ -10,41 +10,59 @@ import {
 export const getCampusActivities = () => {
     return async dispatch => {
         let res = await Taro.request({
-            url: DEVELOP + 'getMainContent'
+            url: DEVELOP + 'activity/list',
+            data: {
+                page: 1,
+                size: 3
+            }
         })
-        let { data: { data } } = res
-        data = data.splice(0, 3)
-        dispatch({
-            type: set_campusActivitiesMain,
-            data
-        })
+        let { data: { result, data } } = res
+        if(result === 0) {
+            data = data.splice(0, 3)
+            dispatch({
+                type: set_campusActivitiesMain,
+                data
+            })
+        }
     }
 }
 
 export const getMerchantSponsorship = () => {
     return async dispatch => {
         let res = await Taro.request({
-            url: DEVELOP + 'getMainContent'
+            url: DEVELOP + 'sponsorship/list',
+            data: {
+                page: 1,
+                size: 3
+            }
         })
-        let { data: { data } } = res
-        data = data.splice(0, 3)
-        dispatch({
-            type: set_merchantSponsorshipMain,
-            data
-        })
+        let { data: { result, data } } = res
+        if(result === 0) {
+            data = data.splice(0, 3)
+            dispatch({
+                type: set_merchantSponsorshipMain,
+                data
+            })
+        }
     }
 }
 
 export const getDreamCrowdFinancing = () => {
     return async dispatch => {
         let res = await Taro.request({
-            url: DEVELOP + 'getMainContent'
+            url: DEVELOP + 'cfactivity/list',
+            data: {
+                page: 1,
+                size: 3
+            }
         })
-        let { data: { data } } = res
-        data = data.splice(0, 3)
-        dispatch({
-            type: set_dreamCrowdFinancingMain,
-            data
-        })
+        let { data: { result, data } } = res
+        if(result === 0) {
+            data = data.splice(0, 3)
+            dispatch({
+                type: set_dreamCrowdFinancingMain,
+                data
+            })
+        }
     }
 }

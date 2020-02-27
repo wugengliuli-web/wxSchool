@@ -2,9 +2,10 @@ import Taro, { useState, useCallback } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { AtInput, AtForm, AtButton, AtCountdown }  from 'taro-ui'
 import './index.scss'
-
-
+import { login } from '../../actions/login'
+import { useDispatch } from '@tarojs/redux'
 const Index = props => {
+	const dispatch = useDispatch()
 	const [disabled, setDisabled] = useState(true)
 	let [telNum, setTelNum] = useState('')
 	let [getVCode, setGetVCode] = useState('')
@@ -35,10 +36,35 @@ const Index = props => {
 		setVCode(false)
 	}, [])
 	let submit = useCallback(
-		(e) => {
-			Taro.redirectTo({
-				url: '/pages/index/index'
-			})
+		async e => {
+			try {
+				const action = login(telNum, getVCode)
+				const res = await dispatch(action)
+				if(res) {
+					await Taro.showToast({
+						title: '登录成功',
+						icon: 'success',
+						duration: 2000
+					})
+					setTimeout(() => {
+						Taro.redirectTo({
+							url: '/pages/personalCenter/index'
+						})
+					}, 2000)
+				} else {
+					Taro.showToast({
+						title: '登录失败',
+						icon: 'none',
+						duration: 2000
+					})
+				}
+			} catch(err) {
+				Taro.showToast({
+					title: '登录失败',
+					icon: 'none',
+					duration: 2000
+				})
+			}
 		},
 		[telNum, getVCode],
 	)

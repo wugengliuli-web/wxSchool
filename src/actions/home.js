@@ -23,13 +23,15 @@ export const getBanner = () => {
 //请求默认字符
 export const getSearchPlaceHolder = () => {
     return async dispatch => {
-        let res = await Taro.request({
-            url: DEVELOP + 'homeSearchPlaceHolder'
-        })
-        let { data } = res
+        // let res = await Taro.request({
+        //     url: DEVELOP + 'homeSearchPlaceHolder'
+        // })
+        // let { data } = res
+        const data = ['篮球', '足球', '赞助', '传单']
+        const random = Math.floor(Math.random() * 1000) % 4
         dispatch({
             type: set_searchPlaceholder,
-            data
+            data: data[random]
         })
     }
 } 
@@ -38,18 +40,23 @@ export const getSearchPlaceHolder = () => {
 export const getContent = (pageIndex, place) => {
     return async dispatch => {
         let res = await Taro.request({
-            url: DEVELOP + 'getContent',
+            url: DEVELOP + 'activity/list',
             data: {
-                pageIndex,
-                place
+                page: pageIndex,
+                size: 6
             }
         })
-        let { data: { data } } = res
-        dispatch({
-            type: set_content,
-            data,
-            pageIndex
-        })
+        let { data: { result, data } } = res
+        if(~~result === 0) {
+            dispatch({
+                type: set_content,
+                pageIndex,
+                data
+            })
+            return true
+        } else {
+            return false
+        }
     }
 }
 

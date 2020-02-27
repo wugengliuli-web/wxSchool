@@ -16,6 +16,7 @@ import company from '../../static/img/company.png'
 import dream from '../../static/img/dream.png'
 const Sponsor = props => {
     const dispatch = useDispatch()
+    const [hasAjax, setHasAjax] = useState(false)
     let [place, setPlace] = useState(['四川省', '绵阳市', '涪城区'])
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let campusActivities = useSelector(state => state.sponsor.campusActivities)  //校园活动
@@ -31,17 +32,20 @@ const Sponsor = props => {
         { text: '梦想众筹', id: 'tyui', url: '/pages/search/index?currentPage=2', icon: dream },
     ] 
     useDidShow(async () => {
-        if(campusActivities.length === 0) {
-            const actionCampusActivities = getCampusActivities()
-            dispatch(actionCampusActivities)
-        }
-        if(merchantSponsorship.length === 0) {
-            const actionMerchantSponsorship = getMerchantSponsorship()
-            dispatch(actionMerchantSponsorship)
-        }
-        if(dreamCrowdFinancing.length === 0) {
-            const actionDreamCrowdFinancing = getDreamCrowdFinancing()
-            dispatch(actionDreamCrowdFinancing)
+        if(!hasAjax) {
+            if(campusActivities.length === 0) {
+                const actionCampusActivities = getCampusActivities()
+                dispatch(actionCampusActivities)
+            }
+            if(merchantSponsorship.length === 0) {
+                const actionMerchantSponsorship = getMerchantSponsorship()
+                dispatch(actionMerchantSponsorship)
+            }
+            if(dreamCrowdFinancing.length === 0) {
+                const actionDreamCrowdFinancing = getDreamCrowdFinancing()
+                dispatch(actionDreamCrowdFinancing)
+            }
+            setHasAjax(true)
         }
     })
     return (
@@ -95,7 +99,7 @@ const Sponsor = props => {
                     </View>
                     <View className="campusActivitiesContent">
                         {
-                            campusActivities.length === 0 ?
+                            campusActivities.length === 0 && !hasAjax ?
                             <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                             :
                             campusActivities.map(item => {
@@ -103,19 +107,19 @@ const Sponsor = props => {
                                     <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
                                         <View className="content" >
                                             <View className="contentHead">
-                                                <View className="title">{item.title}</View>
+                                                <View className="title">{item.name}</View>
                                                 <View className="tagContainer">
                                                     {
-                                                        item.tag.map(key => {
+                                                        item.type.map(key => {
                                                             return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                         })
                                                     }
                                                 </View>
                                             </View>
-                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="address">地址: {item.address}</View>
                                             <View className="contentBottom">
-                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                <View className="money">￥{item.money}</View>
+                                                <View className="timer">发布时间: {item.publishDate}~{item.deadline}</View>
+                                                <View className="money">￥{item.budget}</View>
                                             </View>
                                         </View>
                                     </navigator>
@@ -133,7 +137,7 @@ const Sponsor = props => {
                     </View>
                     <View className="campusActivitiesContent">
                         {
-                            merchantSponsorship.length === 0 ?
+                            merchantSponsorship.length === 0 && !hasAjax ?
                             <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                             :
                             merchantSponsorship.map(item => {
@@ -141,7 +145,7 @@ const Sponsor = props => {
                                     <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
                                         <View className="content">
                                             <View className="contentHead">
-                                                <View className="title">{item.title}</View>
+                                                <View className="title">{item.name}</View>
                                                 <View className="tagContainer">
                                                     {
                                                         item.tag.map(key => {
@@ -150,10 +154,10 @@ const Sponsor = props => {
                                                     }
                                                 </View>
                                             </View>
-                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="address">地址: {item.address}</View>
                                             <View className="contentBottom">
-                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                <View className="money">￥{item.money}</View>
+                                                <View className="timer">发布时间: {item.publishDate}~{item.deadline}</View>
+                                                <View className="money">￥{item.budget}</View>
                                             </View>
                                         </View>
                                     </navigator>
@@ -171,7 +175,7 @@ const Sponsor = props => {
                     </View>
                     <View className="campusActivitiesContent">
                         {
-                            dreamCrowdFinancing.length === 0 ?
+                            dreamCrowdFinancing.length === 0 && !hasAjax ?
                             <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                             :
                             dreamCrowdFinancing.map(item => {
@@ -179,7 +183,7 @@ const Sponsor = props => {
                                     <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
                                         <View className="content" key={item.id}>
                                             <View className="contentHead">
-                                                <View className="title">{item.title}</View>
+                                                <View className="title">{item.name}</View>
                                                 <View className="tagContainer">
                                                     {
                                                         item.tag.map(key => {
@@ -188,10 +192,10 @@ const Sponsor = props => {
                                                     }
                                                 </View>
                                             </View>
-                                            <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                            <View className="address">地址: {item.address}</View>
                                             <View className="contentBottom">
-                                                <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                <View className="money">￥{item.money}</View>
+                                                <View className="timer">发布时间: {item.publishDate}~{item.deadline}</View>
+                                                <View className="money">￥{item.budget}</View>
                                             </View>
                                         </View>
                                     </navigator>
