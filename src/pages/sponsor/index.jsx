@@ -205,4 +205,10 @@ const Sponsor = props => {
         </View>
     )
 } 
+
+
+
+Sponsor.config = {
+    navigationBarTitleText: '易赞校园'
+}
 export default Sponsor

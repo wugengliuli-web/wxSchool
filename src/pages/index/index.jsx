@@ -76,7 +76,7 @@ const Home = props => {
                             bannerUrl.map((item, index) => {
                                 return (
                                     <SwiperItem key={item.link}>
-                                        <Image className="img" src={item.url} mode="center"></Image>
+                                        <Image className="img" src={item.url} mode="aspectFit"></Image>
                                     </SwiperItem>
                                 )
                             })
@@ -112,7 +112,7 @@ const Home = props => {
                         content.map((item, index) => {
                             return (
                                 <Navigator className="link" url={`/pages/activites/index?id=${item.id}`} key={item.id} >
-                                    <View>
+                                    <View className="contentWrapperBorder">
                                         <View className="contentContainer">
                                             <Image mode="widthFix" className="img" src={item.url} ></Image>
                                             <View className="infoWrapper">

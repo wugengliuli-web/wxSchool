@@ -93,14 +93,17 @@ page {
         .waterfallWrapper {
             column-count: 2;
             .link {
+                
                 margin-bottom: 16px;
                 .contentContainer {
                     break-inside: avoid;
                     text-align: center;
                     .img {
                         width: 336px;
+                        border-radius:8px;
                     }
                     .infoWrapper {
+                        border-radius:0px 0px 8px 8px;
                         background-color: #fff;
                         padding: 16px;
                         .contentText {
