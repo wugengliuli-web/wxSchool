@@ -99,3 +99,10 @@ export const enrollmentYearList = [
     '2024',
     '2025',
 ]
+
+
+export const activityType = {
+    activity: 'activity',   //校园活动
+    sponsorship: 'sponsorship',  //赞助
+    cfactivity: 'cfactivity'  //众筹
+}

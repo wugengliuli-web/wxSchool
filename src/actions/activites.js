@@ -1,28 +1,12 @@
 import Taro from '@tarojs/taro'
 import { DEVELOP } from '../lib/url'
-import {
-    set_activitesContent
-} from '../constants/activites'
 
-
-export const getActivitesContent = (id, activityId, merchantId) => {
+export const getActivitesContent = (id, type) => {
     return async dispatch => {
-        let url = DEVELOP
-        let queryId;
-        if(id) {
-            url = url + 'activity/get'
-            queryId = id
-        } else if(activityId) {
-            url = url + 'sponsorship/get'
-            queryId = activityId
-        } else {
-            url = url + 'cfactivity/get'
-            queryId = merchantId
-        }
         let res = await Taro.request({
-            url,
+            url: DEVELOP + type + '/get',
             data: {
-                id: queryId
+                id: id
             }
         })
         let { data: { result, data } } = res

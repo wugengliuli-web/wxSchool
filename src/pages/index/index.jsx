@@ -8,6 +8,7 @@ import { getBanner, getSearchPlaceHolder, getContent, clearContent } from '../..
 import { AtIcon } from 'taro-ui'
 import Skeleton from 'taro-skeleton'
 import TabBar from '../../component/tabBar'
+import { activityType } from '../../lib/type'
 const Home = props => {
     const defaultLogo = ''
     let hasMore = useSelector(state => state.home.hasMore)
@@ -125,7 +126,7 @@ const Home = props => {
                     {
                         content.map((item, index) => {
                             return (
-                                <Navigator className="link" url={`/pages/activites/index?id=${item.id}`} key={item.id} >
+                                <Navigator className="link" url={`/pages/activites/index?id=${item.id}&type=${activityType.activity}`} key={item.id} >
                                     <View className="contentWrapperBorder">
                                         <View className="contentContainer">
                                             <Image mode="widthFix" className="img" src={item.poster} ></Image>

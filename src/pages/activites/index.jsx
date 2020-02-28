@@ -4,10 +4,10 @@ import { AtToast } from "taro-ui"
 import { View, Image, Text, Navigator } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import { getActivitesContent } from '../../actions/activites'
-import { activitesColor } from '../../lib/type'
+import { activitesColor, activityType } from '../../lib/type'
 const Activites = props => {
     const dispatch = useDispatch()
-    const { params: { id, activityId, merchantId } } = useRouter()
+    const { params: { id, type } } = useRouter()
     const [data, setData] = useState({})
     const [isDown, setIsDown] = useState(false)
     useDidShow(async () => {
@@ -16,7 +16,7 @@ const Activites = props => {
                 title: '加载中'
             })
             try {
-                const action = getActivitesContent(id, activityId, merchantId)
+                const action = getActivitesContent(id, type)
                 const res = await dispatch(action)
                 if(res) {
                     setData(res)
@@ -55,7 +55,7 @@ const Activites = props => {
         <View className="container">
             <View className="wrapper">
                 <View className="imgWrapper">
-                    <Image className="img"  mode="center" src={id ? data.poster : null}></Image>
+                    <Image className="img"  mode="center" src={data.posters[0]}></Image>
                 </View>
                 <View className="down" style={{
                     transform: `translateY(${isDown ? '250rpx' : '868rpx'})`
@@ -63,25 +63,20 @@ const Activites = props => {
                     <View className="activitesContentWrapper">
                         <View className="activiterMain">
                             <View className="contentHead">
-                                <View className="title">{id ? data.name : null}</View>
+                                <View className="title">{type === activityType.sponsorship ? data.theme : data.name}</View>
                                 <View className="tagContainer">
                                     {/* {
                                         [].map(key => {
                                             return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                         })
                                     } */}
-                                    {
-                                        id ?
-                                            <View className={activitesColor.blue.includes(data.type) ? 'contentTag blue' : activitesColor.green.includes(data.type) ? 'contentTag green' : 'contentTag red'}>{data.type}</View>
-                                            :
-                                            null
-                                    }
+                                    <View className={activitesColor.blue.includes(data.type) ? 'contentTag blue' : activitesColor.green.includes(data.type) ? 'contentTag green' : 'contentTag red'}>{data.type}</View>
                                 </View>
                             </View>
-                            <View className="money">活动预算：￥{id ? data.budget : null}</View>
-                            <View className="time">赞助时间：{id ? data.publishDate : null} 至 {id ? data.deadline : null}</View>
-                            <View className="position">活动地点：{id ? data.address : null}</View>
-                            <View className="fileWrapper">活动方案：<Text className="file">{id ? data.plan : null}</Text></View>
+                            <View className="money">活动预算：￥{type === activityType.sponsorship ? data.fee : data.budget}</View>
+                            <View className="time">赞助时间：{data.publishDate} 至 {type === activityType.sponsorship ?  data.availableDate : data.publishDate}</View>
+                            <View className="position">活动地点：{data.address}</View>
+                            <View className="fileWrapper">活动方案：<Text className="file">{type === activityType.sponsorship ? data.requirement : data.plan}</Text></View>
                             <View className="divier"></View>
                             <View className="data">
                                 <View className="text">浏览次数：{data.browseTimes}</View>
@@ -89,21 +84,21 @@ const Activites = props => {
                             </View>
                         </View>
                     </View>
-                    <Navigator url={`/pages/personalBasicifo/index?id=${id ? data.head.id : null}`}>
+                    <Navigator url={`/pages/personalBasicifo/index?id=${data.user.id}&type=${type}`}>
                         <View className="associationWrapper">
                             <View className="top">
                                 <View className="logoWrapper">
-                                    <Image className="logo" src={id ? data.head.avatar ? data.head.avatar : '' : null} mode="center"></Image>
+                                    <Image className="logo" src={data.user.avatar ? data.user.avatar : ''} mode="center"></Image>
                                 </View>
                                 <View className="introduce">
-                                    <View className="name">{id ? data.head.name: null}</View>
+                                    <View className="name">{data.user.nickname}</View>
                                     <View className="tagWrapper">
-                                        <View className="tag red">{id ? data.associationName ? data.associationName : null: null}</View>
-                                        <View className="tag blue">{id ? data.associationSize ? associationSize : null : null}</View>
+                                        <View className="tag red">{type === activityType.activity ? data.associationName ? data.associationName : null: null}</View>
+                                        <View className="tag blue">{type === activityType.activity ? data.associationSize ? associationSize : null : null}</View>
                                     </View>
                                 </View>
                             </View>
-                            <View className="bottom">{id ? data.introduce ? data.introduce : null : null}</View>
+                            <View className="bottom">{data.user.introduce ? data.user.introduce : null}</View>
                         </View>
                     </Navigator>
                     <View className="RecommendWrapper">

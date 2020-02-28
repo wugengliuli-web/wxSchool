@@ -10,7 +10,7 @@ import {
     getMerchantSponsorship,
     getDreamCrowdFinancing
 } from '../../actions/sponsor'
-import { activitesColor } from '../../lib/type'
+import { activitesColor, activityType } from '../../lib/type'
 import basketball from '../../static/img/basketball.png'
 import company from '../../static/img/company.png'
 import dream from '../../static/img/dream.png'
@@ -112,7 +112,7 @@ const Sponsor = props => {
                             :
                             campusActivities.map(item => {
                                 return (
-                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${activityType.activity}`}>
                                         <View className="content" >
                                             <View className="contentHead">
                                                 <View className="title">{item.name}</View>
@@ -151,23 +151,23 @@ const Sponsor = props => {
                             :
                             merchantSponsorship.map(item => {
                                 return (
-                                    <navigator key={item.merchantId} url={`/pages/activites/index?merchantId=${item.merchantId}`}>
+                                    <navigator key={item.merchantId} url={`/pages/activites/index?id=${item.id}&type=${activityType.sponsorship}`}>
                                         <View className="content">
                                             <View className="contentHead">
-                                                <View className="title">{item.merchant.name}</View>
+                                                <View className="title">{item.theme}</View>
                                                 <View className="tagContainer">
                                                     {/* {
                                                         item.type.map(key => {
                                                             return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                         })
                                                     } */}
-                                                    <View className={activitesColor.blue.includes(item.merchant.type) ? 'contentTag blue' : activitesColor.green.includes(item.merchant.type) ? 'contentTag green' : 'contentTag red'}>{item.merchant.type}</View>
+                                                    <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
                                                 </View>
                                             </View>
                                             <View className="address">地址: {item.address}</View>
                                             <View className="contentBottom">
                                                 <View className="timer">发布时间: {item.availableDate}~{item.publishDate}</View>
-                                                <View className="money">￥{item.budget ? item.budget : 2000}</View>
+                                                <View className="money">￥{item.fee}</View>
                                             </View>
                                         </View>
                                     </navigator>
@@ -190,7 +190,7 @@ const Sponsor = props => {
                             :
                             dreamCrowdFinancing.map(item => {
                                 return (
-                                    <navigator key={item.id} url={`/pages/activites/index?activityId=${item.activityId}`}>
+                                    <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${activityType.cfactivity}`}>
                                         <View className="content" key={item.activityId}>
                                             <View className="contentHead">
                                                 <View className="title">{item.activity.name}</View>
@@ -200,7 +200,7 @@ const Sponsor = props => {
                                                             return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                         })
                                                     } */}
-                                                    <View className={activitesColor.blue.includes(item.activity.type) ? 'contentTag blue' : activitesColor.green.includes(item.activity.type) ? 'contentTag green' : 'contentTag red'}>{item.activity.type}</View>
+                                                    <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.activity.type}</View>
                                                 </View>
                                             </View>
                                             <View className="address">地址: {item.activity.address}</View>
