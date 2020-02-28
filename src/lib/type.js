@@ -30,13 +30,14 @@ export const activitesTypeList = [
     '⽂化艺术',
     '体育竞技',
     '志愿公益',
-    '其他'
+    '其他',
+    '任意类型'
 ]  //活动类型
 
 export const activitesColor = {
     blue: ['科技创新', '专业学术'],
     red: ['⽂化艺术', '志愿公益', '其他'],
-    green: ['体育竞技', '创业实践']
+    green: ['体育竞技', '创业实践', '任意类型']
 }
 
 // export const activitesColor = {

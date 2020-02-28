@@ -5,18 +5,31 @@ import {
 } from '../constants/activites'
 
 
-export const getActivitesContent = id => {
+export const getActivitesContent = (id, activityId, merchantId) => {
     return async dispatch => {
+        let url = DEVELOP
+        let queryId;
+        if(id) {
+            url = url + 'activity/get'
+            queryId = id
+        } else if(activityId) {
+            url = url + 'sponsorship/get'
+            queryId = activityId
+        } else {
+            url = url + 'cfactivity/get'
+            queryId = merchantId
+        }
         let res = await Taro.request({
-            url: DEVELOP + 'activitesContnet',
+            url,
             data: {
-                id
+                id: queryId
             }
         })
-        let { data: { data } } = res
-        dispatch({
-            type: set_activitesContent,
-            data
-        })
+        let { data: { result, data } } = res
+        if(~~result === 0) {
+            return data
+        } else {
+            return false
+        }
     }
 }

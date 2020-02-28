@@ -132,7 +132,7 @@ const Release = props => {
                 extension: ['docx']
             })
             const { name, path, size } = res.tempFiles[0]
-            if(!/docx$/i.test(name)) {
+            if(!/(docx)|(doc)|(pdf)$/i.test(name)) {
                 Taro.showToast({
                     title: '文件格式不对',
                     icon: 'none',

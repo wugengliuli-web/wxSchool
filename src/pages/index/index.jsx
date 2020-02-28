@@ -12,6 +12,7 @@ const Home = props => {
     const defaultLogo = ''
     let hasMore = useSelector(state => state.home.hasMore)
     let pageIndex = useSelector(state => state.home.pageIndex)
+    let [hasAjax, setHasAjax] = useState(false)
     let dispatch = useDispatch()
     let [loading, setLoading] = useState(false)
     let bannerUrl = useSelector(state => state.home.bannerUrl)
@@ -27,17 +28,21 @@ const Home = props => {
         //     const aciton = getBanner()
         //     dispatch(aciton)
         // }
-        // //获取搜索区域的内容
-        if(searchPlaceHolder === '') {
-            const aciton = getSearchPlaceHolder()
-            dispatch(aciton)
+        //获取搜索区域的内容
+        if(!hasAjax) {
+            if(searchPlaceHolder === '') {
+                const aciton = getSearchPlaceHolder()
+                dispatch(aciton)
+            }
+            if(content.length === 0) {
+                setLoading(true)
+                const aciton = getContent(pageIndex, place)
+                await dispatch(aciton)
+                setLoading(false)
+            }
+            setHasAjax(true)
         }
-        if(content.length === 0) {
-            setLoading(true)
-            const aciton = getContent(pageIndex, place)
-            await dispatch(aciton)
-            setLoading(false)
-        }
+        
     })
     let bindchange = useCallback(async info => {
         const actionClear = clearContent()
@@ -131,7 +136,7 @@ const Home = props => {
                     }
                 </View>
                 {
-                    loading ?
+                    loading && !hasAjax?
                     <Skeleton animateName='elastic' rowWidth={['50%','70%','80%']} animate={true} row={3}></Skeleton>
                     :
                     <View className="more" onClick={getMore}>
