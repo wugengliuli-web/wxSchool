@@ -9,9 +9,7 @@ import mine_unsel from '../../static/img/mine_unsel.png'
 import { useSelector } from '@tarojs/redux'
 const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
-    let userId = useSelector(state => state.personalCenter.userId)
-    const nickName = useSelector(state => state.personalCenter.nickName)
-    let link = useCallback(index => {
+    let link = useCallback(async index => {
         if(index === 0) {
             if(current !== 0) {
                 Taro.reLaunch({
@@ -26,13 +24,22 @@ const TabBar = ({initIndex}) => {
             }
         } else {
             if(current !== 2) {
-                if(nickName === '' && userId === Infinity) {
+                try {
+                    const { data } = await Taro.getStorage({
+                        key: 'token'
+                    })
+                    if(!data) {
+                        Taro.reLaunch({
+                            url: '/pages/login/index'
+                        })
+                    } else {
+                        Taro.reLaunch({
+                            url: '/pages/personalCenter/index'
+                        })
+                    }
+                } catch(err) {
                     Taro.reLaunch({
                         url: '/pages/login/index'
-                    })
-                } else {
-                    Taro.reLaunch({
-                        url: '/pages/personalCenter/index'
                     })
                 }
             }

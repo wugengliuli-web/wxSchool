@@ -33,17 +33,25 @@ const Sponsor = props => {
     ] 
     useDidShow(async () => {
         if(!hasAjax) {
-            if(campusActivities.length === 0) {
-                const actionCampusActivities = getCampusActivities()
-                dispatch(actionCampusActivities)
-            }
-            if(merchantSponsorship.length === 0) {
-                const actionMerchantSponsorship = getMerchantSponsorship()
-                dispatch(actionMerchantSponsorship)
-            }
-            if(dreamCrowdFinancing.length === 0) {
-                const actionDreamCrowdFinancing = getDreamCrowdFinancing()
-                dispatch(actionDreamCrowdFinancing)
+            try {
+                if(campusActivities.length === 0) {
+                    const actionCampusActivities = getCampusActivities()
+                    dispatch(actionCampusActivities)
+                }
+                if(merchantSponsorship.length === 0) {
+                    const actionMerchantSponsorship = getMerchantSponsorship()
+                    dispatch(actionMerchantSponsorship)
+                }
+                if(dreamCrowdFinancing.length === 0) {
+                    const actionDreamCrowdFinancing = getDreamCrowdFinancing()
+                    dispatch(actionDreamCrowdFinancing)
+                }
+            } catch(err) {
+                Taro.showToast({
+                    title: '出错了~~~',
+                    icon: 'none',
+                    duration: 2000
+                })
             }
             setHasAjax(true)
         }

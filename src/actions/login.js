@@ -18,11 +18,14 @@ export const login = (tel, vCode) => {
                 code: vCode
             }
         })
-        let { data: { result } } = res
-        if(result === '0') {
+        let { data: { result, token } } = res
+        if(~~result === 0) {
             //如果是0代表登录成功
             let { data: { user: { id, nickname, phone, avatar = '', auth: { realname = '', org = '' } } } } = res
-            
+            await Taro.setStorage({
+                key: 'token',
+                data: token
+            })
             await dispatch({
                 type: set_login,
                 data: {
@@ -48,9 +51,13 @@ export const login = (tel, vCode) => {
                     code: vCode
                 }
             })
-            let { data: { result } } = res
+            let { data: { result, token } } = res
             if(result === '0') {
                 let { data: { user: { id, nickname, phone, avatar = '', auth: { realname = '', org = '' } } } } = res
+                await Taro.setStorage({
+                    key: 'token',
+                    data: token
+                })
                 await dispatch({
                     type: set_login,
                     data: {

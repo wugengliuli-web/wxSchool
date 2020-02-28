@@ -30,15 +30,23 @@ const Home = props => {
         // }
         //获取搜索区域的内容
         if(!hasAjax) {
-            if(searchPlaceHolder === '') {
-                const aciton = getSearchPlaceHolder()
-                dispatch(aciton)
-            }
-            if(content.length === 0) {
-                setLoading(true)
-                const aciton = getContent(pageIndex, place)
-                await dispatch(aciton)
-                setLoading(false)
+            try {
+                if(searchPlaceHolder === '') {
+                    const aciton = getSearchPlaceHolder()
+                    dispatch(aciton)
+                }
+                if(content.length === 0) {
+                    setLoading(true)
+                    const aciton = getContent(pageIndex, place)
+                    await dispatch(aciton)
+                    setLoading(false)
+                }
+            } catch(err) {
+                Taro.showToast({
+                    title:'请求失败',
+                    icon: 'none',
+                    duration: 2000
+                })
             }
             setHasAjax(true)
         }
@@ -124,8 +132,8 @@ const Home = props => {
                                             <View className="infoWrapper">
                                                 <View className="contentText">{item.name}</View>
                                                 <View className="contentInfoWrapper">
-                                                    <Image mode="center" src={item.head.avatar ? item.head.avatar : defaultLogo} className="logo"></Image>
-                                                    <View className="name">{item.head.name}</View>
+                                                    <Image mode="center" src={item.user.avatar ? item.user.avatar : defaultLogo} className="logo"></Image>
+                                                    <View className="name">{item.user.nickname}</View>
                                                 </View>
                                             </View>
                                         </View>
