@@ -1,9 +1,10 @@
 // import {SET_SRC,SET_GOODCOUNT,SET_EMONEYCOUNT,SET_ESATRCOUNT,SET_NICKNAME} from '../constants/personalCenter'
 import {
-    set_login
+    set_login,
+    set_userInfo
 } from '../constants/login'
 const INITIAL_STATE = {
-    imgSrc:'',
+    avatar:'',
     goodCount:1000,
     emoneyCount:100,
     estarCount:10,
@@ -21,13 +22,18 @@ export default function personalCenter(state = INITIAL_STATE, action){
             let { id, nickname, phone, avatar, realname, org, signature } = data
             return {
                 ...state,
-                imgSrc: avatar,
+                avatar,
                 userId: id,
                 nickName: nickname,
                 isNamed: realname,
                 isChceked: org,
                 phone,
                 signature
+            }
+        case set_userInfo:
+            return {
+                ...state,
+                ...data
             }
         default:
             return state

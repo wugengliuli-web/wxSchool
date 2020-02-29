@@ -27,12 +27,9 @@ const PersonalCenter = props => {
 		{ item: '个性定制', id: 6, url: '/pages/login/index', src: personalization }, 
 		{ item: '常见问题', id: 7, url: '/pages/login/index', src: question }
 	]
-	let dispatch = useDispatch()
-	let login = useSelector(state => state.login)
 
 	let nickName= useSelector(state => state.personalCenter.nickName)
-	console.log(nickName)
-	let imgSrc = useSelector(state => state.personalCenter.imgSrc)
+	let avatar = useSelector(state => state.personalCenter.avatar)
 	let goodCount = useSelector(state => state.personalCenter.goodCount)
 	let emoneyCount = useSelector(state => state.personalCenter.emoneyCount)
 	let estarCount = useSelector(state => state.personalCenter.estarCount)
@@ -54,7 +51,7 @@ const PersonalCenter = props => {
 						<Navigator url={`/pages/personalBasicifo/index?id=${userId}`}>
 							<Image
 								className="photo"
-								src={imgSrc} 	
+								src={avatar} 	
 							/>
 						</Navigator>
 					</View>
@@ -103,7 +100,9 @@ const PersonalCenter = props => {
 					</View>
 				</View>
 				<View className="editMsg">
-					<Image className="editBtn" onClick={edit} src={setting}></Image>
+					<Navigator url="/pages/personInfo/index">
+						<Image className="editBtn" onClick={edit} src={setting}></Image>
+					</Navigator>
 				</View>
 			</View>
 			<View className="wellReceivedbox">

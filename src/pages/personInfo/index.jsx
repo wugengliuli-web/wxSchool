@@ -1,16 +1,18 @@
-import Taro, { useDidShow, useCallback, useState } from '@tarojs/taro'
-import { View, Image, Text, Navigator } from '@tarojs/components'
+import Taro, { useDidHide, useCallback, useState, useEffect } from '@tarojs/taro'
+import { View, Image } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import './index.scss'
 import { AtInput, AtTextarea, AtIcon } from 'taro-ui'
-
+import { setUserInfo } from '../../actions/personInfo'
 const PersonInfo = props => {
+    const maxSize = 1024 * 1024 * 2
     const defaultImg = ''
+    const dispatch = useDispatch()
     const userInfo = useSelector(state => state.personalCenter)
-    const [nickName, setNickName] = useState(userInfo.nickName)
+    const [nickName, setNickName] = useState(userInfo.nickName || '')
     const [phone, setPhone] = useState(userInfo.phone)
-    const [imgSrc, setImgSrc] = useState(userInfo.imgSrc)
-    const [signature, setSignature] = useState(userInfo.signature)
+    const [avatar, setAvatar] = useState(userInfo.avatar)
+    const [signature, setSignature] = useState(userInfo.signature || '')
 
     const setSignatureWrapper = useCallback(info => {
         setSignature(info.target.value)
@@ -30,6 +32,41 @@ const PersonInfo = props => {
         })
     }, [userInfo.isNamed])
 
+    const upLoadImg = useCallback(async () => {
+        try {
+            const res = await Taro.chooseImage({
+                count: 1
+            })
+            const { size, path } = res.tempFiles[0]
+            if(size > maxSize) {
+                Taro.showToast({
+                    title: '文件超出大小2MB',
+                    duration: 2000
+                })
+            } else {
+                setAvatar(path)
+            }
+        } catch(err) {
+
+        }
+    })
+    useEffect(() => {
+        return async () => {
+            await submit()
+        }
+    }, [])
+    useDidHide(() => {
+        console.log('componentDidHide')
+    })
+    const submit = useCallback(async () => {
+        console.log(avatar, nickName, signature)
+        try {
+            const action = setUserInfo({avatar, nickName, signature})
+            await dispatch(action)
+        } catch(err) {
+
+        }
+    }, [avatar, nickName, signature])
     return (
         <View className="container">
             <View className="head">
@@ -49,9 +86,10 @@ const PersonInfo = props => {
                     <View className="title">电话号码</View>
                     <View className="inputWrapper">
                         <AtInput
+                            disabled={true}
                             name='value1'
                             type='text'
-                            placeholder='修改电话号码'
+                            placeholder='电话号码'
                             value={phone}
                             onChange={setPhone}
                         />
@@ -61,8 +99,8 @@ const PersonInfo = props => {
             <View className="middle">
                 <View className="headImgWapper">
                     <View className="title">头像</View>
-                    <View className="imgWrapper">
-                        <Image className="img" src={imgSrc ? imgSrc : defaultImg}></Image>
+                    <View className="imgWrapper" onClick={upLoadImg}>
+                        <Image className="img" src={avatar ? avatar : defaultImg}></Image>
                     </View>
                 </View>
                 <View className="userIntroduceWrapper">
