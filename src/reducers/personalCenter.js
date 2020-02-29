@@ -10,20 +10,24 @@ const INITIAL_STATE = {
     nickName: '',
     isChceked: '',
     isNamed: '',
-    userId: Infinity
+    userId: Infinity,
+    phone: '',
+    signature: ''
 }
 export default function personalCenter(state = INITIAL_STATE, action){
     let {type, data} = action
     switch (type){
         case set_login:
-            let { id, nickname, phone, avatar, realname, org } = data
+            let { id, nickname, phone, avatar, realname, org, signature } = data
             return {
                 ...state,
                 imgSrc: avatar,
                 userId: id,
                 nickName: nickname,
                 isNamed: realname,
-                isChceked: org
+                isChceked: org,
+                phone,
+                signature
             }
         default:
             return state

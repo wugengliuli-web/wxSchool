@@ -1,0 +1,121 @@
+@import "~taro-ui/dist/style/components/input.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+@import "~taro-ui/dist/style/components/textarea.scss";
+page {
+    background:rgba(245,246,250,1);
+}
+
+.container {
+    .head {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        height: 176px;
+        padding: 0 32px;
+        .item {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            .title {
+                flex-grow: 1;
+                font-size:28px;
+                color:rgba(0,0,0,0.87);
+            }
+            .inputWrapper {
+                flex-grow: 9;
+            }
+            .at-input {
+                text-align: right;
+                color:rgba(0,0,0,0.6);
+                padding: 0;
+                .at-input__input {
+                    font-size:28px;
+                    padding: 0;
+                }
+                &::after {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .middle {
+        margin-top: 16px;
+        background-color: #fff;
+        padding: 0 32px;
+        .headImgWapper {
+            height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .title {
+                font-size:28px;
+                color:rgba(0,0,0,0.87);
+            }
+            .imgWrapper {
+                display: flex;
+                .img {
+                    margin: auto;
+                    border-radius: 50%;
+                    width: 48px;
+                    height: 48px;
+                }
+            }
+        }
+
+        .userIntroduceWrapper {
+            background: #fff;
+            padding: 30px 0 24px 0;
+            .title {
+                font-size:28px;
+                color:rgba(0,0,0,0.87);
+            }
+            .textArea {
+                .at-textarea {
+                    border: none;
+                    padding: 16px 0;
+                    .at-textarea__textarea {
+                        font-size: 24px;
+                        height: 80px;
+                        color:rgba(0,0,0,0.54);
+                    }
+                }
+            }
+        }
+    }
+    .toast {
+        padding: 24px 32px 16px 24px;
+        font-size: 20px;
+        color:rgba(0,0,0,0.38);
+    }
+
+    .AuthenticationWrapper {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        height: 176px;
+        padding: 0 32px;
+        .item {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            .title {
+                font-size:28px;
+                flex: 1;
+                color:rgba(0,0,0,0.87);
+            }
+            .goWrapper {
+                text-align: right;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                .info {
+                    color:rgba(0,0,0,0.54);
+                    font-size:28px;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}

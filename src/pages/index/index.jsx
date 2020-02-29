@@ -21,9 +21,9 @@ const Home = props => {
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
     let content = useSelector(state => state.home.content)
     useDidShow(async () => {
-        // Taro.navigateTo({
-        //     url: '/pages/release/index?id=' + Math.random() * 100000
-        // })
+        Taro.navigateTo({
+            url: '/pages/personInfo/index?id=' + Math.random() * 100000
+        })
         //进入页面获取轮播图信息
         // if(bannerUrl.length === 0) {
         //     const aciton = getBanner()

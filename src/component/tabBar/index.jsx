@@ -9,6 +9,7 @@ import mine_unsel from '../../static/img/mine_unsel.png'
 import { useSelector } from '@tarojs/redux'
 const TabBar = ({initIndex}) => {
     let [current, setCurrent] = useState(initIndex)
+    let nickName = useSelector(state => state.personalCenter.nickName)
     let link = useCallback(async index => {
         if(index === 0) {
             if(current !== 0) {
@@ -28,7 +29,7 @@ const TabBar = ({initIndex}) => {
                     const { data } = await Taro.getStorage({
                         key: 'token'
                     })
-                    if(!data) {
+                    if(!data || nickName === '') {
                         Taro.reLaunch({
                             url: '/pages/login/index'
                         })
