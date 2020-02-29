@@ -9,6 +9,7 @@ const Activites = props => {
     const dispatch = useDispatch()
     const { params: { id, type } } = useRouter()
     const [data, setData] = useState({})
+    const [recommend, setRecommend] = useState([])
     const [isDown, setIsDown] = useState(false)
     useDidShow(async () => {
         if(Object.keys(data).length === 0) {
@@ -19,8 +20,9 @@ const Activites = props => {
                 const action = getActivitesContent(id, type)
                 const res = await dispatch(action)
                 if(res) {
-                    setData(res)
-                    console.log(res)
+                    let [data, Recommend] = res
+                    setData(data)
+                    setRecommend(Recommend)
                 } else {
                     Taro.showToast({
                         title: '出错了~~',
@@ -41,7 +43,7 @@ const Activites = props => {
     //监听上下滑动事件
     usePageScroll(res => {
         let { scrollTop } = res
-        if(scrollTop > 50 && data.Recommend.length > 2) {
+        if(scrollTop > 50 && recommend.length > 2) {
             if(!isDown) {
                 setIsDown(true)
             }
@@ -105,24 +107,25 @@ const Activites = props => {
                         <View className="title">相关推荐</View>
                         <View className="recommendContent">
                             {
-                                [].map(item => {
+                                recommend.map(item => {
                                     return (
-                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${type}`}>
                                             <View className="content" key={item.id}>
                                                 <View className="contentHead">
-                                                    <View className="title">{item.title}</View>
+                                                    <View className="title">{type === activityType.sponsorship ? item.theme : item.name}</View>
                                                     <View className="tagContainer">
-                                                        {
+                                                        {/* {
                                                             item.tag.map(key => {
                                                                 return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                             })
-                                                        }
+                                                        } */}
+                                                        <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
                                                     </View>
                                                 </View>
-                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                <View className="address">地址: {item.address}</View>
                                                 <View className="contentBottom">
-                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                    <View className="money">￥{item.money}</View>
+                                                    <View className="timer">发布时间: {item.publishDate}~{type === activityType.sponsorship ? item.availableDate : item.deadline}</View>
+                                                    <View className="money">￥{type === activityType.sponsorship ? item.fee : item.budget}</View>
                                                 </View>
                                             </View>
                                         </navigator>

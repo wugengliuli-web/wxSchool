@@ -8,7 +8,7 @@ import { getSearchContent, setCampusActivities, setMerchantSponsorship, setDream
 import Skeleton from 'taro-skeleton'
 import locate from '../../static/img/locate.png'
 import search from '../../static/img/search.png'
-import { activitesColor } from '../../lib/type'
+import { activitesColor, activityType } from '../../lib/type'
 const Search = props => {
     const { params: { currentPage = 0 } } = useRouter()
     let searchPlaceHolder = useSelector(state => state.home.searchPlaceHolder)
@@ -103,17 +103,17 @@ const Search = props => {
                 setSortCurrent(0)
                 if(contentType === 0) {
                     let newCampusActivities = [...campusActivities]
-                    newCampusActivities.sort((a,b) => a.sort - b.sort)
+                    newCampusActivities.sort((a,b) => a.id - b.id)
                     const action = setCampusActivities(newCampusActivities)
                     dispatch(action)
                 } else if(contentType === 1) {
                     let newMerchantSponsorship = [...merchantSponsorship]
-                    newMerchantSponsorship.sort((a,b) => a.sort - b.sort)
+                    newMerchantSponsorship.sort((a,b) => a.id - b.id)
                     const action = setMerchantSponsorship(newMerchantSponsorship)
                     dispatch(action)
                 } else {
                     let newDreamCrowdFinancing = [...dreamCrowdFinancing]
-                    newDreamCrowdFinancing.sort((a,b) => a.sort - b.sort)
+                    newDreamCrowdFinancing.sort((a,b) => a.id - b.id)
                     const action = setDreamCrowdFinancing(newDreamCrowdFinancing)
                     dispatch(action)
                 }
@@ -129,8 +129,8 @@ const Search = props => {
                 if(contentType === 0) {
                     let newCampusActivities = [...campusActivities]
                     newCampusActivities.sort((a,b) => {
-                        let startTimeA = a.startTime
-                        let startTimeB = b.startTime
+                        let startTimeA = a.publishDate
+                        let startTimeB = b.publishDate
                         startTimeA = startTimeA.split('-').map(item => ~~item)
                         startTimeB = startTimeB.split('-').map(item => ~~item)
                         for(let i=0;i<3;i++) {
@@ -143,8 +143,8 @@ const Search = props => {
                 } else if(contentType === 1) {
                     let newMerchantSponsorship = [...merchantSponsorship]
                     newMerchantSponsorship.sort((a,b) => {
-                        let startTimeA = a.startTime
-                        let startTimeB = b.startTime
+                        let startTimeA = a.publishDate
+                        let startTimeB = b.publishDate
                         startTimeA = startTimeA.split('-').map(item => ~~item)
                         startTimeB = startTimeB.split('-').map(item => ~~item)
                         for(let i=0;i<3;i++) {
@@ -157,8 +157,8 @@ const Search = props => {
                 } else {
                     let newDreamCrowdFinancing = [...dreamCrowdFinancing]
                     newDreamCrowdFinancing.sort((a,b) => {
-                        let startTimeA = a.startTime
-                        let startTimeB = b.startTime
+                        let startTimeA = a.publishDate
+                        let startTimeB = b.publishDate
                         startTimeA = startTimeA.split('-').map(item => ~~item)
                         startTimeB = startTimeB.split('-').map(item => ~~item)
                         for(let i=0;i<3;i++) {
@@ -180,17 +180,17 @@ const Search = props => {
                 setSortCurrent(2)
                 if(contentType === 0) {
                     let newCampusActivities = [...campusActivities]
-                    newCampusActivities.sort((a,b) => a.good - b.good)
+                    newCampusActivities.sort(() => (Math.random() - 0.5))
                     const action = setCampusActivities(newCampusActivities)
                     dispatch(action)
                 } else if(contentType === 1) {
                     let newMerchantSponsorship = [...merchantSponsorship]
-                    newMerchantSponsorship.sort((a,b) => a.good - b.good)
+                    newMerchantSponsorship.sort(() => (Math.random() - 0.5))
                     const action = setMerchantSponsorship(newMerchantSponsorship)
                     dispatch(action)
                 } else {
                     let newDreamCrowdFinancing = [...dreamCrowdFinancing]
-                    newDreamCrowdFinancing.sort((a,b) => a.good - b.good)
+                    newDreamCrowdFinancing.sort(() => (Math.random() - 0.5))
                     const action = setDreamCrowdFinancing(newDreamCrowdFinancing)
                     dispatch(action)
                 }
@@ -205,17 +205,17 @@ const Search = props => {
                 setSortCurrent(3)
                 if(contentType === 0) {
                     let newCampusActivities = [...campusActivities]
-                    newCampusActivities.sort((a,b) => a.money - b.money)
+                    newCampusActivities.sort((a,b) => a.budget - b.budget)
                     const action = setCampusActivities(newCampusActivities)
                     dispatch(action)
                 } else if(contentType === 1) {
                     let newMerchantSponsorship = [...merchantSponsorship]
-                    newMerchantSponsorship.sort((a,b) => a.money - b.money)
+                    newMerchantSponsorship.sort((a,b) => a.fee - b.fee)
                     const action = setMerchantSponsorship(newMerchantSponsorship)
                     dispatch(action)
                 } else {
                     let newDreamCrowdFinancing = [...dreamCrowdFinancing]
-                    newDreamCrowdFinancing.sort((a,b) => a.money - b.money)
+                    newDreamCrowdFinancing.sort((a,b) => a.budget - b.budget)
                     const action = setDreamCrowdFinancing(newDreamCrowdFinancing)
                     dispatch(action)
                 }
@@ -325,22 +325,23 @@ const Search = props => {
                                             {
                                                 campusActivities.map(item => {
                                                     return (
-                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
-                                                            <View className="content" key={item.id}>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${activityType.activity}`}>
+                                                            <View className="content">
                                                                 <View className="contentHead">
-                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="title">{item.name}</View>
                                                                     <View className="tagContainer">
-                                                                        {
+                                                                        {/* {
                                                                             item.tag.map(key => {
                                                                                 return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                                             })
-                                                                        }
+                                                                        } */}
+                                                                        <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
                                                                     </View>
                                                                 </View>
-                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="address">地址: {item.address}</View>
                                                                 <View className="contentBottom">
-                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                    <View className="money">￥{item.money}</View>
+                                                                    <View className="timer">发布时间: {item.publishDate}~{item.deadline}</View>
+                                                                    <View className="money">￥{item.budget}</View>
                                                                 </View>
                                                             </View>
                                                         </navigator>
@@ -381,22 +382,23 @@ const Search = props => {
                                             {
                                                 merchantSponsorship.map(item => {
                                                     return (
-                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${activityType.sponsorship}`}>
                                                             <View className="content" key={item.id}>
                                                                 <View className="contentHead">
-                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="title">{item.theme}</View>
                                                                     <View className="tagContainer">
-                                                                        {
+                                                                        {/* {
                                                                             item.tag.map(key => {
                                                                                 return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                                             })
-                                                                        }
+                                                                        } */}
+                                                                        <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
                                                                     </View>
                                                                 </View>
-                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="address">地址: {item.address}</View>
                                                                 <View className="contentBottom">
-                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                    <View className="money">￥{item.money}</View>
+                                                                    <View className="timer">发布时间: {item.publishDate}~{item.availableDate}</View>
+                                                                    <View className="money">￥{item.fee}</View>
                                                                 </View>
                                                             </View>
                                                         </navigator>
@@ -436,22 +438,23 @@ const Search = props => {
                                             {
                                                 dreamCrowdFinancing.map(item => {
                                                     return (
-                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
+                                                        <navigator key={item.id} url={`/pages/activites/index?id=${item.id}&type=${activityType.cfactivity}`}>
                                                             <View className="content" key={item.id}>
                                                                 <View className="contentHead">
-                                                                    <View className="title">{item.title}</View>
+                                                                    <View className="title">{item.name}</View>
                                                                     <View className="tagContainer">
-                                                                        {
+                                                                        {/* {
                                                                             item.tag.map(key => {
                                                                                 return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
                                                                             })
-                                                                        }
+                                                                        } */}
+                                                                        <View className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
                                                                     </View>
                                                                 </View>
-                                                                <View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+                                                                <View className="address">地址: {item.address}</View>
                                                                 <View className="contentBottom">
-                                                                    <View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-                                                                    <View className="money">￥{item.money}</View>
+                                                                    <View className="timer">发布时间: {item.publishDate}~{item.deadline}</View>
+                                                                    <View className="money">￥{item.budget}</View>
                                                                 </View>
                                                             </View>
                                                         </navigator>
@@ -470,7 +473,7 @@ const Search = props => {
 }
 
 Search.config = {
-    navigationBarTitleText: ''
+    navigationBarTitleText: '易赞校园'
 }
 
 export default Search

@@ -44,7 +44,8 @@ export const getContent = (pageIndex, place) => {
             url: DEVELOP + 'activity/list',
             data: {
                 page: pageIndex,
-                size: 6
+                size: 6,
+                location: place.join('-')
             }
         })
         let { data: { result, data } } = res

@@ -11,7 +11,21 @@ export const getActivitesContent = (id, type) => {
         })
         let { data: { result, data } } = res
         if(~~result === 0) {
-            return data
+            let req = await Taro.request({
+                url: DEVELOP + type + '/recommend',
+                data: {
+                    type: data.type,
+                    location: data.address,
+                    page: 1,
+                    size: 6
+                }
+            })
+            let { data: { result: re, data: Recommend } } = req
+            if(~~re === 0) {
+                return [data, Recommend]
+            } else {
+                return [data, []]
+            }
         } else {
             return false
         }

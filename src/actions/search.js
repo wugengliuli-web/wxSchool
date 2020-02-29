@@ -6,17 +6,29 @@ import {
     set_merchantSponsorship,
     set_dreamCrowdFinancing 
 } from '../constants/search'
-
+import { activityType } from '../lib/type'
 
 export const getSearchContent = (type, search, position) => {
     return async dispatch => {
+        let url = DEVELOP
+        switch(type) {
+            case 0:
+                url = url + activityType.activity + '/search'
+                break
+            case 1:
+                url = url + activityType.sponsorship + '/search'
+                break
+            case 2:
+                url = url + activityType.cfactivity + '/search'
+                break
+        }
         let res = await Taro.request({
-            url: DEVELOP + 'getSearchContent',
-            method: 'POST',
+            url,
             data: {
-                type,
-                search,
-                position
+                page: 1,
+                size: 100,
+                location: position.join('-'),
+                keyword: search
             }
         })
         let { data: { data } } = res
