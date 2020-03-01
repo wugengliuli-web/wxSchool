@@ -14,6 +14,7 @@ import real_named from '../../static/img/real_named.png'
 import uncertified from '../../static/img/uncertified.png'
 import nonReal_named from '../../static/img/non-real_named.png'
 import autograph from '../../static/img/autograph.png'
+import unknown_user from '../../static/img/unknown_user.png'
 import {
 	activitesColor
 } from '../../lib/type'
@@ -26,21 +27,7 @@ const PersonalBasicifo = props => {
 	const dispatch = useDispatch()
 	const { params: { id } } = useRouter()
 	const [current, setCurrent] = useState(0)
-	const [userInfo, setUserInfo] = useState({
-		name: '',
-		identityAuthentication: false, // 身份认证
-		realNameAuthentication: false, //实名认证
-		headLogo: '', //头像
-		sign: '' //个性签名
-	})
-	const [identityInfo, setIdentityInfo] = useState({
-		associationLogo: '',
-		associationName: '',  //社团名
-		associationSize: '', //规模
-		associationSchoold: '',  //学校
-		associationType: [],  //活动类型
-		associationPosition: ''  //职位
-	})
+	const [userInfo, setUserInfo] = useState({})  //用户信息
 	const [activeGoing, setActiveGoing] = useState([])
 	const [activeEnd, setActiveEnd] = useState([])
 	const [hasAjax, setHasAjax] = useState(false)
@@ -63,23 +50,32 @@ const PersonalBasicifo = props => {
 	}, [hasAjax])
 	
 	useDidShow(async () => {
-		if(userInfo.name === '') {
+		if(Object.keys(userInfo).length === 0) {
 			Taro.showLoading({
 				title: '查询中'
 			})
 			let action = getUserInfo(id)
 			let res = await dispatch(action)
-			setUserInfo(res)
-			if(res.identityAuthentication) {
-				//如果进行了身份认证 就去获取任职信息
-				action = getIdentityInfo(id)
-				res = await dispatch(action)
-				setIdentityInfo(res)
-				//去获取同校推荐
-				action = getRecommend(res.associationSchoold)
-				res = await dispatch(action)
-				setRecommend(res)
+			if(res) {
+				setUserInfo(res)
+				if(res.auth && res.auth.org) {
+					//如果进行了身份认证 就去获取任职信息
+					action = getIdentityInfo(id)
+					res = await dispatch(action)
+					setIdentityInfo(res)
+					//去获取同校推荐
+					action = getRecommend(res.associationSchoold)
+					res = await dispatch(action)
+					setRecommend(res)
+				}
+			} else {
+				Taro.showToast({
+					title: '获取信息失败',
+					icon: 'none',
+					duration: 2000
+				})
 			}
+			
 			Taro.hideLoading()
 		}
 	})
@@ -89,15 +85,15 @@ const PersonalBasicifo = props => {
 			<View className="head">
 				<View className="info">
 					<View className="userInfoWrapper">
-						<Image mode="scaleToFill" className="img" src={userInfo.headLogo}></Image>
+						<Image mode="scaleToFill" className="img" src={userInfo.avatar}></Image>
 						<View className="userInfo">
-							<View className="name">{userInfo.name}</View>
+							<View className="name">{userInfo.nickname}</View>
 							<View className="authenticationWrapper">
 								<View className="identityAuthentication">
-									<Image mode="scaleToFill" className="identityAuthenticationImg" src={userInfo.identityAuthentication ? certified : uncertified}></Image>
+									{/* <Image mode="scaleToFill" className="identityAuthenticationImg" src={userInfo.auth && userInfo.auth.org ? certified : uncertified}></Image> */}
 									<Text className="text">
 									{
-										userInfo.identityAuthentication ?
+										userInfo.auth && userInfo.auth.org ?
 										'已认证'
 										:
 										'未认证'
@@ -105,10 +101,10 @@ const PersonalBasicifo = props => {
 									</Text>
 								</View>
 								<View className="realNameAuthentication">
-									<Image mode="scaleToFill" className="realNameAuthenticationImg" src={userInfo.identityAuthentication ? real_named : nonReal_named}></Image>
+									{/* <Image mode="scaleToFill" className="realNameAuthenticationImg" src={userInfo.auth && userInfo.auth.realname ? real_named : nonReal_named}></Image> */}
 									<Text className="text">
 									{
-										userInfo.realNameAuthentication ?
+										userInfo.auth && userInfo.auth.realname ?
 										'已实名'
 										:
 										'未实名'
@@ -124,7 +120,7 @@ const PersonalBasicifo = props => {
 						<Image mode="scaleToFill" src={autograph} className="img"></Image>
 					</View>
 					<View className="sign">
-						{userInfo.sign}
+						{userInfo.signature}
 					</View>
 				</View>
 			</View>
@@ -145,22 +141,22 @@ const PersonalBasicifo = props => {
 			</View>
 			{
 				current === 0 ?
-					userInfo.identityAuthentication ?
+					userInfo.auth && userInfo.auth.org ?
 						<View>
 							<View className="identityInfoWrapper">
 								<View className="title">任职信息</View>
 								<View className="content">
 									<View className="left">
-										<Image className="img" src={identityInfo.associationLogo} mode="scaleToFill"></Image>
+										<Image className="img" src={userInfo.auth && userInfo.auth.org ? '' : ''} mode="scaleToFill"></Image>
 									</View>
 									<View className="right">
-										<View className="schoolName">{identityInfo.associationName}</View>
-										<View className="position">{identityInfo.associationPosition}</View>
+										<View className="schoolName">{userInfo.auth && userInfo.auth.org ? '' : ''}</View>
+										<View className="position">{userInfo.auth && userInfo.auth.org ? '' : ''}</View>
 									</View>
-									<View className="size">{identityInfo.associationSize}</View>
+									<View className="size">{userInfo.auth && userInfo.auth.org ? '' : ''}</View>
 								</View>
-								<View className="school">所在学校：{identityInfo.associationSchoold}</View>
-								<View className="type">活动类型：{identityInfo.associationType.join('、')}</View>
+								<View className="school">所在学校：{userInfo.auth && userInfo.auth.org ? '' : ''}</View>
+								<View className="type">活动类型：{userInfo.auth && userInfo.auth.org ? '' : ''}</View>
 							</View>
 							<View className="concatInfoWrapper">
 								<View className="link">联系方式</View>
@@ -200,11 +196,12 @@ const PersonalBasicifo = props => {
 						:
 						<View className="contentWrapper">
 							<View className="imgWrapper">
-								{/* <Image src={''} className="notIdentityAuthentication"></Image> */}
+								<Image src={unknown_user} className="notIdentityAuthentication"></Image>
 							</View>
-							<Navigator url={lookConcatInfo}>
+							{/* <Navigator url={lookConcatInfo}>
 								<View className="text">用户身份未认证</View>
-							</Navigator>
+							</Navigator> */}
+							<View className="text">用户身份未认证</View>
 						</View>
 					:
 					<View className="activeWrapper">

@@ -6,6 +6,7 @@ import {
     set_content,
     clear_content
 } from '../constants/home'
+import { publishState } from '../lib/type'
 //请求banner
 export const getBanner = () => {
     return async dispatch => {
@@ -49,6 +50,8 @@ export const getContent = (pageIndex, place) => {
             }
         })
         let { data: { result, data } } = res
+        console.log(res)
+        data = data.filter(item => item.state === publishState.PUBLISHED)
         if(~~result === 0) {
             dispatch({
                 type: set_content,

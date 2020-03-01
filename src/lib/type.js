@@ -106,3 +106,8 @@ export const activityType = {
     sponsorship: 'sponsorship',  //赞助
     cfactivity: 'cfactivity'  //众筹
 }
+
+export const publishState = {
+    PUBLISHED: 'PUBLISHED',
+    DONE: 'DONE'
+}

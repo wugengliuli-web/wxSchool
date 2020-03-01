@@ -5,19 +5,19 @@ import {
     set_merchantSponsorshipMain,
     set_dreamCrowdFinancingMain
 } from '../constants/sponsor'
-
-
+import { publishState } from '../lib/type'
 export const getCampusActivities = () => {
     return async dispatch => {
         let res = await Taro.request({
             url: DEVELOP + 'activity/list',
             data: {
                 page: 1,
-                size: 3
+                size: 10
             }
         })
         let { data: { result, data } } = res
         if(result === 0) {
+            data = data.filter(item => item.state === publishState.PUBLISHED)
             data = data.splice(0, 3)
             dispatch({
                 type: set_campusActivitiesMain,
@@ -33,11 +33,12 @@ export const getMerchantSponsorship = () => {
             url: DEVELOP + 'sponsorship/list',
             data: {
                 page: 1,
-                size: 3
+                size: 10
             }
         })
         let { data: { result, data } } = res
         if(result === 0) {
+            data = data.filter(item => item.state === publishState.PUBLISHED)
             data = data.splice(0, 3)
             dispatch({
                 type: set_merchantSponsorshipMain,
@@ -53,11 +54,12 @@ export const getDreamCrowdFinancing = () => {
             url: DEVELOP + 'cfactivity/list',
             data: {
                 page: 1,
-                size: 3
+                size: 10
             }
         })
         let { data: { result, data } } = res
         if(result === 0) {
+            data = data.filter(item => item.state === publishState.PUBLISHED)
             data = data.splice(0, 3)
             dispatch({
                 type: set_dreamCrowdFinancingMain,

@@ -1,4 +1,4 @@
-import Taro, { useDidHide, useCallback, useState, useEffect } from '@tarojs/taro'
+import Taro, { useCallback, useState, useEffect } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import { useSelector, useDispatch } from '@tarojs/redux'
 import './index.scss'
@@ -13,6 +13,10 @@ const PersonInfo = props => {
     const [phone, setPhone] = useState(userInfo.phone)
     const [avatar, setAvatar] = useState(userInfo.avatar)
     const [signature, setSignature] = useState(userInfo.signature || '')
+    const setNickNameWrapper = useCallback(info => {
+        setNickName(info)
+    }, [])
+
 
     const setSignatureWrapper = useCallback(info => {
         setSignature(info.target.value)
@@ -32,6 +36,17 @@ const PersonInfo = props => {
         })
     }, [userInfo.isNamed])
 
+    useEffect(() => {
+        return async () => {
+            try {
+                const action = setUserInfo({avatar, nickName, signature})
+                await dispatch(action)
+            } catch(err) {
+                
+            }
+        }
+    }, [avatar, nickName, signature])
+
     const upLoadImg = useCallback(async () => {
         try {
             const res = await Taro.chooseImage({
@@ -49,24 +64,7 @@ const PersonInfo = props => {
         } catch(err) {
 
         }
-    })
-    useEffect(() => {
-        return async () => {
-            await submit()
-        }
     }, [])
-    useDidHide(() => {
-        console.log('componentDidHide')
-    })
-    const submit = useCallback(async () => {
-        console.log(avatar, nickName, signature)
-        try {
-            const action = setUserInfo({avatar, nickName, signature})
-            await dispatch(action)
-        } catch(err) {
-
-        }
-    }, [avatar, nickName, signature])
     return (
         <View className="container">
             <View className="head">
@@ -77,8 +75,9 @@ const PersonInfo = props => {
                             name='value1'
                             type='text'
                             placeholder='修改用户名'
+                            maxLength={20}
                             value={nickName}
-                            onChange={setNickName}
+                            onChange={setNickNameWrapper}
                         />
                     </View>
                 </View>

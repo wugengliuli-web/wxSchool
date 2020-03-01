@@ -4,6 +4,7 @@ import { AtInput, AtForm, AtButton, AtCountdown }  from 'taro-ui'
 import './index.scss'
 import { login } from '../../actions/login'
 import { useDispatch } from '@tarojs/redux'
+import LOGO from '../../static/img/LOGO.png'
 const Index = props => {
 	const dispatch = useDispatch()
 	const [disabled, setDisabled] = useState(true)
@@ -70,11 +71,14 @@ const Index = props => {
 	)
 	return (
 		<View className="container">
+			<View className="logoWrapper">
+				<Image src={LOGO} className="img"></Image>
+			</View>
 			<View className="formWrapper">
 				<AtForm className="formWrapper" onSubmit={submit}>
 					<View className="telNumWrapper">
 						<AtInput
-							className="telNumInput"
+							className={telNum ? "telNumInput" : "telNumInput noinput"}
 							name='value2'
 							type='phone'
 							placeholder='手机号一键登录注册'
@@ -86,7 +90,7 @@ const Index = props => {
 					</View>
 					<View className="VCodeWrapper">
 						<AtInput
-							className="VCodeInput"
+							className={getVCode ? "VCodeInput" : "VCodeInput noinput"}
 							name='value2'
 							type='text'
 							placeholder='请输入验证码'

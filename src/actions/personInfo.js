@@ -1,9 +1,8 @@
 import Taro from '@tarojs/taro'
 import { set_userInfo } from '../constants/login'
 import { DEVELOP } from '../lib/url'
-
 export const setUserInfo = ({ avatar, nickName, signature }) => {
-    return async dispatch => {
+    return async function(dispatch) {
         const { data } = await Taro.getStorage({
             key: 'token'
         })
@@ -14,7 +13,7 @@ export const setUserInfo = ({ avatar, nickName, signature }) => {
             },
             data: {
                 avatar,
-                nickName,
+                nickname: nickName,
                 signature
             }
         })

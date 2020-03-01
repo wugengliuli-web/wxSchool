@@ -6,13 +6,17 @@ import {
 export const getUserInfo = id => {
     return async dispatch => {
         const res = await Taro.request({
-            url: DEVELOP + 'getUserInfo',
+            url: DEVELOP + 'user/get',
             data: {
-                id
+                uid: id
             }
         })
-        const { data } = res
-        return data
+        const { data: { result, data } } = res
+        if(~~result === 1) {
+            return data
+        } else {
+            return false
+        }
     }
 }
 

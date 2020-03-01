@@ -6,7 +6,7 @@ import {
     set_merchantSponsorship,
     set_dreamCrowdFinancing 
 } from '../constants/search'
-import { activityType } from '../lib/type'
+import { activityType, publishState } from '../lib/type'
 
 export const getSearchContent = (type, search, position) => {
     return async dispatch => {
@@ -32,6 +32,7 @@ export const getSearchContent = (type, search, position) => {
             }
         })
         let { data: { data } } = res
+        data = data.filter(item => item.state === publishState.PUBLISHED)
         dispatch({
             type: set_SearchContent,
             data,

@@ -66,7 +66,7 @@ const PersonalCenter = props => {
 									<Image className="icon" src={certified}></Image>
 								</View>
 								<Text className="hasChecked">已认证</Text>
-								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+								{/* <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon> */}
 							</View>
 							:
 							<View className="checked">
@@ -74,7 +74,7 @@ const PersonalCenter = props => {
 									<Image className="icon" src={uncertified}></Image>
 								</View>
 								<Text className="hasChecked">未认证</Text>
-								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+								{/* <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon> */}
 							</View>
 						}
 						{
@@ -85,7 +85,7 @@ const PersonalCenter = props => {
 								</View>
 								<Text className="hasChecked">已实名</Text>
 
-								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+								{/* <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon> */}
 							</View>
 							:
 							<View className="checkedRealname">
@@ -94,7 +94,7 @@ const PersonalCenter = props => {
 								</View>
 								<Text className="hasChecked">未实名</Text>
 
-								<AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon>
+								{/* <AtIcon className="point" value='chevron-right' size='12' color='rgba(255,255,255,1);'></AtIcon> */}
 							</View>
 						}
 					</View>
