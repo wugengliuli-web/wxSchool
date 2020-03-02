@@ -17,6 +17,18 @@ import message from '../../static/img/icon/message.png'
 import personalization from '../../static/img/icon/personalization.png'
 import question from '../../static/img/icon/question.png'
 const PersonalCenter = props => {
+	
+
+	let nickName= useSelector(state => state.personalCenter.nickName)
+	let avatar = useSelector(state => state.personalCenter.avatar)
+	let goodCount = useSelector(state => state.personalCenter.goodCount)
+	let emoneyCount = useSelector(state => state.personalCenter.emoneyCount)
+	let estarCount = useSelector(state => state.personalCenter.estarCount)
+	let isChceked = useSelector(state => state.personalCenter.isChceked)
+	let isNamed = useSelector(state => state.personalCenter.isNamed)
+	let userId = useSelector(state => state.personalCenter.userId)
+	let userType = useSelector(state => state.personalCenter.userType)
+
 	const items = [
 		{ item: '我的发布', id: 1, url: '/pages/myRelease/index', src: activity }, 
 		{ item: '我的评价', id: 2, url: '/pages/evaluate/index', src: application }, 
@@ -27,16 +39,6 @@ const PersonalCenter = props => {
 		{ item: '个性定制', id: 6, url: '/pages/login/index', src: personalization }, 
 		{ item: '常见问题', id: 7, url: '/pages/login/index', src: question }
 	]
-
-	let nickName= useSelector(state => state.personalCenter.nickName)
-	let avatar = useSelector(state => state.personalCenter.avatar)
-	let goodCount = useSelector(state => state.personalCenter.goodCount)
-	let emoneyCount = useSelector(state => state.personalCenter.emoneyCount)
-	let estarCount = useSelector(state => state.personalCenter.estarCount)
-	let isChceked = useSelector(state => state.personalCenter.isChceked)
-	let isNamed = useSelector(state => state.personalCenter.isNamed)
-	let userId = useSelector(state => state.personalCenter.userId)
-
 	let edit = useCallback(
 		() => {
 			
@@ -48,7 +50,7 @@ const PersonalCenter = props => {
 			<View className="header">
 				<View className="headPic">
 					<View className="pic">
-						<Navigator url={`/pages/personalBasicifo/index?id=${userId}`}>
+						<Navigator url={`/pages/personalBasicifo/index?id=${userId}&userType=${userType}`}>
 							<Image
 								className="photo"
 								src={avatar} 	

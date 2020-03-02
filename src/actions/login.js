@@ -21,7 +21,7 @@ export const login = (tel, vCode) => {
         let { data: { result, token } } = res
         if(~~result === 0) {
             //如果是0代表登录成功
-            let { data: { user: { nickname, phone, signature, avatar = '', auth: { id, realname = '', org = '' } } } } = res
+            let { data: { user: { nickname, phone, signature, avatar = '', id, auth: { realname = '', org = '', type } } } } = res
             await Taro.setStorage({
                 key: 'token',
                 data: token
@@ -35,7 +35,8 @@ export const login = (tel, vCode) => {
                     avatar,
                     realname,
                     org,
-                    signature
+                    signature,
+                    type
                 }
             })
             return true

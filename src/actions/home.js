@@ -46,12 +46,11 @@ export const getContent = (pageIndex, place) => {
             data: {
                 page: pageIndex,
                 size: 6,
-                location: place.join('-')
+                location: place.join('-'),
+                state: publishState.PUBLISHED
             }
         })
         let { data: { result, data } } = res
-        console.log(res)
-        data = data.filter(item => item.state === publishState.PUBLISHED)
         if(~~result === 0) {
             dispatch({
                 type: set_content,

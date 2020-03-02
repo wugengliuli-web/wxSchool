@@ -14,7 +14,8 @@ export default function myRelease(state = INITIAL_STATE, action) {
         case set_notRelease:
             return {
                 ...state,
-                notRelease: data
+                hasRelease: data.publish,
+                notRelease: data.done
             }
         case set_hasRelease:
             return {

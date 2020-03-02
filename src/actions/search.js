@@ -28,11 +28,11 @@ export const getSearchContent = (type, search, position) => {
                 page: 1,
                 size: 100,
                 location: position.join('-'),
-                keyword: search
+                keyword: search,
+                state: publishState.PUBLISHED
             }
         })
         let { data: { data } } = res
-        data = data.filter(item => item.state === publishState.PUBLISHED)
         dispatch({
             type: set_SearchContent,
             data,

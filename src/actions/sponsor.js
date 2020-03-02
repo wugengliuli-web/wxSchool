@@ -12,12 +12,13 @@ export const getCampusActivities = () => {
             url: DEVELOP + 'activity/list',
             data: {
                 page: 1,
-                size: 10
+                size: 10,
+                state: publishState.PUBLISHED
             }
         })
         let { data: { result, data } } = res
         if(result === 0) {
-            data = data.filter(item => item.state === publishState.PUBLISHED)
+            data.reverse()
             data = data.splice(0, 3)
             dispatch({
                 type: set_campusActivitiesMain,
@@ -33,12 +34,13 @@ export const getMerchantSponsorship = () => {
             url: DEVELOP + 'sponsorship/list',
             data: {
                 page: 1,
-                size: 10
+                size: 10,
+                state: publishState.PUBLISHED
             }
         })
         let { data: { result, data } } = res
         if(result === 0) {
-            data = data.filter(item => item.state === publishState.PUBLISHED)
+            data.reverse()
             data = data.splice(0, 3)
             dispatch({
                 type: set_merchantSponsorshipMain,

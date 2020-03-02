@@ -133,7 +133,7 @@ const Home = props => {
                                             <View className="infoWrapper">
                                                 <View className="contentText">{item.name}</View>
                                                 <View className="contentInfoWrapper">
-                                                    <Image mode="center" src={item.user.avatar ? item.user.avatar : defaultLogo} className="logo"></Image>
+                                                    <Image mode="scaleToFill" src={item.user.avatar ? item.user.avatar : defaultLogo} className="logo"></Image>
                                                     <View className="name">{item.user.nickname}</View>
                                                 </View>
                                             </View>

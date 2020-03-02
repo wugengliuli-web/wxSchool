@@ -25,7 +25,7 @@ const PersonalBasicifo = props => {
         { text: '活动信息', index: 1 }
 	])
 	const dispatch = useDispatch()
-	const { params: { id } } = useRouter()
+	const { params: { id, userType } } = useRouter()
 	const [current, setCurrent] = useState(0)
 	const [userInfo, setUserInfo] = useState({})  //用户信息
 	const [activeGoing, setActiveGoing] = useState([])
@@ -38,17 +38,38 @@ const PersonalBasicifo = props => {
 			Taro.showLoading({
 				title: '查询中'
 			})
-			setHasAjax(true)
-			let actions = getActiveGoing(id)
-			let ress = await dispatch(actions)
-			setActiveGoing(ress)
-			actions = getActiveEnd(id)
-			ress = await dispatch(actions)
-			setActiveEnd(ress)
+			try {
+				setHasAjax(true)
+				let action = getActiveGoing(id, userType)
+				let res = await dispatch(action)
+				if(typeof res === 'string' && res === '未认证') {
+					Taro.showToast({
+						title: '账号未认证',
+						duration: 2000,
+						icon: 'none'
+					})
+				} else if(res === false) {
+					Taro.showToast({
+						title: '获取信息失败',
+						duration: 2000,
+						icon: 'none'
+					})
+				} else {
+					let [publish, done] = res
+					setActiveGoing(publish)
+					setActiveEnd(done)
+				}
+				
+			} catch(err) {
+				Taro.showToast({
+					title: '获取信息失败',
+					duration: 2000,
+					icon: 'none'
+				})
+			}
 			Taro.hideLoading()
 		}
 	}, [hasAjax])
-	
 	useDidShow(async () => {
 		if(Object.keys(userInfo).length === 0) {
 			Taro.showLoading({
@@ -213,19 +234,20 @@ const PersonalBasicifo = props => {
 										return <Navigator key={item.id} url={`/pages/activites/index?id=${item.id}`}>
 											<View className="content" key={item.id}>
 												<View className="contentHead">
-													<View className="title">{item.title}</View>
+													<View className="title">{userType === '学生认证' ? item.name : item.theme}</View>
 													<View className="tagContainer">
-														{
+														{/* {
 															item.tag.map(key => {
 																return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
 															})
-														}
+														} */}
+														<View  className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
 													</View>
 												</View>
-												<View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+												<View className="address">地址: {item.address}</View>
 												<View className="contentBottom">
-													<View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-													<View className="money">￥{item.money}</View>
+													<View className="timer">发布时间: {item.publishDate}~{userType === '学生认证' ? item.deadline : item.availableDate}</View>
+													<View className="money">￥{userType === '学生认证' ? item.budget : item.fee}</View>
 												</View>
 											</View>
 										</Navigator>
@@ -242,19 +264,20 @@ const PersonalBasicifo = props => {
 												<Navigator url={`/pages/activites/index?id=${item.id}`}>
 													<View className="content" key={item.id}>
 														<View className="contentHead">
-															<View className="title">{item.title}</View>
+															<View className="title">{userType === '学生认证' ? item.name : item.theme}</View>
 															<View className="tagContainer">
-																{
+																{/* {
 																	item.tag.map(key => {
 																		return <View key={key} className={activitesColor.blue.includes(key) ? 'contentTag blue' : activitesColor.green.includes(key) ? 'contentTag green' : 'contentTag red'}>{key}</View>
 																	})
-																}
+																} */}
+																<View  className={activitesColor.blue.includes(item.type) ? 'contentTag blue' : activitesColor.green.includes(item.type) ? 'contentTag green' : 'contentTag red'}>{item.type}</View>
 															</View>
 														</View>
-														<View className="address">地址: {item.city.split(' ').filter(item => item !== '-').join('-')}</View>
+														<View className="address">地址: {item.address}</View>
 														<View className="contentBottom">
-															<View className="timer">发布时间: {item.startTime}~{item.endTime}</View>
-															<View className="money">￥{item.money}</View>
+															<View className="timer">发布时间: {item.publishDate}~{userType === '学生认证' ? item.deadline : item.availableDate}</View>
+															<View className="money">￥{userType === '学生认证' ? item.budget : item.fee}</View>
 														</View>
 													</View>
 												</Navigator>

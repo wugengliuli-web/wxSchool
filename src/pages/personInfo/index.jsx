@@ -56,7 +56,8 @@ const PersonInfo = props => {
             if(size > maxSize) {
                 Taro.showToast({
                     title: '文件超出大小2MB',
-                    duration: 2000
+                    duration: 2000,
+                    icon: 'none'
                 })
             } else {
                 setAvatar(path)

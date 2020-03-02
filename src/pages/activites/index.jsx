@@ -21,6 +21,7 @@ const Activites = props => {
                 const res = await dispatch(action)
                 if(res) {
                     let [data, Recommend] = res
+                    console.log(data)
                     setData(data)
                     setRecommend(Recommend)
                 } else {
@@ -86,11 +87,11 @@ const Activites = props => {
                             </View>
                         </View>
                     </View>
-                    <Navigator url={`/pages/personalBasicifo/index?id=${data.user.id}&type=${type}`}>
+                    <Navigator url={`/pages/personalBasicifo/index?id=${data.user.id}&userType=${data.user.auth.type}`}>
                         <View className="associationWrapper">
                             <View className="top">
                                 <View className="logoWrapper">
-                                    <Image className="logo" src={data.user.avatar ? data.user.avatar : ''} mode="center"></Image>
+                                    <Image className="logo" src={data.user.avatar ? data.user.avatar : ''} mode="scaleToFill"></Image>
                                 </View>
                                 <View className="introduce">
                                     <View className="name">{data.user.nickname}</View>
