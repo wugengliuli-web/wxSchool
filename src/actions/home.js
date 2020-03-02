@@ -6,18 +6,26 @@ import {
     set_content,
     clear_content
 } from '../constants/home'
-import { publishState } from '../lib/type'
+import { publishState, mediaUrl } from '../lib/type'
 //请求banner
 export const getBanner = () => {
     return async dispatch => {
         let res = await Taro.request({
-            url: DEVELOP + 'bannerUrl'
+            url: DEVELOP + 'banner/get'
         })
-        let { data: { data } } = res
-        dispatch({
-            type: set_banner,
-            data
-        })
+        let { data: { result, data } } = res
+        if(~~result === 0) {
+            data = data.map(item => {
+                item.path = DEVELOP + mediaUrl + item.path
+                return item
+            })
+            console.log(data)
+            dispatch({
+                type: set_banner,
+                data
+            })
+        }
+        
     }
 }
 

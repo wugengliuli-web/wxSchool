@@ -25,10 +25,10 @@ const Home = props => {
         //     url: '/pages/personInfo/index?id=' + Math.random() * 100000
         // })
         //进入页面获取轮播图信息
-        // if(bannerUrl.length === 0) {
-        //     const aciton = getBanner()
-        //     dispatch(aciton)
-        // }
+        if(bannerUrl.length === 0) {
+            const aciton = getBanner()
+            dispatch(aciton)
+        }
         //获取搜索区域的内容
         if(!hasAjax) {
             try {
@@ -90,8 +90,8 @@ const Home = props => {
                         {
                             bannerUrl.map((item, index) => {
                                 return (
-                                    <SwiperItem key={item.link}>
-                                        <Image className="img" src={item.url} mode="aspectFit"></Image>
+                                    <SwiperItem key={item.id}>
+                                        <Image className="img" src={item.path} mode="scaleToFill"></Image>
                                     </SwiperItem>
                                 )
                             })

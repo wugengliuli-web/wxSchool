@@ -111,3 +111,5 @@ export const publishState = {
     PUBLISHED: 'PUBLISHED',
     DONE: 'DONE'
 }
+
+export const mediaUrl = 'media/'
