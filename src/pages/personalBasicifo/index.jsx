@@ -111,7 +111,7 @@ const PersonalBasicifo = props => {
 							<View className="name">{userInfo.nickname}</View>
 							<View className="authenticationWrapper">
 								<View className="identityAuthentication">
-									{/* <Image mode="scaleToFill" className="identityAuthenticationImg" src={userInfo.auth && userInfo.auth.org ? certified : uncertified}></Image> */}
+									<Image mode="scaleToFill" className="identityAuthenticationImg" src={userInfo.auth && userInfo.auth.org ? certified : uncertified}></Image>
 									<Text className="text">
 									{
 										userInfo.auth && userInfo.auth.org ?
@@ -122,7 +122,7 @@ const PersonalBasicifo = props => {
 									</Text>
 								</View>
 								<View className="realNameAuthentication">
-									{/* <Image mode="scaleToFill" className="realNameAuthenticationImg" src={userInfo.auth && userInfo.auth.realname ? real_named : nonReal_named}></Image> */}
+									<Image mode="scaleToFill" className="realNameAuthenticationImg" src={userInfo.auth && userInfo.auth.realname ? real_named : nonReal_named}></Image>
 									<Text className="text">
 									{
 										userInfo.auth && userInfo.auth.realname ?

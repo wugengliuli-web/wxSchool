@@ -6,7 +6,6 @@ import region from '../../lib/region'
 import './index.scss'
 import { getSearchContent, setCampusActivities, setMerchantSponsorship, setDreamCrowdFinancing } from '../../actions/search'
 import Skeleton from 'taro-skeleton'
-import locate from '../../static/img/locate.png'
 import search from '../../static/img/search.png'
 import { activitesColor, activityType } from '../../lib/type'
 const Search = props => {
@@ -90,8 +89,12 @@ const Search = props => {
             key: 'searchOldTag',
             data: JSON.stringify(newSearchOldTag)
         })
-        const action = getSearchContent(current, val, position)
-        await dispatch(action)
+        try {
+            const action = getSearchContent(current, val, position)
+            await dispatch(action)
+        } catch(err) {
+            
+        }
         setLoading(false)
     }, [searchContent, current, position])
     const sortOptions = [{ 
@@ -257,7 +260,7 @@ const Search = props => {
                     </AtForm>
                 </View>
                 <View className="positionWrapper">
-                <Image src={locate} className="point"></Image>
+                <Text className="point">地区标签</Text>
                     {
                         position.map((item, index) => {
                             return (

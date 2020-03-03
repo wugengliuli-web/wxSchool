@@ -14,6 +14,7 @@ import { activitesColor, activityType } from '../../lib/type'
 import basketball from '../../static/img/basketball.png'
 import company from '../../static/img/company.png'
 import dream from '../../static/img/dream.png'
+import search from '../../static/img/search.png'
 const Sponsor = props => {
     const dispatch = useDispatch()
     const [hasAjax, setHasAjax] = useState(false)
@@ -74,7 +75,7 @@ const Sponsor = props => {
                     <View className="searchContainer">
                         {searchPlaceHolder}
                         <View className="searchIconWrapper">
-                            <AtIcon className="searchIcon" value='search' size='18' color='#000'></AtIcon>
+                            <Image src={search} className="searchIcon"></Image>
                         </View>
                     </View>
                 </Navigator>

@@ -59,6 +59,7 @@ page {
                 height: 116px;
                 margin-top: 16px;
                 margin-left: 16px;
+                display: flex;
                 .checked{
                     margin-right: 20px;
                     width:144px;
@@ -66,8 +67,8 @@ page {
                     background:rgba(245,246,250,.3);
                
                     border-radius:16px;
-                    display: inline-block;
-                    
+                    display: flex;
+                    align-items: center;
                     .spot{
                         display: inline-block;
                         width:24px;
@@ -89,7 +90,6 @@ page {
                         font-size:24px;
                         font-family:Noto Sans S Chinese;
                         font-weight:400;
-                        line-height:40px;
                         color:rgba(255,255,255,1);
                         opacity:1;
                         position: relative;
@@ -103,13 +103,13 @@ page {
                     }
                 }
                 .checkedRealname{
-                    
+                    display: flex;
+                    align-items: center;
                     width:144px;
                     height:32px;
                     background:rgba(245,246,250,.3);
                     
                     border-radius:16px;
-                    display: inline-block;
                     .spot{
                         display: inline-block;
                         width:24px;
@@ -131,7 +131,6 @@ page {
                         font-size:24px;
                         font-family:Noto Sans S Chinese;
                         font-weight:400;
-                        line-height:40px;
                         color:rgba(255,255,255,1);
                         opacity:1;
                         position: relative;
