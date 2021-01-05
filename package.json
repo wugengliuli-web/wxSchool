@@ -45,7 +45,7 @@
     "@tarojs/taro-tt": "2.0.3",
     "@tarojs/taro-weapp": "2.0.3",
     "add": "^2.0.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-runtime": "^6.26.0",
     "mocker-api": "^1.12.2",
     "mockjs": "^1.1.0",
